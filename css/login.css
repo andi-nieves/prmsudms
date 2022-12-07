@@ -1,0 +1,78 @@
+body {
+    background-image: url("../img/login/bg.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    backdrop-filter: blur(2.5px);
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0 auto;
+    flex-direction: column;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.logo img {
+    width: 200px;
+    height: 200px;
+}
+
+.title {
+    text-align: center;
+    padding-bottom: 10px;
+}
+
+form {
+    width: 300px;
+    padding: 20px;
+    padding-top: 50px;
+    padding-bottom: 50px;
+    background: rgba(10, 10, 10, 0.85);
+    border-radius: 10px;
+}
+
+h2 {
+    font-size: 28pt;
+    font-weight: bold;
+    color: rgb(0, 0, 0);
+    text-shadow: 0 0 10px #ccc;
+}
+
+input {
+    display: block;
+    border: 2px solid #ccc;
+    width: 93%;
+    padding: 10px;
+    margin: 10px auto;
+    border-radius: 10px;
+}
+label {
+    color: #fff;
+    font-size: 11pt;
+    font-weight: bold;
+    padding: 10px;
+}
+
+button {
+    float: left;
+    background: rgb(25, 57, 153);
+    padding: 10px 135px;
+    color: #fff;
+    border-radius: 10px;
+    margin-right: 10px;
+    border: none;
+    font-size: 11pt;
+}
+button:hover {
+    opacity: 0.85;
+}
+.error {
+    background: #F2DEDE;
+    color: #0c0101;
+    padding: 10px;
+    width: 95%;
+    border-radius: 5px;
+    margin: 20px auto;
+}

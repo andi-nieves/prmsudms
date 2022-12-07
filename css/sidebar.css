@@ -1,0 +1,67 @@
+.wrapper .sidebar{
+    background-image: url("../img/s-bg.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    backdrop-filter: blur(2.5px);
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 274px;
+	height: 100%;
+	padding: 20px 0;
+    border-right: 21px solid;
+    border-color: rgb(255, 199, 0);
+	transition: all 0.5s ease;
+}
+
+.wrapper .sidebar .sidebar-bgfx{
+    position: absolute;
+    width: 254px;
+    height: 100%;
+    top: 0px;
+    backdrop-filter: blur(1px) brightness(0.2);
+}
+
+.wrapper .sidebar .logo{
+   margin: 20px;
+   text-align: center;
+}
+
+.wrapper .sidebar .logo img{
+    display: block;
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    margin: 0 auto;
+}
+
+.wrapper .sidebar ul li a{
+	display: block;
+	padding: 13px 20px;
+	color: rgb(241, 237, 237);
+	font-size: 16px;
+	position: relative;
+}
+
+.logout{
+    bottom: -185px;
+}
+
+.wrapper .sidebar ul li a .icon{
+	color: #dee4ec;
+	width: 30px;
+	display: inline-block;
+}
+
+.wrapper .sidebar ul li a:hover,
+.wrapper .sidebar ul li a.active{
+	color: #ffffff;
+
+	background:rgb(44, 61, 92);
+    border-right: 2px solid rgb(44, 61, 92);
+}
+
+body.active .wrapper .sidebar{
+	left: -225px;
+}
