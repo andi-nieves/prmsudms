@@ -13,6 +13,7 @@
     border-right: 21px solid;
     border-color: rgb(255, 199, 0);
 	transition: all 0.5s ease;
+    z-index: 100;
 }
 
 .wrapper .sidebar .sidebar-bgfx{
