@@ -62,6 +62,6 @@ function isMobileDevice(){
     return false;
 }
 ob_end_flush();
-
-$ROOT_DIR = $_SERVER['DOCUMENT_ROOT']."/PRMSUdms";
+$SITE_NAME = "/PRMSUdms";
+$ROOT_DIR = $_SERVER['DOCUMENT_ROOT'].$SITE_NAME;
 ?>
