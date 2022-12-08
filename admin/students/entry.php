@@ -1,13 +1,10 @@
-<?php require_once('../../config.php') ?>
+<?php 
+require_once('../../config.php');
+$title = "Student Entry";
+?>
 <!DOCTYPE html>
     <html>
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Student Entry</title>
-        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
-        <link rel="stylesheet" type="text/css" href="../../css/style.css">
-    </head>
+    <?php include $ROOT_DIR.'/inc/html-head.php' ?>
     <body>
         <!--
             <ul>
@@ -24,7 +21,10 @@
             <div class="content-wrapper" style="min-height:628.038px">
                 <section class="content">
                     <div class="container">
-                        <?php include 'form.php' ?>
+                        <form id="student-entry-form">
+                            <?php include 'form.php' ?>
+                        </form>
+                        
                     </div>
                 </section>
             </div>
