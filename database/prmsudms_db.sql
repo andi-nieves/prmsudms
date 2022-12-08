@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 04, 2022 at 10:39 AM
--- Server version: 10.4.25-MariaDB
--- PHP Version: 8.1.10
+-- Generation Time: Dec 08, 2022 at 11:26 AM
+-- Server version: 10.4.22-MariaDB
+-- PHP Version: 7.3.33
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -140,9 +140,11 @@ CREATE TABLE `student_list` (
   `middlename` text NOT NULL,
   `lastname` text NOT NULL,
   `department` text NOT NULL,
+  `birthdate` date DEFAULT NULL,
   `course` text NOT NULL,
   `gender` varchar(20) NOT NULL,
   `contact` text NOT NULL,
+  `religion` text NOT NULL,
   `email` text NOT NULL,
   `address` text NOT NULL,
   `emergency_name` text NOT NULL,
@@ -159,8 +161,11 @@ CREATE TABLE `student_list` (
 -- Dumping data for table `student_list`
 --
 
-INSERT INTO `student_list` (`id`, `code`, `firstname`, `middlename`, `lastname`, `department`, `course`, `gender`, `contact`, `email`, `address`, `emergency_name`, `emergency_contact`, `emergency_address`, `emergency_relation`, `status`, `delete_flag`, `date_created`, `date_updated`) VALUES
-(1, '6231415', 'Juan', 'D', 'dela Cruz', 'College of Engineering', 'Bachelor of Science in Computer  Science', 'Male', '09123456789', 'jdelacruz@gmail.com', '23 St, Here City, Over There Province,  2306', 'Ivan dela Cruz', '09654789123', '23 St, Here City, Over There Province,  2306', 'Father', 1, 0, '2022-12-02 14:22:55', '2022-12-02 14:22:55');
+INSERT INTO `student_list` (`id`, `code`, `firstname`, `middlename`, `lastname`, `department`, `birthdate`, `course`, `gender`, `contact`, `religion`, `email`, `address`, `emergency_name`, `emergency_contact`, `emergency_address`, `emergency_relation`, `status`, `delete_flag`, `date_created`, `date_updated`) VALUES
+(1, '6231415', 'Juan', 'D', 'dela Cruz', 'College of Engineering', NULL, 'Bachelor of Science in Computer  Science', 'Male', '09123456789', '', 'jdelacruz@gmail.com', '23 St, Here City, Over There Province,  2306', 'Ivan dela Cruz', '09654789123', '23 St, Here City, Over There Province,  2306', 'Father', 1, 0, '2022-12-02 14:22:55', '2022-12-02 14:22:55'),
+(2, 'asd', 'Andy', 'Fuentecilla', 'Nieves', 'asdas', '2022-12-09', 'dasd', 'Male', '09469137286', 'sdasd', 'andinieves151720@gmail.com', 'asdasd', 'Andy Fuentecilla Nieves', 'asd', '', 'asdasd', 0, 0, '2022-12-08 17:41:47', '2022-12-08 17:41:47'),
+(3, '05-11553i', 'Andy', 'Fuentecilla', 'Nieves', 'College of Communication and Information Technology', '1989-12-02', 'Bachelor of Science in Computer Science', 'Male', '09469137286', 'Roman Catholic', 'andinieves151720@gmail.com', 'Purok 2, Bangantalinga', 'Andy Fuentecilla Nieves', '0192039102390123', 'Ohio', 'Twin', 0, 0, '2022-12-08 17:43:53', '2022-12-08 17:43:53'),
+(4, 'xxxx', 'Andy', 'Fuentecilla', 'Nieves', 'x', '2022-12-03', 'x', 'Male', '09469137286', 'xx', 'andinieves151720@gmail.com', 'Purok 2, Bangantalinga', 'Andy Fuentecilla Nieves', 'xx', 'xx', 'xx', 1, 0, '2022-12-08 17:44:52', '2022-12-08 18:08:06');
 
 -- --------------------------------------------------------
 
@@ -254,7 +259,7 @@ ALTER TABLE `room_list`
 -- AUTO_INCREMENT for table `student_list`
 --
 ALTER TABLE `student_list`
-  MODIFY `id` int(40) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(40) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
