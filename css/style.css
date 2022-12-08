@@ -138,13 +138,20 @@ a#create_new {
     box-shadow: none;
 }
 
-.btn-default {
+.btn.btn-default {
     /* background-color: #f8f9fa; */
     border-radius: 10px !important;
     border-color: #ddd !;
     color: #FFF !important;
     background-color: #2c3d5c !important;
 }
+
+.btn.btn-default:disabled,
+.btn.btn-default[disabled]{
+  cursor: not-allowed;
+  background-color: #CCC !important;
+}
+
 
 .p-1 {
     padding: 0.25rem !important;
@@ -530,12 +537,19 @@ table.dataTable td, table.dataTable th {
 .input-wrapper span {
     font-weight: bold;
 }
-.input-wrapper input, .input-wrapper textarea, .input-wrapper select {
+.input-wrapper input, .input-wrapper textarea, .input-wrapper select, .static {
     padding: 10px;
     border-radius: 10px;
     background-color: rgba(50,50,50,0.1);
     border: none;
     width: 100%;
+    min-height: 38px;
+}
+.input-wrapper span.error {
+    font-size: 12px;
+    color: red;
+    font-weight: 400;
+    font-style: normal;
 }
 
 .details h3 {
