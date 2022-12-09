@@ -9,7 +9,9 @@
         require_once '../../classes/db_helper.php';
         $db = new db();
         $student_data = $db->query("SELECT * FROM `student_list` WHERE id=:id", array(":id"=>$student_id))[0] ?? null;
-        $age = floor((time() - strtotime($student_data->birthdate)) / 31556926);
+        if(!is_null($student_data)) {
+            $age = floor((time() - strtotime($student_data->birthdate)) / 31556926);
+        }
     }
 ?>
 <!DOCTYPE html>
@@ -38,7 +40,11 @@
                                     }
                                     break;
                                 default:
-                                    include 'view.php';
+                                    if (!is_null($student_data)) {
+                                        include 'view.php';
+                                    }else {
+                                        include '../../components/no-record.html';
+                                }
                                     break;
                             }
                         ?>
