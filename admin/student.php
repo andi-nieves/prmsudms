@@ -78,11 +78,11 @@ include $ROOT_DIR.'/inc/html-head.php';
                                             </td>
                                             <td align="center">
                                                 <div class="dropdown">
-                                                    <button class="btn btn-default">Action</button>
+                                                    <button class="btn btn-default">Action <i class="fa fa-chevron-down"></i></button>
                                                     <div class="dropdown-content">
                                                         <a href="/admin/students/entry.php?id=<?php echo $row['id'] ?>">View</a>
                                                         <a href="/admin/students/entry.php?id=<?php echo $row['id'] ?>&page=edit">Edit</a>
-                                                        <a href="#" class="delete" data-id="<?php echo $row['id'] ?>" data-name="<?php echo $row['name'] ?>">Delete</a>
+                                                        <a href="#" class="delete" data-code="<?php echo $row['code'] ?>" data-id="<?php echo $row['id'] ?>" data-name="<?php echo $row['name'] ?>">Delete</a>
                                                     </div>
                                                 </div>
                                             </td>
@@ -105,7 +105,7 @@ include $ROOT_DIR.'/inc/html-head.php';
                 event.preventDefault();
                 const parent = $(this).closest('tr')
                 const data = $(this).data();
-                window.modal({ title: 'Are you sure want to delete this record?' , body: data.name, buttons:[
+                window.modal({ title: 'Are you sure want to delete this record?' , body: `Student Number: ${data.code}<br/>Name: ${data.name}`, buttons:[
                     {
                         label: 'Delete',
                         class: 'btn-default',

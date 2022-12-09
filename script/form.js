@@ -34,15 +34,22 @@ $(document).ready(() => {
     })
 
     $("#delete").on('click', function() {
-        const data = $(this).data()
-        $.ajax({
-            url: `/api/student-entry.php?type=delete`,
-            type: 'post',
-            dataType: 'json',
-            data
-        }).done(data => {
-            window.location = '/admin/student.php'
-        });
+        const data = $(this).data() 
+        window.modal({ title: 'Are you sure want to delete this record?' , body: `Student Number: ${data.code}<br/>Name: ${data.name}`, buttons:[
+            {
+                label: 'Delete',
+                class: 'btn-default',
+                action: () => {
+                    $.ajax({
+                        url: `/api/student-entry.php?type=delete`,
+                        type: 'post',
+                        dataType: 'json',
+                        data
+                    }).done(data => {
+                        window.location = '/admin/student.php'
+                    });
+                }
+            }
+        ]})
     })
-
 })
