@@ -6,9 +6,9 @@
         echo json_encode(array('success'=>true));
         return;
     }
-    if (is_null($_POST['id'])) {
-        $cmd = $db->generate_insert_sql($table_name, $_POST);
-        echo json_encode(array('success'=>true, 'cmd'=>$cmd));
+    if (is_null($_POST['id']) || $_POST['id'] == "") {
+        $id = $db->generate_insert_sql($table_name, $_POST);
+        echo json_encode(array('success'=>true, 'id'=>$id));
     } else {
         $id = $_POST['id'];
         unset($_POST['id']);
