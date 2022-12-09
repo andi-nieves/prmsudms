@@ -7,7 +7,7 @@
     <div class="card-body">
         <div class="details">
             <div class="section">
-                <h3 class="m-b">School Details</h3>
+                <h3 class="m-b">School Details Test 1</h3>
                 <div class="row">
                     <div class="col">
                         <div class="input-wrapper">
