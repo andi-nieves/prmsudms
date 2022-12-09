@@ -92,7 +92,8 @@ class db {
         $qs=str_repeat("?,",count($fields)-1);
         $sql="INSERT INTO ".$table." (".$fieldlist.") VALUES (${qs}?)";
         $q = $this->conn->prepare($sql);
-        return $q->execute($values);
+        $q->execute($values);
+        return $this->conn->lastInsertId();
     }
  
   function generate_update_sql($table, $id, $array) {
