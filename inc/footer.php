@@ -6,15 +6,21 @@
     <p> All rights reserved.</p>
 </footer>
 
-<div class="modal" style="display: none">
+<div class="modal" id="modal" style="display: none">
     <div class="modal-content">
-        <div class="modal-header">
-            New Payments
-        </div>
-        <div class="modal-body">
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Vitae quod optio eligendi natus deserunt saepe rem
-            quis qui nesciunt! Vero veniam, accusantium ipsum asperiores rem doloremque repudiandae voluptate illo
-            placeat.
+        <div class="card">
+            <div class="card-header">
+                <h3 class="card-title"></h3>
+            </div>
+            <div class="card-body">
+                <div class="content">
+
+                </div>
+                <div class="action-button justify-content-end">
+                </div>
+            </div>
         </div>
     </div>
 </div>
+
+<script src="/script/dialog.js"></script>
