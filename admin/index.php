@@ -14,7 +14,7 @@
     <div class="title">
         <h2>PRMSU Dormitory Management System</h2>
     </div>
-    <form action="http://localhost/PRMSUdms/admin/login.php" method="post">
+    <form action="/admin/login.php" method="post">
         <?php if(isset($_GET['error'])) { ?>
             <p class="error"><?php echo $_GET['error']; ?></p>
         <?php } ?>

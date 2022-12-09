@@ -33,7 +33,7 @@ if(isset($_POST['username']) && isset($_POST['password'])) {
                 $_SESSION['username'] = $row['username'];
                 $_SESSION['name'] = $row['name'];
                 $_SESSION['id'] = $row['id'];
-                header("Location: http://localhost/PRMSUdms/admin/home.php");
+                header("Location: /admin/home.php");
                 exit();
                 }
         }

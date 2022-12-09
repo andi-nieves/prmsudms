@@ -26,7 +26,7 @@
 	                        <div class="card-header">
 		                        <h3 class="card-title">List of Accounts</h3>
 		                        <div class="card-tools">
-			                        <a href="http://localhost/PRMSUdms/admin/accounts/manage_account.php" id="create_new" class="btn btn-flat btn-primary">
+			                        <a href="/admin/accounts/manage_account.php" id="create_new" class="btn btn-flat btn-primary">
 										<span class="fas fa-plus"></span>  
 										Create New
 									</a>

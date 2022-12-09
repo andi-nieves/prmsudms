@@ -1,4 +1,4 @@
-<link rel="stylesheet" type="text/css" href="http://localhost/PRMSUdms/css/header-footer.css">
+<link rel="stylesheet" type="text/css" href="/css/header-footer.css">
 <div class="header">
     <div class="left">
         <span>PRMSU DORMITORY MANAGEMENT SYSTEM</span>

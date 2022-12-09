@@ -128,7 +128,7 @@
 	                        $(document).ready(function(){
 		                        $('#filter-form').submit(function(e){
                                     e.preventDefault()
-                                    location.href = "http://localhost/PRMSUdms/admin/monthly_collection.php"+$(this).serialize()
+                                    location.href = "/admin/monthly_collection.php"+$(this).serialize()
                                 })
                                 $('#print').click(function(){
                                     var h = $('head').clone()
