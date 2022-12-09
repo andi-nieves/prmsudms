@@ -1,5 +1,4 @@
 $(document).ready(() => {
-    const siteName = "PRMSUdms";
     const form = $("#student-entry-form")
     form.on('submit', (event) => {
         event.preventDefault();
@@ -18,19 +17,32 @@ $(document).ready(() => {
         })
         if ($(form).find('.error').length > 0) return
         $.ajax({
-            url: `/${siteName}/api/student-entry.php`,
+            url: `/api/student-entry.php`,
             type: 'post',
             dataType: 'json',
             data: form.serialize(),
-            success: function(data) {
-                       console.log('data', data)
-                     }
+        }).done(data => {
+            if (data.success) {
+                window.location = `/admin/students/entry.php?id=${data.id}`
+            }
         });
     });
 
     $("[name='birthdate']").on('change', event => {
         const age = moment().diff(event.target.value, 'years')
         $('.input-wrapper .static').html(age)
+    })
+
+    $("#delete").on('click', function() {
+        const data = $(this).data()
+        $.ajax({
+            url: `/api/student-entry.php?type=delete`,
+            type: 'post',
+            dataType: 'json',
+            data
+        }).done(data => {
+            window.location = '/admin/student.php'
+        });
     })
 
 })
