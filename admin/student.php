@@ -1,14 +1,11 @@
-<?php require_once('../config.php') ?>
+<?php require_once('../config.php'); ?>
 <!DOCTYPE html>
 <html>
 
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>List of Students</title>
-    <link rel="stylesheet" type="text/css" href="../css/style.css">
-
-</head>
+<?php 
+$title = "Students";
+include $ROOT_DIR.'/inc/html-head.php';
+?>
 
 <body>
     <div class="wrapper">
@@ -28,7 +25,7 @@
                         <div class="card-header">
                             <h3 class="card-title">List of Students</h3>
                             <div class="card-tools">
-                                <a href="<?php echo $SITE_NAME ?>/admin/students/entry.php" id="create_new"
+                                <a href="<?php echo $SITE_NAME ?>/admin/students/entry.php?page=new" id="create_new"
                                     class="btn btn-flat btn-primary"><span class="fas fa-plus"></span> Create New</a>
                             </div>
                         </div>
@@ -85,7 +82,7 @@
                                                     <div class="dropdown-content">
                                                         <a href="/admin/students/entry.php?id=<?php echo $row['id'] ?>">View</a>
                                                         <a href="/admin/students/entry.php?id=<?php echo $row['id'] ?>&page=edit">Edit</a>
-                                                        <a href="/admin/students/entry.php">Delete</a>
+                                                        <a href="#" class="delete" data-id="<?php echo $row['id'] ?>" data-name="<?php echo $row['name'] ?>">Delete</a>
                                                     </div>
                                                 </div>
                                             </td>
@@ -96,52 +93,37 @@
                             </div>
                         </div>
                     </div>
-                    <script>
-                    $(document).ready(function() {
-                        $('.delete_data').click(function() {
-                            _conf("Are you sure to delete Student [<b>" + $(this).attr('data-code') +
-                                "</b>] permanently?", "delete_student", [$(this).attr('data-id')])
-                        })
-                        $('.table').dataTable({
-                            columnDefs: [{
-                                orderable: false,
-                                targets: [7]
-                            }],
-                            order: [0, 'asc']
-                        });
-                        $('.dataTable td,.dataTable th').addClass('py-1 px-2 align-middle')
-                    })
-
-                    function delete_student($id) {
-                        start_loader();
-                        $.ajax({
-                            url: _base_url_ + "classes/Master.php?f=delete_student",
-                            method: "POST",
-                            data: {
-                                id: $id
-                            },
-                            dataType: "json",
-                            error: err => {
-                                console.log(err)
-                                alert_toast("An error occured.", 'error');
-                                end_loader();
-                            },
-                            success: function(resp) {
-                                if (typeof resp == 'object' && resp.status == 'success') {
-                                    location.reload();
-                                } else {
-                                    alert_toast("An error occured.", 'error');
-                                    end_loader();
-                                }
-                            }
-                        })
-                    }
-                    </script>
+                    
                 </div>
             </section>
         </div>
         <?php include '../inc/footer.php'; ?>
     </div>
+    <script>
+        $(document).ready(function() {
+            $("#list a.delete").on('click', function() {
+                event.preventDefault();
+                const parent = $(this).closest('tr')
+                const data = $(this).data();
+                window.modal({ title: 'Are you sure want to delete this record?' , body: data.name, buttons:[
+                    {
+                        label: 'Delete',
+                        class: 'btn-default',
+                        action: () => {
+                            $.ajax({
+                                url: `/api/student-entry.php?type=delete`,
+                                type: 'post',
+                                dataType: 'json',
+                                data
+                            }).done(data => {
+                                parent.remove();
+                            });
+                        }
+                    }
+                ]})
+            });
+        })
+    </script>
 </body>
 
 </html>
