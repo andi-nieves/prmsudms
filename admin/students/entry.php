@@ -25,20 +25,22 @@
         <div class="content-wrapper" style="min-height:628.038px">
             <section class="content">
                 <div class="container">
-
                     <?php 
-                        if (!is_null($student_data)) {
                             switch($page) {
-                                case 'new': case 'edit':
+                                case 'new': 
                                     include 'form.php';
+                                    break;
+                                case 'edit':
+                                    if (!is_null($student_data)) {
+                                        include 'form.php';
+                                    }else {
+                                        include '../../components/no-record.html';
+                                    }
                                     break;
                                 default:
                                     include 'view.php';
                                     break;
                             }
-                        } else {
-                            include '../../components/no-record.html';
-                        }
                         ?>
                     </form>
 
