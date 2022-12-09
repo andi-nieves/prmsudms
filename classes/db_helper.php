@@ -114,7 +114,6 @@ class db {
         array_push($values,$id);
         $q = $this->conn->prepare($sql);
         $q->execute($values);
-        echo $sql;
     return $sql;
   }
  
