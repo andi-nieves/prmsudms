@@ -39,3 +39,10 @@ window.modal = ({ title, body, buttons }) => {
 window.hideModal = () => {
   $("#modal").hide();
 };
+
+$(document).ready(() => {
+  $(".modal .action-button .btn-flat").on('click', function() {
+    $(this).closest('.modal').hide()
+  })
+})
+

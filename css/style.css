@@ -544,14 +544,39 @@ table.dataTable td, table.dataTable th {
 .input-wrapper span {
     font-weight: bold;
 }
-.input-wrapper input, .input-wrapper textarea, .input-wrapper select, .static {
+.input-wrapper input, .input-wrapper textarea, .input-wrapper select,.input-wrapper .static, .select2 {
     padding: 10px;
     border-radius: 10px;
-    background-color: rgba(50,50,50,0.1);
+    background-color: rgba(50,50,50,0.1) !important;
     border: none;
     width: 100%;
     min-height: 38px;
 }
+.select2 {
+    width: 100% !important;
+    max-width: 100% !important;
+}
+
+.select2-container--default .select2-selection--single {
+    background-color: transparent;
+    border: none;
+    border-radius: unset;
+    height: unset;
+}
+.select2-container--default .select2-selection--single .select2-selection__rendered {
+    color: unset;
+    line-height: unset;
+    padding: 0;
+    font-weight: normal;
+}
+.select2-dropdown {
+    border: none;
+}
+.select2-selection__arrow {
+    top: 5px !important;
+    right: 5px !important;
+}
+
 .input-wrapper span.error {
     font-size: 12px;
     color: red;
@@ -624,13 +649,13 @@ table.dataTable td, table.dataTable th {
 
   .modal {
     display: flex;
-    position: absolute;
+    position: fixed;
     width: 100vw;
     height: 100vh;
     background-color: rgba(0, 0, 0, 0.1);
     z-index: 9999;
-    top: 0;
-    left: 0;
+    top: 0px;
+    left: 0px;
     justify-content: center;
     align-items: center;
   }
