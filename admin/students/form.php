@@ -45,7 +45,7 @@ $courses = array(
                                 <select name="course" value="<?php echo $student_data->course ?>">
                                     <?php
                                         foreach($courses as $course) {
-                                            $selected = $student_data->course ?? "" === $course ? 'selected' : '';
+                                            $selected = ($student_data->course ?? "") == $course ? 'selected' : '';
                                             echo "<option $selected>$course</option>";
                                         }
                                     ?>
@@ -102,9 +102,9 @@ $courses = array(
                             <div class="input-wrapper">
                                 <div><span>Gender</span></div>
                                 <select name="gender">
-                                    <option <?php echo $student_data->gender ?? "" == "Male" ? "selected" : "" ?>>Male
+                                    <option <?php echo ($student_data->gender ?? "") == "Male" ? "selected" : "" ?>>Male
                                     </option>
-                                    <option <?php echo $student_data->gender ?? "" == "Female" ? "selected" : "" ?>>Female
+                                    <option <?php echo ($student_data->gender ?? "") == "Female" ? "selected" : "" ?>>Female
                                     </option>
                                 </select>
                             </div>
