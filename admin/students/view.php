@@ -7,7 +7,7 @@
     <div class="card-body">
         <div class="details">
             <div class="section">
-                <h3 class="m-b">School Details Test 1</h3>
+                <h3 class="m-b">School Details</h3>
                 <div class="row">
                     <div class="col">
                         <div class="input-wrapper">
@@ -147,7 +147,8 @@
                     History</button>
                 <button id="btn-add-payment" class="btn btn-default m-r" data-id="<?php echo $student_id ?>">Add
                     Payment</button>
-                <a class="btn btn-default m-r" href="/admin/students/entry.php?id=<?php echo $student_id ?>&page=edit">Edit</a>
+                <a class="btn btn-default m-r"
+                    href="/admin/students/entry.php?id=<?php echo $student_id ?>&page=edit">Edit</a>
                 <button id="delete" data-id="<?php echo $student_id ?>" data-code="<?php echo $student_data->code ?>"
                     data-name="<?php echo "$student_data->firstname $student_data->lastname" ?>"
                     class="btn btn-danger m-r">Delete</button>
@@ -156,38 +157,86 @@
         </div>
     </div>
 
-    <script>
-    $("#btn-add-payment").on('click', function() {
-        modal({
-            title: 'New Payment',
-            body: `<div>
-                    <div class="input-wrapper">
+    <div class="modal" id="payment-modal" style="display: none">
+        <div class="modal-content">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">New Payment</h3>
+                </div>
+                <div class="card-body">
+                    <div class="content">
+                        <div>
+                            <div class="input-wrapper">
                                 <div><span>Month of</span></div>
-                                <input name="" type="date"/>
+                                <input name="month_of" type="month" />
                             </div>
                             <div class="input-wrapper">
                                 <div><span>Amount</span></div>
-                                <input name="" type="number"/>
+                                <input name="amount" type="text" />
                             </div>
-            </div>
-            `,
-            buttons: [{
-                label: 'Save',
-                class: 'btn-default',
-                action: function() {
 
-                }
-            }]
-        })
+                        </div>
+                    </div>
+                    <div class="action-button justify-content-end">
+                        <button data-id="<?php echo $student_id ?>" class="btn btn-default m-r" type="submit">Save</button>
+                        <button class="btn btn-flat">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+    $("#btn-add-payment").on('click', function() {
+        $('#payment-modal').show();
     })
-
-    $("#btn-payment-history").on('click', function() {
-        modal({
-            title: 'New Payment',
-            body: `<div>
-                    // TODO
-            </div>
-            `,
+    $('#payment-modal .btn-default').on('click', function() {
+        const { id } = $(this).data()
+        const inputs = $(this).closest('.card-body').find('input')
+        inputs.each((i, input) => {
+            const parent = $(input).closest('.input-wrapper')
+            parent.find('.error').remove()
+            if (!$(input).val()) {
+                parent.append('<span class="error">This field is required</span>')
+            }
         })
+        if ($(this).closest('.card-body').find('.error').length > 0) {
+            return
+        }
+        let data = inputs.map((i, input) => {
+            const name = $(input).attr('name');
+            let value = $(input).val()
+            if (name === 'amount') {
+                value = Number($(input).val().replace(/[^0-9.-]+/g,""))
+            }
+            if (name === 'month_of') {
+                value = `${value}-01`
+            }
+            return {
+                name: name,
+                value: value
+            }
+        })
+        data.push({ name: 'account_id', value: id })
+        $.ajax({
+            url: `/api/student-entry.php?type=payment`,
+            type: "post",
+            dataType: "json",
+            data
+        }).done((data) => {
+            inputs.each((i, input) => {
+                $(input).val('')
+            })
+            $('#payment-modal').hide();
+        });
+    })
+    $("#btn-payment-history").on('click', function() {
+        // modal({
+        //     title: 'New Payment',
+        //     body: `<div>
+        //             // TODO
+        //     </div>
+        //     `,
+        // })
     })
     </script>
