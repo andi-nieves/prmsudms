@@ -70,9 +70,9 @@ include $ROOT_DIR.'/inc/html-head.php';
                                             <td class="text-center">
                                                 <div class="pill <?php echo $row['status'] === '1' ? 'active' : 'inactive' ?>"><?php echo $row['status'] === '1' ? 'Active' : 'Inactive' ?></div>
                                             </td>
-                                            <td align="center">
+                                            <td style="width: 50px">
                                                 <div class="dropdown">
-                                                    <button class="btn btn-flat">Action <i class="fa fa-chevron-down"></i></button>
+                                                    <button class="dropbtn">Action <i class="fa fa-chevron-down"></i></button>
                                                     <div class="dropdown-content">
                                                         <a href="/admin/students/entry.php?id=<?php echo $row['id'] ?>">View</a>
                                                         <a href="/admin/students/entry.php?id=<?php echo $row['id'] ?>&page=edit">Edit</a>

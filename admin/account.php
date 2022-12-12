@@ -1,4 +1,7 @@
-<?php require_once('../config.php') ?>
+<?php 
+	require_once('../config.php');
+	$accounts = $dbhelper->query("SELECT a.id, CONCAT(s.firstname, ' ', s.middlename, ' ', s.lastname) as name, s.code, a.date_created, CONCAT((SELECT d.name FROM dorm_list as d WHERE d.id = r.dorm_id), ' - ',r.name) as room_name, a.status  FROM `account_list` AS a INNER JOIN `student_list` AS s ON s.id = a.student_id INNER JOIN `room_list` AS r ON r.id = a.room_id  WHERE a.delete_flag = 0 ORDER BY a.date_created DESC");
+?>
     <!DOCTYPE html>
     <html>
     <head>
@@ -26,7 +29,7 @@
 	                        <div class="card-header">
 		                        <h3 class="card-title">List of Accounts</h3>
 		                        <div class="card-tools">
-			                        <a href="/admin/accounts/manage_account.php" id="create_new" class="btn btn-flat btn-primary">
+			                        <a href="/admin/accounts/entry.php" id="create_new" class="btn btn-flat btn-primary">
 										<span class="fas fa-plus"></span>  
 										Create New
 									</a>
@@ -34,6 +37,7 @@
 	                        </div>
 	                        <div class="card-body">
 								<div class="container-fluid">
+									
 			                    	<table class="table table-hover table-striped table-bordered" id="list">
 				                    	<colgroup>
 					                    	<col width="5%">
@@ -47,59 +51,39 @@
 				                    	<thead>
 					                    	<tr>
 						                    	<th>#</th>
-						                    	<th>Date Created</th>
-						                    	<th>Code</th>
 						                    	<th>Student</th>
+						                    	<th>Code</th>
 						                    	<th>Dorm</th>
+												<th>Date Created</th>
 						                    	<th>Status</th>
 						                    	<th>Action</th>
 					                    	</tr>
 				                    	</thead>
 				                    	<tbody>
-					                	    <?php 
-					                	    $i = 1;
-						                	    $query = $conn->query("SELECT a.*, s.code as student_code, concat(s.firstname, ' ', coalesce(concat(s.middlename,' '), ''), s.lastname) as `student`, d.name as dorm, r.name as `room` FROM `account_list` a inner join student_list s on a.student_id = s.id inner join `room_list` r on a.room_id = r.id inner join `dorm_list` d on r.dorm_id = d.id where a.delete_flag = 0 order by a.status desc, student asc");
-						            	        while($row = $query->fetch_assoc()):
-					                	    ?>
+					                	   <?php foreach($accounts as $key=>$account): ?>
                                     
 						                	    <tr>
-							                	    <td class="text-center"><?php echo $i++; ?></td>
-							                	    <td><?php echo date("Y-m-d H:i",strtotime($row['date_created'])) ?></td>
-							                	    <td><?php echo $row['code'] ?></td>
-							                	    <td>
-								                	    <div style="line-height:1em">
-								                	        <div><?= $row['student'] ?></div>
-								            	            <div><?= $row['student_code'] ?></div>
-							                	        </div>
-						                    	    </td>
-						                    	    <td>
-							                	        <div style="line-height:1em">
-								            	            <div><?= $row['dorm'] ?></div>
-								            	            <div><?= $row['room'] ?></div>
-							                	        </div>
-							                	    </td>
+							                	    <td class="text-center"><?php echo ++$key; ?></td>
+													<td><?php echo $account->name ?></td>
+							                	    <td><?php echo $account->code ?></td>
+													<td><?php echo $account->room_name ?></td>
+													<td><?php echo date("Y-m-d H:i",strtotime($account->date_created)) ?></td>
 							                	    <td class="text-center">
-								            	        <?php if($row['status'] == 1): ?>
-                                            	            <span class="badge badge-maroon bg-gradient-maroon px-3 rounded-pill">Active</span>
-                                            	        <?php else: ?>
-                                            	            <span class="badge badge-light bg-gradient-light border text-dark px-3 rounded-pill">Inactive</span>
-                                            	    <?php endif; ?>
+														<div class="pill <?php echo $account->status === '1' ? 'active' : 'inactive' ?>"><?php echo $account->status === '1' ? 'Active' : 'Inactive' ?></div>
                                             	    </td>
-							                	    <td align="center">
-								                    	 <button type="button" class="btn btn-flat p-1 btn-default btn-sm dropdown-toggle dropdown-icon" data-toggle="dropdown">
-				                  	                    	    Action
-				                                    		<span class="sr-only">Toggle Dropdown</span>
-				                                  		  </button>
-				                                    	  <div class="dropdown-menu" role="menu">
-				                              	  		    <a class="dropdown-item view_data" href="./?page=accounts/view_details&id=<?php echo $row['id'] ?>"><span class="fa fa-eye text-dark"></span> View</a>
-				                                    	    <div class="dropdown-divider"></div>
-				                                    	    <a class="dropdown-item edit_data" href="./?page=accounts/manage_account&id=<?php echo $row['id'] ?>"><span class="fa fa-edit text-primary"></span> Edit</a>
-				                                    	    <div class="dropdown-divider"></div>
-				                                    	    <a class="dropdown-item delete_data" href="javascript:void(0)" data-id="<?php echo $row['id'] ?>"><span class="fa fa-trash text-danger"></span> Delete</a>
-				                                    	  </div>
-						                        	</td>
+							                	    <td>
+														<div class="dropdown">
+															<button class="dropbtn">Action <i class="fa fa-chevron-down"></i></button>
+															<div class="dropdown-content">
+																<a href="/admin/students/entry.php?id=<?php echo $account->id ?>">View</a>
+																<a href="/admin/students/entry.php?id=<?php echo $account->id ?>&page=edit">Edit</a>
+																<a href="#" class="delete" data-code="<?php echo $account->code ?>" data-id="<?php echo $account->id ?>" data-name="<?php echo $account->name ?>">Delete</a>
+															</div>
+														</div>
+						                        	</td> 
+						                    	   
 					                        	</tr>
-				                        	<?php endwhile; ?>
+				                        	<?php endforeach; ?>
 			                        	</tbody>
 		                        	</table>
 								</div>
