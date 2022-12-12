@@ -6,6 +6,7 @@ session_start();
 
 require_once('initialize.php');
 require_once('classes/db_connect.php');
+require_once('classes/db_helper.php');
 require_once('classes/SystemSettings.php');
 
 $db = new db_connect;
