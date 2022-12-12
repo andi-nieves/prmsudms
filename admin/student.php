@@ -68,17 +68,11 @@ include $ROOT_DIR.'/inc/html-head.php';
                                             <td><?php echo $row['department'] ?></td>
                                             <td><?php echo $row['course'] ?></td>
                                             <td class="text-center">
-                                                <?php if($row['status'] == 1): ?>
-                                                <span
-                                                    class="badge badge-maroon bg-gradient-maroon px-3 rounded-pill">Active</span>
-                                                <?php else: ?>
-                                                <span
-                                                    class="badge badge-light bg-gradient-light border text-dark px-3 rounded-pill">Inactive</span>
-                                                <?php endif; ?>
+                                                <div class="pill <?php echo $row['status'] === '1' ? 'active' : 'inactive' ?>"><?php echo $row['status'] === '1' ? 'Active' : 'Inactive' ?></div>
                                             </td>
                                             <td align="center">
                                                 <div class="dropdown">
-                                                    <button class="btn btn-default">Action <i class="fa fa-chevron-down"></i></button>
+                                                    <button class="btn btn-flat">Action <i class="fa fa-chevron-down"></i></button>
                                                     <div class="dropdown-content">
                                                         <a href="/admin/students/entry.php?id=<?php echo $row['id'] ?>">View</a>
                                                         <a href="/admin/students/entry.php?id=<?php echo $row['id'] ?>&page=edit">Edit</a>

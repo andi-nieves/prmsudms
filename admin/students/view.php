@@ -152,7 +152,7 @@
                 <button id="delete" data-id="<?php echo $student_id ?>" data-code="<?php echo $student_data->code ?>"
                     data-name="<?php echo "$student_data->firstname $student_data->lastname" ?>"
                     class="btn btn-danger m-r">Delete</button>
-                <a class="btn btn-flat" href="<?php echo $SITE_NAME ?>/admin/student.php">Back</a>
+                <a class="btn btn-secondary" href="<?php echo $SITE_NAME ?>/admin/student.php">Back</a>
             </div>
         </div>
     </div>

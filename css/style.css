@@ -132,6 +132,14 @@ a#create_new {
 
 .btn.btn-flat{
     color: #000;
+    background-color: #FFF;
+    padding: 8px 10px;
+    border-radius: 10px;
+    box-shadow: none;
+}
+
+.btn.btn-secondary{
+    color: #000;
     background-color: #CCC;
     padding: 8px 10px;
     border-radius: 10px;
@@ -552,6 +560,20 @@ table.dataTable td, table.dataTable th {
     width: 100%;
     min-height: 38px;
 }
+.pill {
+    padding: 8px 10px;
+    border-radius: 10px;
+    line-height: 1.5;
+    min-height: 42px;
+}
+.pill.active {
+    background-color: #2c3d5c;
+    color: #fff;
+}
+.pill.inactive {
+    background-color: #FFF;
+    color: #000;
+}
 .select2 {
     width: 100% !important;
     max-width: 100% !important;
@@ -623,12 +645,14 @@ table.dataTable td, table.dataTable th {
   .dropdown-content {
     display: none;
     position: absolute;
-    background-color: #f1f1f1;
-    min-width: 100px;
+    background-color: #FFF;
+    min-width: 150px;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     z-index: 1;
     border-radius: 10px;
     overflow: hidden;
+    margin-top: 2px;
+    right: 0;
   }
   
   /* Links inside the dropdown */
