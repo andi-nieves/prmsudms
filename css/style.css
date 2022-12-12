@@ -561,6 +561,10 @@ table.dataTable td, table.dataTable th {
     min-height: 38px;
 }
 
+.input-wrapper .static.nobg {
+    background-color: transparent !important;
+}
+
 .select2 {
     width: 100% !important;
     max-width: 100% !important;

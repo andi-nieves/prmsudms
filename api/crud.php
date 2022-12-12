@@ -5,8 +5,10 @@
         $id = $dbhelper->generate_insert_sql($table, $_POST);
         echo json_encode(array('success'=>true));
     } else {
-        $dbhelper->generate_update_sql($table, $_POST['id'], $_POST);
-        echo json_encode(array('success'=>true, 'id'=>$id));
+        if (!is_null($_POST['id'])) {
+            $dbhelper->generate_update_sql($table, $_POST['id'], $_POST);
+            echo json_encode(array('success'=>true, 'id'=>$_POST['id']));
+        }
     }
     
 ?>

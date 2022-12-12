@@ -1,6 +1,6 @@
 <?php 
 	require_once('../config.php');
-	$accounts = $dbhelper->query("SELECT a.id, CONCAT(s.firstname, ' ', s.middlename, ' ', s.lastname) as name, s.code, a.date_created, CONCAT((SELECT d.name FROM dorm_list as d WHERE d.id = r.dorm_id), ' - ',r.name) as room_name, a.status  FROM `account_list` AS a INNER JOIN `student_list` AS s ON s.id = a.student_id INNER JOIN `room_list` AS r ON r.id = a.room_id  WHERE a.delete_flag = 0 ORDER BY a.date_created DESC");
+	$accounts = $dbhelper->query("SELECT a.id, s.id as student_id, CONCAT(s.firstname, ' ', s.middlename, ' ', s.lastname) as name, s.code, a.date_created, CONCAT((SELECT d.name FROM dorm_list as d WHERE d.id = r.dorm_id), ' - ',r.name) as room_name, a.status  FROM `account_list` AS a INNER JOIN `student_list` AS s ON s.id = a.student_id INNER JOIN `room_list` AS r ON r.id = a.room_id  WHERE a.delete_flag = 0 ORDER BY a.date_created DESC");
 ?>
     <!DOCTYPE html>
     <html>
@@ -75,8 +75,8 @@
 														<div class="dropdown">
 															<button class="dropbtn">Action <i class="fa fa-chevron-down"></i></button>
 															<div class="dropdown-content">
-																<a href="/admin/students/entry.php?id=<?php echo $account->id ?>">View</a>
-																<a href="/admin/students/entry.php?id=<?php echo $account->id ?>&page=edit">Edit</a>
+																<a href="/admin/students/entry.php?id=<?php echo $account->student_id ?>">View</a>
+																<a href="/admin/accounts/entry.php?id=<?php echo $account->id ?>&page=edit">Edit</a>
 																<a href="#" class="delete" data-code="<?php echo $account->code ?>" data-id="<?php echo $account->id ?>" data-name="<?php echo $account->name ?>">Delete</a>
 															</div>
 														</div>

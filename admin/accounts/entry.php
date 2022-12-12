@@ -3,6 +3,10 @@ require_once('../../config.php');
 $students = $dbhelper->query("SELECT `student_list`.id, CONCAT(`student_list`.`code`, ' - ', `student_list`.`lastname`,', ', `student_list`.`firstname`,' ', LEFT(middlename,1) ,'.') as name FROM `student_list` WHERE `student_list`.delete_flag=0 AND (SELECT COUNT(`account_list`.id) FROM `account_list` WHERE `account_list`.`student_id` = `student_list`.id) = 0");
 $rooms = $dbhelper->query("SELECT `room_list`.id, CONCAT((SELECT `dorm_list`.name FROM `dorm_list` WHERE `dorm_list`.id = `room_list`.dorm_id), ' - ', `room_list`.name) as name, `room_list`.slots - (SELECT COUNT(`account_list`.id) FROM `account_list` WHERE `account_list`.room_id = `room_list`.id) as slots, `room_list`.price FROM `room_list` WHERE delete_flag=0 and status=1;");
 $title = "Create New Account";
+$account = null;
+if (isset($_GET['page']) && $_GET['page'] === 'edit') {
+    $account = $dbhelper->query("SELECT a.id, s.id as student_id, CONCAT(s.firstname, ' ', s.middlename, ' ', s.lastname) as name, s.code, a.date_created, CONCAT((SELECT d.name FROM dorm_list as d WHERE d.id = r.dorm_id), ' - ',r.name) as room_name, a.status, r.price, r.id as room_id  FROM `account_list` AS a INNER JOIN `student_list` AS s ON s.id = a.student_id INNER JOIN `room_list` AS r ON r.id = a.room_id  WHERE a.delete_flag = 0 AND a.id=:id", array(':id' => $_GET['id']))[0] ?? null;
+}
 ?>
 <!DOCTYPE html>
 <html>
@@ -20,64 +24,18 @@ $title = "Create New Account";
                     <div class="card">
                         <div class="card-header">
                             <h3 class="card-title">Create New Account
-                                <?php ?>
+                                <?php print_r( $account) ?>
                             </h3>
                         </div>
                         <div class="card-body">
-                            <?php if(count($students) > 0): ?>
-                            <form class="auto" data-id="<?php echo $dbhelper->encrypt("account_list") ?>">
-                                <div class="details">
-                                    <div class="row">
-                                        <div class="col">
-                                            <div class="input-wrapper">
-                                                <div><span>Student</span></div>
-                                                <select name="student_id">
-                                                    <?php foreach ($students as $student): ?>
-                                                    <option value="<?php echo $student->id ?>">
-                                                        <?php echo $student->name ?>
-                                                    </option>
-                                                    <?php endforeach; ?>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="col">
-                                            <div class="input-wrapper">
-                                                <div><span>Room</span></div>
-                                                <select name="room_id">
-                                                    <?php foreach ($rooms as $room): ?>
-                                                    <option value="<?php echo $room->id ?>">
-                                                        <?php echo $room->name ?>
-                                                    </option>
-                                                    <?php endforeach; ?>
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col">
-                                            <div class="input-wrapper">
-                                                <div><span>Monthly Rate</span></div>
-                                                <div class="static rate">PHP <?php echo $rooms[0]->price ?></div>
-                                            </div>
-                                        </div>
-                                        <div class="col">
-                                            <div class="input-wrapper">
-                                                <div><span>Active</span></div>
-                                                <select name="status">
-                                                    <option value="1">Active</option>
-                                                    <option value="0">Inactive</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="justify-content m-t">
-                                    <button class="btn btn-default m-r" type="submit">Save</button>
-                                    <a class="btn btn-secondary" href="<?php echo $SITE_NAME ?>/admin/account.php">Cancel</a>
-                                </div>
-                            </form>
+                            <?php if (!isset($_GET['page'])): ?>
+                                <?php if (count($students) > 0): ?>
+                                <?php include 'form.php' ?>
+                                <?php else: ?>
+                                <p>No record(s) available. <br /><a href="/admin/account.php">Back</a></p>
+                                <?php endif ?>
                             <?php else: ?>
-                                <p>No record(s) available. <br/><a href="/admin/account.php">Back</a></p>
+                                <?php include 'form.php' ?>
                             <?php endif ?>
                         </div>
                     </div>
@@ -85,26 +43,6 @@ $title = "Create New Account";
                 </div>
             </section>
         </div>
-        <script>
-            
-            $(document).ready(() => {
-                $('select[name="room_id"]').on('select2:select', function (e) {
-                    console.log('e', e.params.data)
-                    var id = e.params.data.id;
-                    $.ajax({
-                        url: `/api/account.php?rate=${id}`,
-                        type: "get",
-                        dataType: "json",
-                    }).done((data) => {
-                        $('.input-wrapper .rate').html(`PHP ${data.price}`)
-                    });
-                });
-                $('form.auto').on('success',function(data, x) {
-                    window.location = '/admin/account.php'
-                })
-            })
-
-        </script>
         <?php include $ROOT_DIR . '/inc/footer.php'; ?>
     </div>
 </body>
