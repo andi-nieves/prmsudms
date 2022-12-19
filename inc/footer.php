@@ -23,4 +23,10 @@
     </div>
 </div>
 
+<div class="loader" style="display: none">
+    <div class="wrapper">
+        <i class="fa fa-spin fa-spinner"></i>
+    </div>
+</div>
+
 <script src="/script/dialog.js"></script>
