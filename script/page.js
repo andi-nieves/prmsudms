@@ -104,7 +104,6 @@ $(document).ready(() => {
           }
         }
       });
-
     if ($(form).find(".error").length > 0) return;
     if (data.unique) {
       $.ajax({
@@ -126,6 +125,15 @@ $(document).ready(() => {
             form.trigger("success", data)
           });
         }
+      });
+    } else {
+      $.ajax({
+        url: `/api/crud.php?id=${data.id}`,
+        type: "post",
+        dataType: "json",
+        data: form.serialize(),
+      }).done((data) => {
+        form.trigger("success", data)
       });
     }
   })
