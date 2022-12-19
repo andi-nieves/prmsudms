@@ -1,16 +1,11 @@
 <?php 
 	require_once('../config.php');
 	$accounts = $dbhelper->query("SELECT a.id, s.id as student_id, CONCAT(s.firstname, ' ', s.middlename, ' ', s.lastname) as name, s.code, a.date_created, CONCAT((SELECT d.name FROM dorm_list as d WHERE d.id = r.dorm_id), ' - ',r.name) as room_name, a.status  FROM `account_list` AS a INNER JOIN `student_list` AS s ON s.id = a.student_id INNER JOIN `room_list` AS r ON r.id = a.room_id  WHERE a.delete_flag = 0 ORDER BY a.date_created DESC");
+	$title = "List of Accounts";
 ?>
     <!DOCTYPE html>
     <html>
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>List of accounts</title>
-        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
-        <link rel="stylesheet" type="text/css" href="../css/style.css">
-    </head>
+    <?php include '../inc/html-head.php' ?>
     <body>
         <div class="wrapper">
             <div class="section">
@@ -39,15 +34,6 @@
 								<div class="container-fluid">
 									
 			                    	<table class="table table-hover table-striped table-bordered" id="list">
-				                    	<colgroup>
-					                    	<col width="5%">
-					                    	<col width="15%">
-					                    	<col width="10%">
-					                    	<col width="25%">
-					                    	<col width="25%">
-					                    	<col width="10%">
-					                    	<col width="10%">
-				                    	</colgroup>
 				                    	<thead>
 					                    	<tr>
 						                    	<th>#</th>
