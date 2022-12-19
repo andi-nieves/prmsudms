@@ -67,10 +67,10 @@ include '../inc/html-head.php';
 													<button class="dropbtn">Action <i
 															class="fa fa-chevron-down"></i></button>
 													<div class="dropdown-content">
-														<a class="view" data-id="<?php echo $row['id'] ?>"
+														<a class="view" data-id="<?php echo $dbhelper->encrypt($row['id']) ?>"
 															data-name="<?php echo $row['name'] ?>"
 															data-status="<?php echo $row['status'] ?>">View</a>
-														<a href="#" class="edit" data-id="<?php echo $row['id'] ?>"
+														<a href="#" class="edit" data-id="<?php echo $dbhelper->encrypt($row['id']) ?>"
 															data-name="<?php echo $row['name'] ?>">Edit</a>
 														<a href="#" class="delete"
 															data-title="<?php echo $row['name'] ?>"

@@ -103,7 +103,7 @@ $dorms = $dbhelper->query("SELECT id, name FROM dorm_list WHERE status = 1 ORDER
 															data-status="<?php echo $row['status'] ?>"
 															>View</a>
 														<a href="#" class="edit" 
-															data-id="<?php echo $row['id'] ?>"
+															data-id="<?php echo $dbhelper->encrypt($row['id']) ?>"
 															data-name="<?php echo $row['name'] ?>"
 															data-slots="<?php echo $row['slots'] ?>"
 															data-price="<?php echo $row['price'] ?>"
@@ -185,8 +185,6 @@ $dorms = $dbhelper->query("SELECT id, name FROM dorm_list WHERE status = 1 ORDER
 					</div>
 					<div class="card-body">
 						<div class="content">
-							<form class="auto" data-id="<?php echo $dbhelper->encrypt("room_list") ?>"
-								data-unique='<?php echo json_encode(array('name')) ?>'>
 								<div class="input-wrapper">
 									<div><span>Dorm</span></div>
 									<div class="view dorm">123</div>
@@ -210,7 +208,6 @@ $dorms = $dbhelper->query("SELECT id, name FROM dorm_list WHERE status = 1 ORDER
 								<div class="action-button justify-content-end">
 									<button class="btn btn-secondary close">Close</button>
 								</div>
-							</form>
 						</div>
 
 					</div>
@@ -241,7 +238,7 @@ $dorms = $dbhelper->query("SELECT id, name FROM dorm_list WHERE status = 1 ORDER
 				const data = $(this).data()
 				Object.keys(data).forEach(key => {
 					if (key !== 'id') {
-						$("#bedroom-modal").find(`[name=${key}]`).val(data[key])
+						$("#bedroom-modal form").find(`[name=${key}]`).val(data[key])
 					}
 				})
 				$("#bedroom-modal form").append($('<input type="hidden" name="id"/>').val(data['id']))
@@ -249,6 +246,7 @@ $dorms = $dbhelper->query("SELECT id, name FROM dorm_list WHERE status = 1 ORDER
 			})
 			$("form.auto").on('success', function (event, response) {
 				$("#bedroom-modal form").remove('[name="id"]')
+				console.log('res', response)
 				window.location.reload();
 			})
 		</script>

@@ -6,7 +6,7 @@
         $id = $_POST['id'] ?? null;
         $data = null;
         if (!is_null($id)) {
-            $data = $dbhelper->query("SELECT * FROM `$table` WHERE id=:id", array(":id" => $id))[0] ?? null;
+            $data = $dbhelper->query("SELECT * FROM `$table` WHERE id=:id", array(":id" => $dbhelper->decrypt($id)))[0] ?? null;
         }
         foreach($_POST['keys'] as $element => $key) {
             $name = $key['key'];
@@ -33,11 +33,13 @@
     }
     if (!isset($_POST['id'])) {
         $id = $dbhelper->generate_insert_sql($table, $_POST);
-        echo json_encode(array('success'=>true, 'id' => $id));
+        echo json_encode(array('success'=>true, 'id' => $id, 'type'=>'new'));
     } else {
         if (!is_null($_POST['id'])) {
-            $dbhelper->generate_update_sql($table, $_POST['id'], $_POST);
-            echo json_encode(array('success'=>true, 'id'=>$_POST['id']));
+            $id = (is_numeric($_POST['id']) === 1) ? $_POST['id'] : $dbhelper->decrypt($_POST['id']);
+            unset($_POST['id']);
+            $dbhelper->generate_update_sql($table, $id, $_POST);
+            echo json_encode(array('success'=>true, 'id'=>$id, 'type'=>'updated'));
         }
     }
     
