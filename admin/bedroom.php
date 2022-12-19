@@ -1,13 +1,10 @@
-<?php require_once('../config.php') ?>
+<?php
+require_once('../config.php');
+$title = 'List of Bedrooms';
+?>
     <!DOCTYPE html>
     <html>
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>List of Bedrooms</title>
-        <link rel="stylesheet" type="text/css" href="../css/style.css">
-
-    </head>
+    <?php include '../inc/html-head.php' ?>
     <body>
         <div class="wrapper">
             <div class="section">
@@ -101,51 +98,7 @@
 		                        </div>
 	                        </div>
                         </div>
-                        <script>
-	                        $(document).ready(function(){
-		                        $('.delete_data').click(function(){
-			                        _conf("Are you sure to delete this Room permanently?","delete_room",[$(this).attr('data-id')])
-		                        })
-		                        $('#create_new').click(function(){
-			                        uni_modal("<i class='fa fa-plus'></i> Add New Room","rooms/manage_room.php")
-		                        })
-		                        $('.view_data').click(function(){
-			                        uni_modal("<i class='fa fa-bars'></i> Room Details","rooms/view_room.php?id="+$(this).attr('data-id'))
-		                        })
-		                        $('.edit_data').click(function(){
-			                        uni_modal("<i class='fa fa-edit'></i> Update Room Details","rooms/manage_room.php?id="+$(this).attr('data-id'))
-		                        })
-		                        $('.table').dataTable({
-			                        columnDefs: [
-					                        { orderable: false, targets: [8] }
-			                        ],
-			                        order:[0,'asc']
-		                        });
-		                        $('.dataTable td,.dataTable th').addClass('py-1 px-2 align-middle')
-	                        })
-	                        function delete_room($id){
-		                        start_loader();
-		                        $.ajax({
-			                        url:_base_url_+"classes/Master.php?f=delete_room",
-			                        method:"POST",
-			                        data:{id: $id},
-			                        dataType:"json",
-			                        error:err=>{
-				                        console.log(err)
-				                        alert_toast("An error occured.",'error');
-				                        end_loader();
-			                        },
-			                        success:function(resp){
-				                        if(typeof resp== 'object' && resp.status == 'success'){
-					                        location.reload();
-				                        }else{
-					                        alert_toast("An error occured.",'error');
-					                        end_loader();
-				                        }
-			                        }
-		                        })
-	                        }
-                        </script>
+                       
                     </div>
                 </section>
             </div>
