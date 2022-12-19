@@ -32,24 +32,14 @@ include $ROOT_DIR.'/inc/html-head.php';
                         <div class="card-body">
                             <div class="container-fluid">
                                 <table class="table table-hover table-striped table-bordered" id="list">
-                                    <colgroup>
-                                        <col width="5%">
-                                        <col width="15%">
-                                        <col width="10%">
-                                        <col width="20%">
-                                        <col width="15%">
-                                        <col width="15%">
-                                        <col width="10%">
-                                        <col width="10%">
-                                    </colgroup>
                                     <thead>
                                         <tr>
                                             <th>#</th>
-                                            <th>Date Created</th>
                                             <th>Student ID/Code</th>
                                             <th>Name</th>
                                             <th>Department</th>
                                             <th>Course</th>
+                                            <th>Date Created</th>
                                             <th>Status</th>
                                             <th>Action</th>
                                         </tr>
@@ -62,11 +52,11 @@ include $ROOT_DIR.'/inc/html-head.php';
 					                        ?>
                                         <tr>
                                             <td class="text-center"><?php echo $i++; ?></td>
-                                            <td><?php echo date("Y-m-d H:i",strtotime($row['date_created'])) ?></td>
                                             <td><?php echo $row['code'] ?></td>
                                             <td><?php echo $row['name'] ?></td>
                                             <td><?php echo $row['department'] ?></td>
                                             <td><?php echo $row['course'] ?></td>
+                                            <td><?php echo date("Y-m-d H:i",strtotime($row['date_created'])) ?></td>
                                             <td class="text-center">
                                                 <div class="pill <?php echo $row['status'] === '1' ? 'active' : 'inactive' ?>"><?php echo $row['status'] === '1' ? 'Active' : 'Inactive' ?></div>
                                             </td>
