@@ -1,3 +1,12 @@
+//Compose template string
+String.prototype.compose = (function (){
+  var re = /\{{(.+?)\}}/g;
+  return function (o){
+      return this.replace(re, function (_, k){
+          return typeof o[k] != 'undefined' ? o[k] : '';
+      });
+  }
+}());
 $(document).ready(() => {
   $('input[name="amount"]').on({
     keyup: function () {
@@ -105,6 +114,8 @@ $(document).ready(() => {
         }
       });
     if ($(form).find(".error").length > 0) return;
+
+    if ($(form).find("[name='amount']").length > 0) $(form).find("[name='amount']").val(Number($(form).find("[name='amount']").val().replace(/[^0-9.-]+/g, "")))
     if (data.unique) {
       $.ajax({
         url: `/api/crud.php?id=${data.id}&check=unique`,
@@ -151,28 +162,37 @@ $(document).ready(() => {
     $(".loader").hide();
   });
 
-  $("#list").find('.dropdown .delete').on('click', function () {
-    const data = $(this).data();
-    window.modal({ title: "Are you sure you want to delete this record?", body: `Name: ${data.title}`, buttons: [{
-      label: 'Yes',
-      class: 'btn btn-default',
-      action: () => {
-        $.ajax({
-          url: `/api/crud.php?id=${data.context}&type=delete`,
-          type: "post",
-          dataType: "json",
-          data,
-        }).done((data) => {
-          window.location.reload();
-        });
-      }
-    }]})
-    
-  });
-  $('table').DataTable({
+  window.rebindDelete = function() {
+    $("#list").find('.dropdown .delete').on('click', function () {
+      const data = $(this).data();
+      const stay = $(this).hasClass('stay');
+      window.modal({ title: "Are you sure you want to delete this record?", body: `Name: ${data.title}`, buttons: [{
+        label: 'Yes',
+        class: 'btn btn-default',
+        action: () => {
+          $.ajax({
+            url: `/api/crud.php?id=${data.context}&type=delete`,
+            type: "post",
+            dataType: "json",
+            data,
+          }).done((data) => {
+            if (!stay) window.location.reload();
+            $(this).trigger('done', [data])
+          });
+        }
+      }]})
+    });
+  }
+  window.rebindDelete()
+  const tableOptions = {
     language: { search: "" },
-});
-  $("#list_filter label").append('<i class="fa fa-search"></i>')
+    width: '100%'
+  }
   $('table').find('th:contains("Date")').css('max-width', '100px')
+  const table = $('table').DataTable(tableOptions);
+  // window.table = table
+  $('table').trigger('done', [table])
+  $("#list_filter label").append('<i class="fa fa-search"></i>')
+  
 });
 
