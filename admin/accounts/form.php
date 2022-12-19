@@ -4,7 +4,7 @@
             <div class="col">
                 <div class="input-wrapper">
                     <div><span>Student</span></div>
-                    <?php if(is_null($account)): ?>
+                    <?php if (is_null($account)): ?>
                     <select name="student_id">
                         <?php foreach ($students as $student): ?>
                         <option value="<?php echo $student->id ?>">
@@ -13,7 +13,9 @@
                         <?php endforeach; ?>
                     </select>
                     <?php else: ?>
-                        <div class="static nobg"><?php echo $account->name ?></div>
+                    <div class="static nobg">
+                        <?php echo $account->name ?>
+                    </div>
                     <?php endif ?>
                 </div>
             </div>
@@ -22,7 +24,8 @@
                     <div><span>Room</span></div>
                     <select name="room_id">
                         <?php foreach ($rooms as $room): ?>
-                        <option <?php echo ($room->id ?? "") == ($account->room_id ?? "") ? 'selected' : "" ?> value="<?php echo $room->id ?>">
+                        <option <?php echo ($room->id ?? "")==($account->room_id ?? "") ? 'selected' : "" ?> value="
+                            <?php echo $room->id ?>">
                             <?php echo $room->name ?>
                         </option>
                         <?php endforeach; ?>
@@ -43,13 +46,13 @@
                 <div class="input-wrapper">
                     <div><span>Active</span></div>
                     <select name="status">
-                        <option <?php echo ($account->status ?? "") == "1" ? "selected" : "" ?> value="1">Active</option>
-                        <option <?php echo ($account->status ?? "") == "0" ? "selected" : "" ?> value="0">Inactive</option>
+                        <option <?php echo ($account->status ?? "")=="1" ? "selected" : "" ?> value="1">Active</option>
+                        <option <?php echo ($account->status ?? "")=="0" ? "selected" : "" ?> value="0">Inactive</option>
                     </select>
                 </div>
             </div>
         </div>
-        <?php if(!is_null($account)): ?>
+        <?php if (!is_null($account)): ?>
         <input type="hidden" name="id" value="<?php echo $account->id ?? null ?>" />
         <?php endif ?>
     </div>
@@ -63,7 +66,6 @@
 
     $(document).ready(() => {
         $('select[name="room_id"]').on('select2:select', function (e) {
-            console.log('e', e.params.data)
             var id = e.params.data.id;
             $.ajax({
                 url: `/api/account.php?rate=${id}`,
@@ -73,7 +75,7 @@
                 $('.input-wrapper .rate').html(`PHP ${data.price}`)
             });
         });
-        $('form.auto').on('success', function (data, x) {
+        $('form.auto').on('success', function (data) {
             window.location = '/admin/account.php'
         })
     })
