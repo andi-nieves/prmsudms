@@ -1,143 +1,181 @@
 <?php require_once('../config.php') ?>
-    <!DOCTYPE html>
-    <html>
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>List of Dorms</title>
-        <link rel="stylesheet" type="text/css" href="../css/style.css">
+<!DOCTYPE html>
+<html>
+<?php
+$title = "List of Dorms";
+include '../inc/html-head.php';
+?>
 
-    </head>
-    <body>
-        <div class="wrapper">
-            <div class="section">
-                <?php include '../inc/header.php'; ?>
-            </div>
-            <?php include '../inc/sidebar.php'; ?>
-            <div class="content-wrapper" style="min-height:628.038px">
-                <section class="content">
-                    <div class="container">
-                        <?php if($_settings->chk_flashdata('success')): ?>
-                        <script>
-	                        alert_toast("<?php echo $_settings->flashdata('success') ?>",'success')
-                        </script>
-                        <?php endif;?>
-                        <div class="card">
-	                        <div class="card-header">
-		                        <h3 class="card-title">List of Dorms</h3>
-		                        <?php if($_settings->userdata('type') == 1): ?>
-		                        <div class="card-tools">
-			                        <a href="javascript:void(0)" id="create_new" class="btn btn-flat btn-primary"><span class="fas fa-plus"></span>  Create New</a>
-		                        </div>
-		                    <?php endif; ?>
-	                        </div>
-	                        <div class="card-body">
-                                <div class="container-fluid">
-			                        <table class="table table-hover table-striped table-bordered" id="list">
-				                        <colgroup>
-					                        <col width="5%">
-					                        <col width="15%">
-					                        <col width="50%">
-					                        <col width="15%">
-					                        <col width="15%">
-				                        </colgroup>
-				                        <thead>
-					                        <tr>
-						                        <th>#</th>
-						                        <th>Date Created</th>
-						                        <th>Name</th>
-						                        <th>Status</th>
-						                        <th>Action</th>
-					                        </tr>
-				                        </thead>
-				                        <tbody>
-					                        <?php 
-					                        $i = 1;
-						                        $qry = $conn->query("SELECT * from `dorm_list` where delete_flag = 0 order by `name` asc ");
-						                        while($row = $qry->fetch_assoc()):
-					                        ?>
-						                        <tr>
-							                        <td class="text-center"><?php echo $i++; ?></td>
-							                        <td><?php echo date("Y-m-d H:i",strtotime($row['date_created'])) ?></td>
-							                        <td><?php echo $row['name'] ?></td>
-							                        <td class="text-center">
-                                                        <?php if($row['status'] == 1): ?>
-                                                            <span class="badge badge-maroon bg-gradient-maroon px-3 rounded-pill">Active</span>
-                                                        <?php else: ?>
-                                                            <span class="badge badge-light bg-gradient-light border text-dark px-3 rounded-pill">Inactive</span>
-                                                        <?php endif; ?>
-                                                    </td>
-							                        <td align="center">
-								                        <button type="button" class="btn btn-flat p-1 btn-default btn-sm dropdown-toggle dropdown-icon" data-toggle="dropdown">
-				                  		                        Action
-				                                            <span class="sr-only">Toggle Dropdown</span>
-				                                        </button>
-				                                        <div class="dropdown-menu" role="menu">
-				                                            <a class="dropdown-item view_data" href="javascript:void(0)" data-id="<?php echo $row['id'] ?>"><span class="fa fa-eye text-dark"></span> View</a>
-									                        <?php if($_settings->userdata('type') == 1): ?>
-				                                            <div class="dropdown-divider"></div>
-				                                            <a class="dropdown-item edit_data" href="javascript:void(0)" data-id="<?php echo $row['id'] ?>"><span class="fa fa-edit text-primary"></span> Edit</a>
-				                                            <div class="dropdown-divider"></div>
-				                                            <a class="dropdown-item delete_data" href="javascript:void(0)" data-id="<?php echo $row['id'] ?>"><span class="fa fa-trash text-danger"></span> Delete</a>
-									                        <?php endif; ?>
-				                                        </div>
-							                        </td>
-						                        </tr>
-					                        <?php endwhile; ?>
-				                        </tbody>
-			                        </table>
-		                        </div>
-	                        </div>
-                        </div>
-                        <script>
-	                        $(document).ready(function(){
-		                        $('.delete_data').click(function(){
-			                        _conf("Are you sure to delete this Dorm permanently?","delete_dorm",[$(this).attr('data-id')])
-		                        })
-		                        $('#create_new').click(function(){
-			                        uni_modal("<i class='fa fa-plus'></i> Add New Dorm","dorms/manage_dorm.php")
-		                        })
-		                        $('.view_data').click(function(){
-			                        uni_modal("<i class='fa fa-bars'></i> Dorm Details","dorms/view_dorm.php?id="+$(this).attr('data-id'))
-		                        })
-		                        $('.edit_data').click(function(){
-			                        uni_modal("<i class='fa fa-edit'></i> Update Dorm Details","dorms/manage_dorm.php?id="+$(this).attr('data-id'))
-		                        })
-		                        $('.table').dataTable({
-			                        columnDefs: [
-					                        { orderable: false, targets: [4] }
-			                        ],
-			                        order:[0,'asc']
-		                        });
-		                        $('.dataTable td,.dataTable th').addClass('py-1 px-2 align-middle')
-	                        })
-	                        function delete_dorm($id){
-		                        start_loader();
-		                        $.ajax({
-			                        url:_base_url_+"classes/Master.php?f=delete_dorm",
-			                        method:"POST",
-			                        data:{id: $id},
-			                        dataType:"json",
-			                        error:err=>{
-				                        console.log(err)
-				                        alert_toast("An error occured.",'error');
-				                        end_loader();
-			                        },
-			                        success:function(resp){
-				                        if(typeof resp== 'object' && resp.status == 'success'){
-					                        location.reload();
-				                        }else{
-					                        alert_toast("An error occured.",'error');
-					                        end_loader();
-				                        }
-			                        }
-		                        })
-                        	}
-                        </script>
-                    </div>
-                </section>
-            </div>
-            <?php include '../inc/footer.php'; ?>
-        </div>
-    </body>
-    </html>
+<body>
+	<div class="wrapper">
+		<div class="section">
+			<?php include '../inc/header.php'; ?>
+		</div>
+		<?php include '../inc/sidebar.php'; ?>
+		<div class="content-wrapper" style="min-height:628.038px">
+			<section class="content">
+				<div class="container">
+					<?php if ($_settings->chk_flashdata('success')): ?>
+					<script>
+						alert_toast("<?php echo $_settings->flashdata('success') ?>", 'success')
+					</script>
+					<?php endif; ?>
+					<div class="card">
+						<div class="card-header">
+							<h3 class="card-title">List of Dorms</h3>
+							<div class="card-tools">
+								<a href="#" id="create_new" class="btn btn-flat btn-primary"><span
+										class="fas fa-plus"></span> Create New</a>
+							</div>
+						</div>
+						<div class="card-body">
+							<div class="container-fluid">
+								<table class="table table-hover table-striped table-bordered" id="list">
+									<thead>
+										<tr>
+											<th>#</th>
+											<th>Name</th>
+											<th>Date Created</th>
+											<th>Status</th>
+											<th>Action</th>
+										</tr>
+									</thead>
+									<tbody>
+										<?php
+                                        $i = 1;
+                                        $qry = $conn->query("SELECT * from `dorm_list` where delete_flag = 0 order by `date_created` desc ");
+                                        while ($row = $qry->fetch_assoc()):
+                                        ?>
+										<tr>
+											<td class="text-center">
+												<?php echo $i++; ?>
+											</td>
+											<td>
+												<?php echo $row['name'] ?>
+											</td>
+											<td>
+												<?php echo date("Y-m-d H:i", strtotime($row['date_created'])) ?>
+											</td>
+											<td class="text-center">
+												<div
+													class="pill <?php echo $row['status'] === '1' ? 'active' : 'inactive' ?>">
+													<?php echo $row['status'] === '1' ? 'Active' : 'Inactive' ?>
+												</div>
+											</td>
+											<td align="center">
+												<div class="dropdown">
+													<button class="dropbtn">Action <i
+															class="fa fa-chevron-down"></i></button>
+													<div class="dropdown-content">
+														<a class="view" data-id="<?php echo $row['id'] ?>"
+															data-name="<?php echo $row['name'] ?>"
+															data-status="<?php echo $row['status'] ?>">View</a>
+														<a href="#" class="edit" data-id="<?php echo $row['id'] ?>"
+															data-name="<?php echo $row['name'] ?>">Edit</a>
+														<a href="#" class="delete"
+															data-title="<?php echo $row['name'] ?>"
+															data-context="<?php echo $dbhelper->encrypt("dorm_list") ?>"
+															data-id="<?php echo $dbhelper->encrypt($row['id']) ?>">Delete</a>
+													</div>
+												</div>
+											</td>
+										</tr>
+										<?php endwhile; ?>
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+					<div class="modal" id="dorm-modal-view" style="display: none">
+						<div class="modal-content">
+							<div class="card">
+								<div class="card-header">
+									<h3 class="card-title">Create New Dorm</h3>
+								</div>
+								<div class="card-body">
+									<div class="content">
+										<div class="input-wrapper">
+											<div><span>Name</span></div>
+											<span class="text-normal">Test</span>
+										</div>
+										<div class="input-wrapper" style="width: 100px">
+											<div><span>Status</span></div>
+											<div class="pill active text-center">
+												Active
+											</div>
+										</div>
+										<div class="action-button justify-content-end">
+											<button class="btn btn-secondary close">Close</button>
+										</div>
+										
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="modal" id="dorm-modal" style="display: none">
+						<div class="modal-content">
+							<div class="card">
+								<div class="card-header">
+									<h3 class="card-title">Create New Dorm</h3>
+								</div>
+								<div class="card-body">
+									<div class="content">
+										<form class="auto" data-id="<?php echo $dbhelper->encrypt("dorm_list") ?>"
+											data-unique='<?php echo json_encode(array('name')) ?>'>
+											<div class="input-wrapper">
+												<div><span>Name</span></div>
+												<input name="name" type="text" />
+											</div>
+											<div class="input-wrapper">
+												<div><span>Status</span></div>
+												<select name="status">
+													<option value="1">Active</option>
+													<option value="0">Inactive</option>
+												</select>
+											</div>
+											<div class="action-button justify-content-end">
+												<button class="btn btn-default m-r" type="submit">Save</button>
+												<button class="btn btn-secondary close">Close</button>
+											</div>
+										</form>
+									</div>
+
+								</div>
+							</div>
+						</div>
+					</div>
+					<script>
+						$("#create_new").on('click', function (event) {
+							event.preventDefault();
+							$("form.auto").find('[name="id"]').remove()
+							$("#dorm-modal").show();
+						})
+						$("#list").find('.dropdown .edit').on('click', function () {
+							const { id, name } = $(this).data();
+							$("form.auto").find('[name="id"]').remove();
+							$("form.auto").find('[name="name"]').val(name);
+							$("form.auto").append(`<input type="hidden" name="id" value=${id} />`)
+							$("#dorm-modal").show();
+						})
+						$("#list").find('.dropdown .view').on('click', function (event) {
+							event.preventDefault();
+							const { id, name, status } = $(this).data();
+							const stat = status == 1 ? "Active" : "Inactive";
+							$("#dorm-modal-view .input-wrapper .text-normal").html(name)
+							$("#dorm-modal-view .input-wrapper .pill").removeClass('active inative').addClass(stat.toLowerCase()).html(stat)
+							$("#dorm-modal-view").show()
+						})
+						$("form.auto").on("success", function (data) {
+							window.location.reload()
+						})
+
+					</script>
+				</div>
+			</section>
+		</div>
+		<?php include '../inc/footer.php'; ?>
+	</div>
+</body>
+
+</html>
