@@ -21,7 +21,7 @@ window.modal = ({ title, body, buttons }) => {
     buttons.forEach((button) => {
       actions.append(
         $(
-          `<button class='btn ${button.class} m-r'>${button.label}</button>`
+          `<button type="button" class='btn ${button.class} m-r'>${button.label}</button>`
         ).on("click", () => {
           button.action();
           $("#modal").hide();
