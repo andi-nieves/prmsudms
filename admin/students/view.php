@@ -12,13 +12,17 @@
                     <div class="col">
                         <div class="input-wrapper">
                             <div><span>Student Number</span></div>
-                            <div class="view"><?php echo $student_data->code ?></div>
+                            <div class="view">
+                                <?php echo $student_data->code ?>
+                            </div>
                         </div>
                     </div>
                     <div class="col">
                         <div class="input-wrapper">
                             <div><span>Course</span></div>
-                            <div class="view"><?php echo $student_data->course ?></div>
+                            <div class="view">
+                                <?php echo $student_data->course ?>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -26,7 +30,9 @@
                     <div class="col">
                         <div class="input-wrapper">
                             <div><span>Department</span></div>
-                            <div class="view"><?php echo $student_data->department ?></div>
+                            <div class="view">
+                                <?php echo $student_data->department ?>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -37,19 +43,25 @@
                     <div class="col">
                         <div class="input-wrapper">
                             <div><span>First Name</span></div>
-                            <div class="view"><?php echo $student_data->firstname ?></div>
+                            <div class="view">
+                                <?php echo $student_data->firstname ?>
+                            </div>
                         </div>
                     </div>
                     <div class="col">
                         <div class="input-wrapper">
                             <div><span>Middle Name</span></div>
-                            <div class="view"><?php echo $student_data->middlename ?></div>
+                            <div class="view">
+                                <?php echo $student_data->middlename ?>
+                            </div>
                         </div>
                     </div>
                     <div class="col">
                         <div class="input-wrapper">
                             <div><span>Last Name</span></div>
-                            <div class="view"><?php echo $student_data->lastname ?></div>
+                            <div class="view">
+                                <?php echo $student_data->lastname ?>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -58,19 +70,25 @@
                     <div class="col">
                         <div class="input-wrapper">
                             <div><span>Birthday</span></div>
-                            <div class="view"><?php echo $student_data->birthdate ?></div>
+                            <div class="view">
+                                <?php echo $student_data->birthdate ?>
+                            </div>
                         </div>
                     </div>
                     <div class="col">
                         <div class="input-wrapper">
                             <div><span>Age</span></div>
-                            <div class="view"><?php echo $age ?></div>
+                            <div class="view">
+                                <?php echo $age ?>
+                            </div>
                         </div>
                     </div>
                     <div class="col">
                         <div class="input-wrapper">
                             <div><span>Gender</span></div>
-                            <div class="view"><?php echo $student_data->gender ?></div>
+                            <div class="view">
+                                <?php echo $student_data->gender ?>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -79,19 +97,25 @@
                     <div class="col">
                         <div class="input-wrapper">
                             <div><span>Religion</span></div>
-                            <div class="view"><?php echo $student_data->religion ?></div>
+                            <div class="view">
+                                <?php echo $student_data->religion ?>
+                            </div>
                         </div>
                     </div>
                     <div class="col">
                         <div class="input-wrapper">
                             <div><span>Contact Number</span></div>
-                            <div class="view"><?php echo $student_data->contact ?></div>
+                            <div class="view">
+                                <?php echo $student_data->contact ?>
+                            </div>
                         </div>
                     </div>
                     <div class="col">
                         <div class="input-wrapper">
                             <div><span>Email</span></div>
-                            <div class="view"><?php echo $student_data->email ?></div>
+                            <div class="view">
+                                <?php echo $student_data->email ?>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -100,7 +124,9 @@
                     <div class="col">
                         <div class="input-wrapper">
                             <div><span>Address</span></div>
-                            <div class="view"><?php echo $student_data->address ?></div>
+                            <div class="view">
+                                <?php echo $student_data->address ?>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -112,19 +138,25 @@
                     <div class="col">
                         <div class="input-wrapper">
                             <div><span>Name</span></div>
-                            <div class="view"><?php echo $student_data->emergency_name ?></div>
+                            <div class="view">
+                                <?php echo $student_data->emergency_name ?>
+                            </div>
                         </div>
                     </div>
                     <div class="col">
                         <div class="input-wrapper">
                             <div><span>Contact Number</span></div>
-                            <div class="view"><?php echo $student_data->emergency_contact ?></div>
+                            <div class="view">
+                                <?php echo $student_data->emergency_contact ?>
+                            </div>
                         </div>
                     </div>
                     <div class="col">
                         <div class="input-wrapper">
                             <div><span>Relation</span></div>
-                            <div class="view"><?php echo $student_data->emergency_relation ?></div>
+                            <div class="view">
+                                <?php echo $student_data->emergency_relation ?>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -132,14 +164,18 @@
                     <div class="col">
                         <div class="input-wrapper">
                             <div><span>Address</span></div>
-                            <div class="view"><?php echo $student_data->emergency_address ?></div>
+                            <div class="view">
+                                <?php echo $student_data->emergency_address ?>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="input-wrapper">
                 <div><span>Status</span></div>
-                <div class="view"><?php echo $student_data->status === "1" ? 'Active' : 'Inactive' ?></div>
+                <div class="view">
+                    <?php echo $student_data->status === "1" ? 'Active' : 'Inactive' ?>
+                </div>
             </div>
             <input type="hidden" name="id" value="4" />
             <div class="justify-content m-t">
@@ -164,21 +200,52 @@
                     <h3 class="card-title">New Payment</h3>
                 </div>
                 <div class="card-body">
-                    <div class="content">
-                        <div>
-                            <div class="input-wrapper">
-                                <div><span>Month of</span></div>
-                                <input name="month_of" type="month" />
+                    <form class="auto" data-id="<?php echo $dbhelper->encrypt("payment_list") ?>">
+                        <div class="content">
+                            <div>
+                                <div class="input-wrapper">
+                                    <div><span>Month of</span></div>
+                                    <input name="month_of" type="month" />
+                                </div>
+                                <div class="input-wrapper">
+                                    <div><span>Amount</span></div>
+                                    <input name="amount" type="text" />
+                                </div>
+                                <input type="hidden" name="account_id" value="<?php echo $student_data->id ?>" />
                             </div>
-                            <div class="input-wrapper">
-                                <div><span>Amount</span></div>
-                                <input name="amount" type="text" />
-                            </div>
-
                         </div>
-                    </div>
+                        <div class="action-button justify-content-end">
+                            <button data-id="<?php echo $student_id ?>" class="btn btn-default m-r"
+                                type="submit">Save</button>
+                            <button type="button" class="btn btn-flat">Close</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" id="payment-history-modal" style="display: none; z-index: 99;">
+        <div class="modal-content" style="width: 1000px;">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Payment History</h3>
+                </div>
+                <div class="card-body">
+                    <table class="table table-hover table-striped table-bordered" id="list"
+                        data-context="/api/account.php?payment=<?php echo $dbhelper->encrypt($student_data->id) ?>">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Month of</th>
+                                <th>Date Created</th>
+                                <th>Amount</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                    </table>
                     <div class="action-button justify-content-end">
-                        <button data-id="<?php echo $student_id ?>" class="btn btn-default m-r" type="submit">Save</button>
+
                         <button class="btn btn-flat">Close</button>
                     </div>
                 </div>
@@ -187,56 +254,68 @@
     </div>
 
     <script>
-    $("#btn-add-payment").on('click', function() {
-        $('#payment-modal').show();
-    })
-    $('#payment-modal .btn-default').on('click', function() {
-        const { id } = $(this).data()
-        const inputs = $(this).closest('.card-body').find('input')
-        inputs.each((i, input) => {
-            const parent = $(input).closest('.input-wrapper')
-            parent.find('.error').remove()
-            if (!$(input).val()) {
-                parent.append('<span class="error">This field is required</span>')
-            }
+        $("#btn-add-payment").on('click', function () {
+            $('#payment-modal').show();
         })
-        if ($(this).closest('.card-body').find('.error').length > 0) {
-            return
-        }
-        let data = inputs.map((i, input) => {
-            const name = $(input).attr('name');
-            let value = $(input).val()
-            if (name === 'amount') {
-                value = Number($(input).val().replace(/[^0-9.-]+/g,""))
-            }
-            if (name === 'month_of') {
-                value = `${value}-01`
-            }
-            return {
-                name: name,
-                value: value
-            }
-        })
-        data.push({ name: 'account_id', value: id })
-        $.ajax({
-            url: `/api/student-entry.php?type=payment`,
-            type: "post",
-            dataType: "json",
-            data
-        }).done((data) => {
-            inputs.each((i, input) => {
-                $(input).val('')
+        $('#payment-modal .btn-default').on('click', function () {
+            $('#payment-modal').show();
+            $("form").on('success', function() {
+                $('#payment-modal').hide();
+                getpayments()
             })
-            $('#payment-modal').hide();
-        });
-    })
-    $("#btn-payment-history").on('click', function() {
-        // modal({
-        //     title: 'New Payment',
-        //     body: `<div>
-        //             // TODO
-        //     </div>
-        //     `,
-        // })
-    })
+        })
+        $("#btn-payment-history").on('click', function () {
+            getpayments()
+        })
+        function getpayments() {
+            const data = $('table').data()
+            $.ajax({
+                url: data.context,
+                dataType: "json",
+            }).done(data => {
+                $('#payment-history-modal').hide()
+                const table = $('table')
+                table.DataTable().clear().destroy();
+                // table.dataTable().fnClearTable();
+                $('table tbody').html('')
+                const template = `
+                    <tr>
+                        <td>{{index}}</td>
+                        <td>{{month_of_str}}</td>
+                        <td>{{date_created}}</td>
+                        <td>{{amount}}</td>
+                        <td>
+                            <div class="dropdown">
+                                <button class="dropbtn">Action <i
+                                        class="fa fa-chevron-down"></i></button>
+                                <div class="dropdown-content">
+                                    <a href="#" class="edit" data-month_of="{{month_of}}" data-amount="{{amount}}" data-id="{{id}}">Edit</a>
+                                    <a href="#" 
+                                        class="delete stay" 
+                                        data-id="{{id}}" 
+                                        data-title="{{month_of_str}} - {{amount}}"
+										data-context="<?php echo $dbhelper->encrypt("payment_list") ?>">Delete</a>
+                                </div>
+                            </div></td>
+                    </tr>
+            `
+                data.forEach((value, index) => {
+                    $('table tbody').append(template.compose({ ...value, month_of_str: moment(value.month_of).format('MMMM YYYY'), index: ++index }))
+                })
+
+                $('#payment-history-modal').show()
+                table.DataTable()
+                $('table').find('.dropdown').find('.edit').unbind('click').on('click', function () {
+                    const data = $(this).data();
+                    $('#payment-modal form').find(`[name="id"]`).remove()
+                    $('#payment-modal form').append($('<input type="hidden" name="id" />').val(data.id))
+                    Object.keys(data).map(key => $('#payment-modal form').find(`[name="${key}"]`).val(data[key]))
+                    $('#payment-modal').show();
+                })
+                $('table').find('.dropdown').find('.delete').on('done', function() {
+                    getpayments()
+                })
+                window.rebindDelete();
+            })
+        }
     </script>
