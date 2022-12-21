@@ -188,8 +188,12 @@ $(document).ready(() => {
     language: { search: "" },
     width: '100%'
   }
+  const tblRaw = $('table')
+  if (tblRaw.hasClass("no-pagination")) {
+    tableOptions.paging = false
+  }
   $('table').find('th:contains("Date")').css('max-width', '100px')
-  const table = $('table').DataTable(tableOptions);
+  const table = tblRaw.DataTable(tableOptions);
   // window.table = table
   $('table').trigger('done', [table])
   $("#list_filter label").append('<i class="fa fa-search"></i>')

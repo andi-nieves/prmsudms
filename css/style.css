@@ -378,6 +378,10 @@ table.dataTable thead tr {
 table th:nth-last-child(-n + 2) {
     max-width: 80px !important;
 }
+ 
+table tfoot {
+    border-top: #9e9e9e solid 2px !important;
+}
 
 .dataTables_wrapper {
     position: relative;
@@ -705,4 +709,14 @@ th {
 
   .text-normal {
     font-weight: normal !important;
+  }
+
+  #filter-form .wrapper{
+    display: flex;
+    align-items: center;
+    column-gap: 10px;
+  }
+
+  #filter-form .wrapper .action-buttons {
+    margin-top: 17px;
   }

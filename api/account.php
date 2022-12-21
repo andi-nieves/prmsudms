@@ -16,4 +16,19 @@
         }, $result));
         return;
     }
+    if (isset($_GET['monthly_collection'])) {
+    $collections = $dbhelper->query("SELECT 
+        p.*, 
+        s.code,
+        CONCAT(s.lastname, ', ', s.firstname, ' ', SUBSTR(s.middlename, 1,1), '.' ) as name,
+        CONCAT(d.name, ' - ', r.name) as dorm
+        FROM payment_list as p 
+            INNER JOIN student_list as s ON p.account_id = s.id 
+            INNER JOIN account_list as a ON s.id = a.student_id 
+            INNER JOIN room_list as r ON r.id = a.room_id 
+            INNER JOIN dorm_list as d ON r.dorm_id = d.id
+            WHERE p.month_of =:date", array(':date' => $_GET['monthly_collection']));
+        echo json_encode($collections);
+        return;
+    }
 ?>
