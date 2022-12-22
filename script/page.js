@@ -8,6 +8,14 @@ String.prototype.compose = (function (){
   }
 }());
 $(document).ready(() => {
+  $('input[name="price"]').on({
+    keyup: function () {
+      formatCurrency($(this));
+    },
+    blur: function () {
+      formatCurrency($(this), "blur");
+    },
+  });
   $('input[name="amount"]').on({
     keyup: function () {
       formatCurrency($(this));
@@ -96,6 +104,7 @@ $(document).ready(() => {
     $(form).find(".error").remove();
     $(form)
       .find("input, textarea, select")
+      .not('.not-required')
       .each((i, input) => {
         if (!input.value) {
           $(input)
@@ -116,6 +125,7 @@ $(document).ready(() => {
     if ($(form).find(".error").length > 0) return;
 
     if ($(form).find("[name='amount']").length > 0) $(form).find("[name='amount']").val(Number($(form).find("[name='amount']").val().replace(/[^0-9.-]+/g, "")))
+    if ($(form).find("[name='price']").length > 0) $(form).find("[name='price']").val(Number($(form).find("[name='price']").val().replace(/[^0-9.-]+/g, "")))
     if (data.unique) {
       $.ajax({
         url: `/api/crud.php?id=${data.id}&check=unique`,

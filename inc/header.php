@@ -4,7 +4,7 @@
         <span>PRMSU DORMITORY MANAGEMENT SYSTEM</span>
     </div>
     <div class="right">
-        <span><?php echo $_SESSION['username']; ?></span>
+        <span><?= $_SESSION['username']; ?></span>
         <span>Administrator</span>
     </div>
 </div>

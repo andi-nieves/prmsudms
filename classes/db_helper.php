@@ -11,7 +11,7 @@ class db {
     private $dbpassword;
     public  $prefix;
     public  $conn;
-    public $tblmeta = "meta_table";
+    public $tblmeta = "user_meta";
     function __construct(){
         $this->connect();
     }
@@ -72,18 +72,19 @@ class db {
     public function close_db(){
         $this->conn = null;
     }
-    public function update_setting($meta_key,$meta_value){
-        $values = array(":meta_key"=>$meta_key,":meta_value"=>$meta_value);
-        if(empty($this->get_setting($meta_key))):
-            $this->cmd("INSERT INTO $this->tblmeta (meta_key,meta_value)VALUES(:meta_key,:meta_value)",$values);
+    public function user_meta($user_id, $meta_key, $meta_value){
+        $values = array("user_id"=>$user_id,":meta_key"=>$meta_key,":meta_value"=>$meta_value);
+        if(empty($this->get_user_meta($user_id, $meta_key))):
+            $this->cmd("INSERT INTO $this->tblmeta (user_id, meta_key,meta_value)VALUES(:user_id, :meta_key,:meta_value)",$values);
         else:
-            $this->cmd("UPDATE $this->tblmeta SET meta_value=:meta_value WHERE meta_key=:meta_key",$values);
+            $this->cmd("UPDATE $this->tblmeta SET meta_value=:meta_value WHERE meta_key=:meta_key AND user_id = :user_id",$values);
         endif;
     }
-    public function get_setting($meta_key){
-        $value = array(":meta_key"=>$meta_key);
-        $result = $this->query("SELECT meta_value FROM $this->tblmeta WHERE meta_key=:meta_key",$value);
-        return count($result)==0 ? "" : $result[0]['meta_value'];
+    public function get_user_meta($user_id, $meta_key){
+        if (is_null($user_id)) return "";
+        $value = array(":user_id"=>$user_id,":meta_key"=>$meta_key);
+        $result = $this->query("SELECT meta_value FROM $this->tblmeta WHERE meta_key=:meta_key AND user_id=:user_id",$value);
+        return count($result)==0 ? "" : $result[0]->meta_value;
     }
     function generate_insert_sql($table, $array) {
         $fields=array_keys($array);

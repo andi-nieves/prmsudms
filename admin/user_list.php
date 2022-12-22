@@ -1,144 +1,93 @@
-<?php require_once('../config.php') ?>
-    <!DOCTYPE html>
-    <html>
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Users</title>
-        <link rel="stylesheet" type="text/css" href="../css/style.css">
-    </head>
-    <body>
-        <div class="wrapper">
-            <div class="section">
-                <?php include '../inc/header.php'; ?>
-            </div>
-            <?php include '../inc/sidebar.php'; ?>
-            <div class="content-wrapper" style="min-height:628.038px">
-                <section class="content">
-                    <div class="container">
-                        <?php if($_settings->chk_flashdata('success')): ?>
-                        <script>
-	                        alert_toast("<?php echo $_settings->flashdata('success') ?>",'success')
-                        </script>
-                        <?php endif;?>
-                        <style>
-                            .user-avatar{
-                                width:3rem;
-                                height:3rem;
-                                object-fit:scale-down;
-                                object-position:center center;
-                            }
-                        </style>
-                        <div class="card card-outline rounded-0 card-maroon">
-	                        <div class="card-header">
-		                        <h3 class="card-title">List of Users</h3>
-		                        <div class="card-tools">
-			                        <a href="./?page=user/manage_user" id="create_new" class="btn btn-flat btn-primary"><span class="fas fa-plus"></span>  Create New</a>
-		                        </div>
-	                        </div>
-	                        <div class="card-body">
-                                <div class="container-fluid">
-			                        <table class="table table-hover table-striped table-bordered" id="list">
-				                        <colgroup>
-					                        <col width="5%">
-					                        <col width="15%">
-					                        <col width="15%">
-					                        <col width="25%">
-					                        <col width="15%">
-					                        <col width="10%">
-					                        <col width="15%">
-				                        </colgroup>
-				                        <thead>
-					                        <tr>
-						                        <th>#</th>
-						                        <th>Date Updated</th>
-						                        <th>Avatar</th>
-						                        <th>Name</th>
-						                        <th>Username</th>
-						                        <th>Type</th>
-						                        <th>Action</th>
-					                        </tr>
-				                        </thead>
-				                        <tbody>
-					                        <?php 
-					                        $i = 1;
-						                        $qry = $conn->query("SELECT *, concat(firstname,' ', lastname) as `name` from `users` where id != '{$_settings->userdata('id')}' order by concat(firstname,' ', lastname) asc ");
-						                        while($row = $qry->fetch_assoc()):
-					                        ?>
-						                        <tr>
-							                        <td class="text-center"><?php echo $i++; ?></td>
-							                        <td><?php echo date("Y-m-d H:i",strtotime($row['date_updated'])) ?></td>
-							                        <td class="text-center">
-                                                        <img src="<?= validate_image($row['avatar']) ?>" alt="" class="img-thumbnail rounded-circle user-avatar">
-                                                    </td>
-							                        <td><?php echo $row['name'] ?></td>
-							                        <td><?php echo $row['username'] ?></td>
-							                        <td class="text-center">
-                                                        <?php if($row['type'] == 1): ?>
-                                                            Administrator
-                                                        <?php elseif($row['type'] == 2): ?>
-                                                            Staff
-                                                        <?php else: ?>
-									                        N/A
-                                                        <?php endif; ?>
-                                                    </td>
-							                        <td align="center">
-								                        <button type="button" class="btn btn-flat p-1 btn-default btn-sm dropdown-toggle dropdown-icon" data-toggle="dropdown">
-				                  		                        Action
-				                                            <span class="sr-only">Toggle Dropdown</span>
-				                                        </button>
-				                                          <div class="dropdown-menu" role="menu">
-				                                            <a class="dropdown-item" href="./?page=user/manage_user&id=<?= $row['id'] ?>"><span class="fa fa-edit text-dark"></span> Edit</a>
-				                                            <div class="dropdown-divider"></div>
-				                                            <a class="dropdown-item delete_data" href="javascript:void(0)" data-id="<?php echo $row['id'] ?>"><span class="fa fa-trash text-danger"></span> Delete</a>
-				                                          </div>
-							                        </td>
-						                        </tr>
-					                        <?php endwhile; ?>
-				                        </tbody>
-			                        </table>
-		                        </div>
-	                        </div>
-                        </div>
-                        <script>
-	                        $(document).ready(function(){
-		                        $('.delete_data').click(function(){
-			                        _conf("Are you sure to delete this User permanently?","delete_user",[$(this).attr('data-id')])
-		                        })
-		                        $('.table').dataTable({
-			                        columnDefs: [
-					                        { orderable: false, targets: [6] }
-			                        ],
-			                        order:[0,'asc']
-		                        });
-		                        $('.dataTable td,.dataTable th').addClass('py-1 px-2 align-middle')
-	                        })
-	                        function delete_user($id){
-		                        start_loader();
-		                        $.ajax({
-			                        url:_base_url_+"classes/Users.php?f=delete",
-			                        method:"POST",
-			                        data:{id: $id},
-			                        error:err=>{
-				                        console.log(err)
-				                        alert_toast("An error occured.",'error');
-				                        end_loader();
-			                        },
-			                        success:function(resp){
-				                        if(resp == 1){
-					                        location.reload();
-				                        }else{
-					                        alert_toast("An error occured.",'error');
-					                        end_loader();
-				                        }
-			                        }
-		                        })
-	                        }
-                        </script>
-                    </div>
-                </section>
-            </div>
-            <?php include '../inc/footer.php'; ?>
-        </div>
-    </body>
-    </html>
+<?php
+require_once('../config.php');
+$title = "User List";
+$result = $dbhelper->query('SELECT u.*, group_concat(m.meta_key) as meta_keys, group_concat(m.meta_value) as meta_values FROM users as u LEFT JOIN user_meta as m ON m.user_id = u.id WHERE u.status = 1 AND u.delete_flag = 0 GROUP BY u.id ORDER BY u.date_created');
+$users = array();
+foreach ($result as $user):
+	$keys = explode(',', $user->meta_keys);
+	$values = explode(',', $user->meta_values); foreach ($keys as $index => $key):
+		$user->$key = $values[$index];
+	endforeach;
+	array_push($users, $user);
+endforeach;
+?>
+<!DOCTYPE html>
+<html>
+<?php include '../inc/html-head.php'; ?>
+
+<body>
+	<div class="wrapper">
+		<div class="section">
+			<?php include '../inc/header.php'; ?>
+		</div>
+		<?php include '../inc/sidebar.php'; ?>
+		<div class="content-wrapper" style="min-height:628.038px">
+			<section class="content">
+				<div class="container">
+					<style>
+						.user-avatar {
+							width: 3rem;
+							height: 3rem;
+							object-fit: scale-down;
+							object-position: center center;
+						}
+					</style>
+					<div class="card card-outline rounded-0 card-maroon">
+						<div class="card-header">
+							<h3 class="card-title">List of Users</h3>
+							<div class="card-tools">
+								<a href="/admin/users/entry.php" id="create_new" class="btn btn-flat btn-primary"><span
+										class="fas fa-plus"></span> Create New</a>
+							</div>
+						</div>
+						<div class="card-body">
+							<div class="container-fluid">
+								<table class="table table-hover table-striped table-bordered" id="list">
+									<thead>
+										<tr>
+											<th>#</th>
+											<th style="width: 40px">Avatar</th>
+											<th>Name</th>
+											<th style="width: 60px">Username</th>
+											<th>Type</th>
+											<th>Date Updated</th>
+											<th>Action</th>
+										</tr>
+									</thead>
+									<tbody>
+										<?php foreach ($users as $index => $user): ?>
+										<tr>
+											<td><?=++$index ?></td>
+											<td><?= profile_avatar($user) ?></td>
+											<td><?= $user->last_name ?? "" ?>, <?= $user->first_name ?? "" ?></td>
+											<td><?= $user->username ?? "-" ?></td>
+											<td><?= $user_types[$user->type] ?? "-" ?></td>
+											<td><?= $user->date_created ?? "-" ?></td>
+											<td>
+												<div class="dropdown">
+													<button class="dropbtn">Action <iclass="fa fa-chevron-down"></i></button>
+													<div class="dropdown-content">
+														<a href="/admin/users/entry.php?view=<?= $dbhelper->encrypt($user->id) ?>">View</a>
+														<a href="/admin/users/entry.php?edit=<?= $dbhelper->encrypt($user->id) ?>">Edit</a>
+														<a href="#" class="delete"
+															data-title="<?= "$user->last_name, $user->first_name" ?>"
+															data-context="<?= $dbhelper->encrypt("users") ?>"
+															data-id="<?= $dbhelper->encrypt($user->id) ?>">Delete</a>
+													</div>
+												</div>
+											</td>
+										</tr>
+										<?php endforeach; ?>
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+		</div>
+		<?php include '../inc/footer.php'; ?>
+	</div>
+</body>
+
+</html>

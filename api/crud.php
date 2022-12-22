@@ -27,18 +27,46 @@
         return;
     }
     if (isset($_GET['type']) && $_GET['type'] === 'delete') {
-        $dbhelper->cmd("DELETE FROM $table WHERE id=:id", array(":id" => $dbhelper->decrypt($_POST['id'])));
+        $dbhelper->cmd("UPDATE $table SET `delete_flag`=1 WHERE id=:id", array(":id" => $dbhelper->decrypt($_POST['id'])));
         echo json_encode(array('success' => true));
         return;
     }
+    function save_metas($id) {
+        global $dbhelper;
+        global $ROOT_DIR;
+        $meta = $_POST['meta'] ?? null;
+        $profile_avatar = $_POST['profile_avatar'] ?? null;
+
+        unset($_POST['meta']);
+        unset($_POST['profile_avatar']);
+        if(isset($meta) && isset($id)) {
+            foreach($meta as $key=>$value) {
+                $dbhelper->user_meta($id, $key, $value);
+            }
+        }
+        if (isset($profile_avatar) && $profile_avatar !== "") {
+            $data = $profile_avatar;
+            if (IMAGETYPE_JPEG  === exif_imagetype($data) ){
+                $data = imagecreatefromjpeg($data);
+            }
+            list($type, $data) = explode(';', $data);
+            list(, $data)      = explode(',', $data);
+            $data = base64_decode($data);
+            $imgname = "profile-avatar-$id.png";
+            file_put_contents("$ROOT_DIR/img/avatars/$imgname", $data );
+            $dbhelper->user_meta($id, 'profile_avatar', $imgname);
+        }
+    }
+    $table_fields = array_diff_key($_POST,array_flip(array('meta', 'profile_avatar', 'id')));
     if (!isset($_POST['id'])) {
-        $id = $dbhelper->generate_insert_sql($table, $_POST);
+        $id = $dbhelper->generate_insert_sql($table, $table_fields);
+        save_metas($id);
         echo json_encode(array('success'=>true, 'id' => $id, 'type'=>'new'));
     } else {
         if (!is_null($_POST['id'])) {
-            $id = (is_numeric($_POST['id']) === 1) ? $_POST['id'] : $dbhelper->decrypt($_POST['id']);
-            unset($_POST['id']);
-            $dbhelper->generate_update_sql($table, $id, $_POST);
+            $id = (is_numeric($_POST['id']) == 1) ? $_POST['id'] : $dbhelper->decrypt($_POST['id']);
+            $dbhelper->generate_update_sql($table, $id, $table_fields);
+            save_metas($id);
             echo json_encode(array('success'=>true, 'id'=>$id, 'type'=>'updated'));
         }
     }

@@ -156,7 +156,7 @@ $dorms = $dbhelper->query("SELECT id, name FROM dorm_list WHERE status = 1 ORDER
 								</div>
 								<div class="input-wrapper">
 									<div><span>Price per Month</span></div>
-									<input name="price" type="number" />
+									<input name="price" />
 								</div>
 								<div class="input-wrapper">
 									<div><span>Status</span></div>

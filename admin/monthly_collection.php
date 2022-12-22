@@ -44,7 +44,7 @@ $total = array_sum(array_column($collections, 'amount'));
                                             <form action="" id="filter-form">
                                                 <div class="wrapper">
                                                     <div class="input-wrapper">
-                                                            <div><span>Course</span></div>
+                                                            <div><span>Choose Date</span></div>
                                                             <input type="month" class="form-control form-control-sm rounded-0" name="month" id="month" value="<?= $month ?>" required="required">
                                                     </div>
                                                     <div class="action-buttons">

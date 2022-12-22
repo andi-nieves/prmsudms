@@ -3,12 +3,15 @@ ob_start();
 ini_set('date.timezone','Asia/Manila');
 date_default_timezone_set('Asia/Manila');
 session_start();
-
+if (!isset($_SESSION['id'])) {
+    header("Location: /login.php");
+    die();
+}
 require_once('initialize.php');
 require_once('classes/db_connect.php');
 require_once('classes/db_helper.php');
 require_once('classes/SystemSettings.php');
-
+require_once('classes/utils.php');
 $db = new db_connect;
 $conn = $db->conn;
 function redirect($url=''){
