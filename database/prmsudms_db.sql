@@ -175,17 +175,50 @@ INSERT INTO `student_list` (`id`, `code`, `firstname`, `middlename`, `lastname`,
 
 CREATE TABLE `users` (
   `id` int(11) NOT NULL,
+  `first_name` varchar(250) NOT NULL,
+  `middle_name` text DEFAULT NULL,
+  `last_name` varchar(250) NOT NULL,
   `username` varchar(100) NOT NULL,
-  `password` varchar(100) NOT NULL
+  `password` varchar(100) NOT NULL,
+    `profile_avatar` text DEFAULT NULL,
+  `last_login` datetime DEFAULT NULL,
+  `type` tinyint(1) NOT NULL DEFAULT 0,
+  `status` tinyint(1) NOT NULL DEFAULT 1,
+  `delete_flag` tinyint(1) NOT NULL DEFAULT 0,
+  `date_created` datetime NOT NULL DEFAULT current_timestamp(),
+  `date_added` datetime NOT NULL DEFAULT current_timestamp(),
+  `date_updated` datetime DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `username`, `password`) VALUES
+INSERT INTO `users` (`id`, `first_name`, `middle_name`, `last_name`, `username`, `password`, `profile_avatar`, `last_login`, `type`, `status`, `delete_flag`, `date_created`, `date_added`, `date_updated`) VALUES
 (1, 'Admin', 'Admin123'),
-(2, 'Dhey', '41125');
+(1, '', NULL, '', 'Dhey05', '12345', NULL, NULL, 1, 1, 1, '2022-12-28 17:16:14', '2022-12-28 14:49:30', '2022-12-28 17:51:35'),
+(2, '', NULL, '', 'Dhey', '41125', 'img/avatars/1.jpg', NULL, 1, 1, 0, '2022-12-28 17:16:14', '2022-12-28 14:49:30', '2022-12-29 07:59:13');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `user_meta`
+--
+
+CREATE TABLE `user_meta` (
+  `id` int(50) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `meta_key` varchar(255) NOT NULL,
+  `meta_value` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `user_meta`
+--
+
+INSERT INTO `user_meta` (`id`, `user_id`, `meta_key`, `meta_value`) VALUES
+(0, 1, '', ''),
+(1, 1, '', '');
 
 --
 -- Indexes for dumped tables
@@ -225,6 +258,12 @@ ALTER TABLE `student_list`
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `user_meta`
+--
+ALTER TABLE `user_meta`
   ADD PRIMARY KEY (`id`);
 
 --
