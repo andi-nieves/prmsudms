@@ -3,6 +3,7 @@ $profile_avatar = $dbhelper->get_user_meta($id, 'profile_avatar')
 ?>
 <form class="auto" data-id="<?php echo $dbhelper->encrypt("users") ?>" data-unique='<?php echo json_encode(array('username')) ?>'>
     <div class="details">
+        <?php if($user->type !== "3"): ?>
         <div class="row">
             <div class="col">
                 <div class="input-wrapper">
@@ -23,6 +24,7 @@ $profile_avatar = $dbhelper->get_user_meta($id, 'profile_avatar')
                 </div>
             </div>
         </div>
+        <?php endif ?>
 
         <div class="row">
             <div class="col">
