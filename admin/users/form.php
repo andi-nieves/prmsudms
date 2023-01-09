@@ -100,7 +100,7 @@ $profile_avatar = $dbhelper->get_user_meta($id, 'profile_avatar')
     <div class="modal-content" style="max-width: unset">
         <div class="card">
             <div class="card-header">
-                <h3 class="card-title">Room Details</h3>
+                <h3 class="card-title">Crop Avatar</h3>
             </div>
             <div class="card-body">
                 <div class="content">
