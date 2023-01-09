@@ -11,13 +11,13 @@ function inactivityTime() {
   let time;
   $(document).ready(resetTimer).mousemove(resetTimer).on('keypress', resetTimer);
   function logout() {
-    // $.ajax({
-    //   url: `/api/login.php?destroy=true`,
-    //   type: "get",
-    //   dataType: "json",
-    // }).done(() => {
-    //   window.location.replace('/')
-    // });
+    $.ajax({
+      url: `/api/login.php?destroy=true`,
+      type: "get",
+      dataType: "json",
+    }).done(() => {
+      window.location.replace('/')
+    });
   }
   function resetTimer() {
     clearTimeout(time);
