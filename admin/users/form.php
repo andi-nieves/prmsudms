@@ -43,10 +43,14 @@ $profile_avatar = $dbhelper->get_user_meta($id, 'profile_avatar')
             <div class="col">
                 <div class="input-wrapper">
                     <div><span>Type</span></div>
+                    <?php if($readonly === true): ?>
+                        <div class="static">Admin</div>
+                    <?php else: ?>
                     <select name="type" <?= $readonly ? 'readonly' : '' ?>>
                         <option value="1" <?= ($user->type ?? "") === 1 ? "selected" : "" ?>>Administrator</option>
                         <option value="2" <?= ($user->type ?? "") === 2 ? "selected" : "" ?>>User</option>
                     </select>
+                    <?php endif ?>
                 </div>
             </div>
         </div>

@@ -13,6 +13,7 @@ FROM payment_list as p
     INNER JOIN dorm_list as d ON r.dorm_id = d.id
     WHERE p.month_of =:month", array(':month' => $month));
 $total = array_sum(array_column($collections, 'amount'));
+$name = $dbhelper->get_user_meta($_SESSION['id'], 'first_name'). ' '.$dbhelper->get_user_meta($_SESSION['id'], 'middle_name').' '.$dbhelper->get_user_meta($_SESSION['id'], 'last_name')
 ?>
 
 <!DOCTYPE html>
@@ -156,6 +157,8 @@ $total = array_sum(array_column($collections, 'amount'));
                 </th>
             </tfoot>
         </table>
+
+        <p>Prepared by: <br/><br/> <?= $name ?></p>
     </div>
 
 </body>

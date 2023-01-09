@@ -37,7 +37,7 @@ body.active .wrapper .section{
 }
 
 .right{
-    display: grid;
+    display: flex;
     position: absolute;
     right: 100px;
     color: rgb(241, 237, 237);
@@ -47,6 +47,22 @@ body.active .wrapper .section{
     justify-items: end;
     font-size: 12pt;
     font-weight: 700;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: flex-end;
+}
+.right .user{
+    display: flex;
+    flex-direction: column;
+    text-align: right;
+}
+.right .dropbtn {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+.right .dropbtn i.fa-chevron-down {
+    margin-left: 10px;
 }
 
 .main-footer {
