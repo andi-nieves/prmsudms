@@ -21,7 +21,7 @@ function inactivityTime() {
   }
   function resetTimer() {
     clearTimeout(time);
-    time = setTimeout(logout, (1000 * 30 * 10)) // 5mins inactive
+    time = setTimeout(logout, (1000 * 60 * 5)) // 5mins inactive
   }
 };
 $(document).ready(() => {
