@@ -16,7 +16,7 @@ if (isset($_GET['destroy'])) {
 		foreach(get_object_vars($res) as $key=>$value) {
 			$_SESSION[$key] = $value;
 		}
-		echo json_encode(array('success' => true));
+		echo json_encode(array('success' => true, 'type' => $res->type));
 	}
 // require_once '../config.php';
 // class Login extends db_connect {

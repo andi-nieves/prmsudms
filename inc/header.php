@@ -7,6 +7,7 @@ if (isset($_SESSION['id'])) {
         'last_name' => $dbhelper->get_user_meta($_SESSION['id'], 'last_name')
         ));
 }
+    $student_view = $_SERVER['REQUEST_URI'] === '/my-account.php';
     
 ?>
 <link rel="stylesheet" type="text/css" href="/css/header-footer.css">
@@ -16,12 +17,14 @@ if (isset($_SESSION['id'])) {
         <span>PRMSU DORMITORY MANAGEMENT SYSTEM</span>
         
     </div>
+    <?php if (!$student_view): ?>
     <?php if(!is_null($user)): ?>
     <div class="right">
         <div class="user">
             <span><?= $_SESSION['username']; ?></span>
             <span><?= $user_types[$_SESSION['id']] ?></span>
         </div>
+        
         <div class="dropdown">
             <button class="dropbtn"><?= profile_avatar($user) ?> <i class="fa fa-chevron-down"></i></button>
             <div class="dropdown-content">
@@ -29,6 +32,8 @@ if (isset($_SESSION['id'])) {
                 <a href="/logout.php">Logout</a>
             </div>
         </div>
+        
     </div>
+    <?php endif ?>
     <?php endif ?>
 </div>

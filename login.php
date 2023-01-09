@@ -35,11 +35,22 @@
                 dataType: "json",
                 data: form.serialize(),
                 }).done((data) => {
+                    console.log('data', data)
                     if (data.error) {
                         form.prepend(`<p class="error">${data.error}</p>`);
                     }
                     if (data.success) {
-                        window.location = `/admin/home.php`;
+                        switch(+data.type) {
+                            case 1: case 2:
+                                window.location = `/admin/home.php`;
+                                return
+                            case 3:
+                                window.location = `/my-account.php`;
+                                return
+                            default:
+                                return
+                        }
+                        
                     }
                 });
         })

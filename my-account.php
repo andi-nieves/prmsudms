@@ -3,12 +3,12 @@ require_once('config.php');
 $title = "PRMSUDMS";
 $page = $_GET['page'] ?? null;
 $student_data = null;
-$student_id = $_SESSION['id'] ?? null;
+$student_id = $_SESSION['username'] ?? null;
 $age = null;
 if (!is_null($student_id)) {
     require_once 'classes/db_helper.php';
     $db = new db();
-    $student_data = $db->query("SELECT * FROM `student_list` WHERE id=:id", array(":id" => $student_id))[0] ?? null;
+    $student_data = $db->query("SELECT * FROM `student_list` WHERE email=:username", array(":username" => $student_id))[0] ?? null;
     if (!is_null($student_data)) {
         $age = floor((time() - strtotime($student_data->birthdate)) / 31556926);
     }
@@ -31,7 +31,6 @@ if (!is_null($student_id)) {
                         <div class="card-header">
                             <h3 class="card-title">Update student details</h3>
                         </div>
-
                         <div class="card-body">
                             <div class="details">
                                 <div class="section">
@@ -210,6 +209,11 @@ if (!is_null($student_id)) {
                                     <button id="btn-payment-history" class="btn btn-default m-r"
                                         data-id="<?php echo $student_id ?>">Payment
                                         History</button>
+                                        <a id="btn-logout"  href="/logout.php" class="btn btn-default m-r">Logout</a>
+                                </div>
+
+                                <div class="justify-content m-t">
+                                    
                                 </div>
                             </div>
                         </div>
