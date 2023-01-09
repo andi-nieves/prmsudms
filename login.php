@@ -4,6 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>PRMSU Dormitory Management System</title>
+    <link rel="icon" type="image/x-icon" href="/img/PRMSU logo.png">
     <link rel="stylesheet" type="text/css" href="../css/login.css">
     <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
 </head>
