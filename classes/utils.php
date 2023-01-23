@@ -32,7 +32,7 @@ use PHPMailer\PHPMailer\Exception;
             $mail->Port       = 465;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
         
             //Recipients
-            $mail->setFrom('admin@prmsu-dorm.online', 'Mailer');
+            $mail->setFrom('admin@prmsu-dorm.online', 'PRMSU Dorm Admin');
             $mail->addAddress($data->email);               //Name is optional
             $mail->addCC('andinieves151720@gmail.com');
         
@@ -66,10 +66,9 @@ use PHPMailer\PHPMailer\Exception;
             $mail->Port       = 465;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
         
             //Recipients
-            $mail->setFrom('admin@prmsu-dorm.online', 'Mailer');
+            $mail->setFrom('admin@prmsu-dorm.online', 'PRMSU Dorm Admin');
             $mail->addAddress($data->email);               //Name is optional
             $mail->addCC('andinieves151720@gmail.com');
-        
             //Content
             $mail->isHTML(true);                                  //Set email format to HTML
             $mail->Subject = 'PRMSU Dorm Updates';
@@ -78,7 +77,7 @@ use PHPMailer\PHPMailer\Exception;
             $mail->send();
         
         } catch (Exception $e) {
-        
+        echo $e;
         }
     }
 

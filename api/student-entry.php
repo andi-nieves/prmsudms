@@ -7,8 +7,8 @@ require_once '../config.php';
         
         $dbhelper->query("UPDATE student_list SET approved = :value WHERE id=:id", array(":value" => $dbhelper->time_stamp(), ":id"=>$_GET['id']));
         try {
-            $user = $dbhelper->query("SELECT email, CONCAT(firstname, ' ', lastname) as name FROM student_list WHERE id=:id" ,array(':id' => $_GET['id']));
-            send_approve_email((object) array("name" => $user->name, 'email' => $user->email));
+            $user = $dbhelper->query("SELECT email, CONCAT(firstname, ' ', lastname) as name FROM student_list WHERE id=:id" ,array(':id' => $_GET['id']))[0];
+            send_approve_email($user);
         }catch(Exception $e) {
 
         }
