@@ -29,7 +29,6 @@ $user = $dbhelper->query("SELECT `password` FROM users WHERE id=:id", array(':id
                         <div class="card-body">
                         
                             <form id="form-password">
-                                <?= $dbhelper->decrypt($token) ?>
                                 <div class="row">
                                     <div class="col">
                                         <div class="input-wrapper">
