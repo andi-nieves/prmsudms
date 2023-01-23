@@ -4,8 +4,17 @@ require_once '../config.php';
     require_once '../classes/db_helper.php';
     $table_name = 'student_list';
     if (isset($_GET['type']) && $_GET['type'] == 'approval') {
+        
         $dbhelper->query("UPDATE student_list SET approved = :value WHERE id=:id", array(":value" => $dbhelper->time_stamp(), ":id"=>$_GET['id']));
+        try {
+            $user = $dbhelper->query("SELECT email, CONCAT(firstname, ' ', lastname) as name FROM student_list WHERE id=:id" ,array(':id' => $_GET['id']));
+            send_approve_email((object) array("name" => $user->name, 'email' => $user->email));
+        }catch(Exception $e) {
+
+        }
+        
         echo json_encode(array('success'=>true));
+        
         return;
     }
     if (isset($_GET['type']) && $_GET['type'] == 'delete') {
