@@ -1,5 +1,7 @@
 <?php
-
+if(!defined('servername')){
+    require_once("../initialize.php");
+}
 /**
  * Code snippet: https://github.com/andi-nieves/php_pdo_helper
  */

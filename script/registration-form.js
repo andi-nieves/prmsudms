@@ -24,8 +24,16 @@ $(document).ready(() => {
       });
     if ($(form).find(".error").length > 0) return;
 
+    if ($(form).find('[name="password"]').val().length < 6) {
+      $($(form).find('[name="password"]')).closest('.input-wrapper').append('<span class="error">Minimum password is not less than 6 characters</span>')
+      return
+    }
+    if ($(form).find('[name="password"]').val() !== $(form).find('[name="confirm-password"]').val()) {
+      $($(form).find('[name="password"]')).closest('.input-wrapper').append('<span class="error">Password not match</span>')
+      return
+    }
     $.ajax({
-      url: `/api/student-entry.php?page=registration`,
+      url: `/api/registration.php`,
       type: "post",
       dataType: "json",
       data: form.serialize(),
@@ -43,7 +51,7 @@ $(document).ready(() => {
           title: 'Registration',
           body: 'Your registration is complete! Please check you email within 24 hours for approval status. Thank you!',
           onDismiss: () => {
-            window.location = '/login.php'
+            window.location = '/my-account.php'
           }
         })
       }

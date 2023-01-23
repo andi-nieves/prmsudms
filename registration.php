@@ -1,7 +1,7 @@
 <?php
 
 $title = "Registration"
-?>
+    ?>
 <!DOCTYPE html>
 <html>
 <?php include 'inc/html-head.php' ?>
@@ -15,28 +15,28 @@ $title = "Registration"
             <section class="content">
                 <div class="container">
                     <?php
-                $courses = array(
-                    "Bachelor of Elementary Education",
-                    "Bachelor of Physical Education",
-                    "Bachelor of Secondary Education",
-                    "BS in Banking and Finance",
-                    "BS in Accountancy",
-                    "BS in Accountancy Technology",
-                    "BS in Business Administration",
-                    "BS in Computer Engineering",
-                    "BS in Computer Science",
-                    "BS in Information Technology",
-                    "BS in Civil Engineering",
-                    "BS in Computer Engineering",
-                    "BS in Electrical Engineering",
-                    "BS in Mechanical Engineering",
-                    "BS in Nursing",
-                    "BS in Biology",
-                    "BS in Industrial Technology",
-                    "BS in Psychology",
-                    "BS in Hotel and Restaurant Management"
-                );
-                ?>
+                    $courses = array(
+                        "Bachelor of Elementary Education",
+                        "Bachelor of Physical Education",
+                        "Bachelor of Secondary Education",
+                        "BS in Banking and Finance",
+                        "BS in Accountancy",
+                        "BS in Accountancy Technology",
+                        "BS in Business Administration",
+                        "BS in Computer Engineering",
+                        "BS in Computer Science",
+                        "BS in Information Technology",
+                        "BS in Civil Engineering",
+                        "BS in Computer Engineering",
+                        "BS in Electrical Engineering",
+                        "BS in Mechanical Engineering",
+                        "BS in Nursing",
+                        "BS in Biology",
+                        "BS in Industrial Technology",
+                        "BS in Psychology",
+                        "BS in Hotel and Restaurant Management"
+                    );
+                    ?>
                     <script src="<?php echo "/script/registration-form.js" ?>"></script>
                     <div class="card">
                         <div class="card-header">
@@ -61,11 +61,11 @@ $title = "Registration"
                                                     <div><span>Course</span></div>
                                                     <select name="course" value="<?php echo $student_data->course ?>">
                                                         <?php
-                                    foreach ($courses as $course) {
-                                        $selected = ($student_data->course ?? "") == $course ? 'selected' : '';
-                                        echo "<option $selected>$course</option>";
-                                    }
-                                    ?>
+                                                        foreach ($courses as $course) {
+                                                            $selected = ($student_data->course ?? "") == $course ? 'selected' : '';
+                                                            echo "<option $selected>$course</option>";
+                                                        }
+                                                        ?>
                                                     </select>
                                                 </div>
                                             </div>
@@ -211,15 +211,32 @@ $title = "Registration"
                                             </div>
                                         </div>
                                     </div>
-                                    <?php if (isset($student_id)): ?>
-                                    <input type="hidden" name="id" value="<?php echo $student_id ?>" />
-                                    <?php endif; ?>
-                                    <div class="justify-content m-t">
-                                        <button class="btn btn-default m-r" type="submit">Save</button>
-                                        <a class="btn btn-flat"
-                                            href="<?php echo $SITE_NAME ?>/admin/student.php">Cancel</a>
+
+                                    <div class="section">
+                                        <h3 class="m-b">Login Details</h3>
+                                        <div class="row">
+                                            <div class="col">
+                                                <div class="input-wrapper">
+                                                    <div><span>Password</span></div>
+                                                    <input name="password" />
+                                                </div>
+                                            </div>
+                                            <div class="col">
+                                                <div class="input-wrapper">
+                                                    <div><span>Confirm Password</span></div>
+                                                    <input name="confirm-password" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <?php if (isset($student_id)): ?>
+                                        <input type="hidden" name="id" value="<?php echo $student_id ?>" />
+                                        <?php endif; ?>
+                                        <div class="justify-content m-t">
+                                            <button class="btn btn-default m-r" type="submit">Save</button>
+                                            <a class="btn btn-flat"
+                                                href="<?php echo $SITE_NAME ?>/admin/student.php">Cancel</a>
+                                        </div>
                                     </div>
-                                </div>
                             </form>
                         </div>
                     </div>

@@ -1,5 +1,5 @@
 <?php
-echo '123';
+
 require_once '../config.php';
     require_once '../classes/db_helper.php';
     $table_name = 'student_list';
@@ -31,12 +31,18 @@ require_once '../config.php';
             return;
         }
         $_POST['approved'] = $dbhelper->time_stamp();
+        $pass = '';
         if (isset($_GET['page']) && $_GET['page'] == 'registration'):
             $_POST['approved'] = '';
         endif;
+        if (isset($_POST['password'])) {
+            $pass = $_POST['password'];
+            unset($_POST['password']);
+            unset($_POST['confirm-password']);
+        }
 
         $id = $dbhelper->generate_insert_sql($table_name, $_POST);
-        $dbhelper->cmd("INSERT INTO users (username, password, type)VALUES(:username, '', 3)", array(":username" => $_POST['email']));
+        $dbhelper->cmd("INSERT INTO users (username, password, type)VALUES(:username, :password, 3)", array(":username" => $_POST['email'], ':password' => $pass));
         try {
             send_email((object) array("code" => $_POST['code'], 'email' => $_POST['email'], 'name' => $_POST['firstname'] . " " . $_POST['lastname'], 'token' => $dbhelper->encrypt($id)));
         } catch (\Throwable $th) {

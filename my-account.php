@@ -13,6 +13,7 @@ if (!is_null($student_id)) {
         $age = floor((time() - strtotime($student_data->birthdate)) / 31556926);
     }
 }
+$approved = $student_data->approved != '0000-00-00 00:00:00';
 ?>
 <!DOCTYPE html>
 <html>
@@ -201,19 +202,25 @@ if (!is_null($student_id)) {
                                 <div class="input-wrapper">
                                     <div><span>Status</span></div>
                                     <div class="view">
+                                        <?php if($approved): ?>
                                         <?php echo $student_data->status === "1" ? 'Active' : 'Inactive' ?>
+                                        <?php else: ?>
+                                        Pending
+                                        <?php endif ?>
                                     </div>
                                 </div>
                                 <input type="hidden" name="id" value="4" />
                                 <div class="justify-content m-t">
+                                    <?php if ($approved): ?>
                                     <button id="btn-payment-history" class="btn btn-default m-r"
                                         data-id="<?php echo $student_id ?>">Payment
                                         History</button>
-                                        <a id="btn-logout"  href="/logout.php" class="btn btn-default m-r">Logout</a>
+                                    <?php endif; ?>
+                                    <a id="btn-logout" href="/logout.php" class="btn btn-default m-r">Logout</a>
                                 </div>
 
                                 <div class="justify-content m-t">
-                                    
+
                                 </div>
                             </div>
                         </div>
@@ -305,7 +312,8 @@ if (!is_null($student_id)) {
                     </div>
             </section>
         </div>
-        <?php $footer_class = 'justify-content'; include $ROOT_DIR . '/inc/footer.php'; ?>
+        <?php $footer_class = 'justify-content';
+        include $ROOT_DIR . '/inc/footer.php'; ?>
     </div>
 </body>
 
