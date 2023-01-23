@@ -8,7 +8,7 @@ class db_connect{
     private $username = username;
     private $password = password;
 
-    private $db_name = dbname;
+    private $db_name = db_name;
     
     public $conn;
 
