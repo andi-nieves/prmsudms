@@ -1,4 +1,10 @@
 <?php
+if (isset($_GET['destroy'])) {
+	session_start();
+	session_destroy();
+	echo json_encode(array('success'=>true));
+	die();
+}
 	require '../initialize.php';
 	require '../classes/db_helper.php';
 
@@ -10,7 +16,7 @@
 		foreach(get_object_vars($res) as $key=>$value) {
 			$_SESSION[$key] = $value;
 		}
-		echo json_encode(array('success' => true));
+		echo json_encode(array('success' => true, 'type' => $res->type));
 	}
 // require_once '../config.php';
 // class Login extends db_connect {

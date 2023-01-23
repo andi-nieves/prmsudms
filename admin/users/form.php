@@ -3,6 +3,7 @@ $profile_avatar = $dbhelper->get_user_meta($id, 'profile_avatar')
 ?>
 <form class="auto" data-id="<?php echo $dbhelper->encrypt("users") ?>" data-unique='<?php echo json_encode(array('username')) ?>'>
     <div class="details">
+        <?php if($user->type !== "3"): ?>
         <div class="row">
             <div class="col">
                 <div class="input-wrapper">
@@ -23,6 +24,7 @@ $profile_avatar = $dbhelper->get_user_meta($id, 'profile_avatar')
                 </div>
             </div>
         </div>
+        <?php endif ?>
 
         <div class="row">
             <div class="col">
@@ -43,10 +45,14 @@ $profile_avatar = $dbhelper->get_user_meta($id, 'profile_avatar')
             <div class="col">
                 <div class="input-wrapper">
                     <div><span>Type</span></div>
+                    <?php if($readonly === true): ?>
+                        <div class="static">Admin</div>
+                    <?php else: ?>
                     <select name="type" <?= $readonly ? 'readonly' : '' ?>>
                         <option value="1" <?= ($user->type ?? "") === 1 ? "selected" : "" ?>>Administrator</option>
                         <option value="2" <?= ($user->type ?? "") === 2 ? "selected" : "" ?>>User</option>
                     </select>
+                    <?php endif ?>
                 </div>
             </div>
         </div>
@@ -94,7 +100,7 @@ $profile_avatar = $dbhelper->get_user_meta($id, 'profile_avatar')
     <div class="modal-content" style="max-width: unset">
         <div class="card">
             <div class="card-header">
-                <h3 class="card-title">Room Details</h3>
+                <h3 class="card-title">Crop Avatar</h3>
             </div>
             <div class="card-body">
                 <div class="content">

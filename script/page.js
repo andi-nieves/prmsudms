@@ -7,7 +7,25 @@ String.prototype.compose = (function (){
       });
   }
 }());
+function inactivityTime() {
+  let time;
+  $(document).ready(resetTimer).mousemove(resetTimer).on('keypress', resetTimer);
+  function logout() {
+    $.ajax({
+      url: `/api/login.php?destroy=true`,
+      type: "get",
+      dataType: "json",
+    }).done(() => {
+      window.location.replace('/')
+    });
+  }
+  function resetTimer() {
+    clearTimeout(time);
+    time = setTimeout(logout, (1000 * 60 * 5)) // 5mins inactive
+  }
+};
 $(document).ready(() => {
+  inactivityTime();
   $('input[name="price"]').on({
     keyup: function () {
       formatCurrency($(this));
@@ -198,14 +216,14 @@ $(document).ready(() => {
     language: { search: "" },
     width: '100%'
   }
-  const tblRaw = $('table')
+  const tblRaw = $('table.table')
   if (tblRaw.hasClass("no-pagination")) {
     tableOptions.paging = false
   }
-  $('table').find('th:contains("Date")').css('max-width', '100px')
+  $('table.table').find('th:contains("Date")').css('max-width', '100px')
   const table = tblRaw.DataTable(tableOptions);
   // window.table = table
-  $('table').trigger('done', [table])
+  $('table.table').trigger('done', [table])
   $("#list_filter label").append('<i class="fa fa-search"></i>')
   
 });

@@ -1,0 +1,38 @@
+<html>
+
+<head>
+    <title>Welcome to PRMSU Dorm</title>
+</head>
+
+<body style="font-family: Arial, Helvetica, sans-serif; margin: 0; padding: 0;">
+    <div style="
+    background: rgb(44, 61, 92);
+    height: 80px;
+    display: flex;
+    align-items: center;
+    padding: 0 30px;
+    color: #FFF;
+    ">PRMSU Dorm Management System</div>
+
+    <div style=" padding: 10px">
+        <h1>Hi {name}! Thanks you for joining with us!</h1>
+        <table cellspacing="0" style="border-collapse: collapse; margin-bottom: 20px;">
+            <tr>
+                <th style="text-align: left;">Code:</th>
+                <td style="padding-left: 10px">{code}</td>
+            </tr>
+            <tr>
+                <th style="text-align: left;">Username:</th>
+                <td style="padding-left: 10px">{email}</td>
+            </tr>
+        </table>
+        <a style="background-color: rgb(44, 61, 92);
+        padding: 10px;
+        color: #FFF;
+        text-decoration: none;
+        border-radius: 10px;
+        margin-top: 10px;" href="https://www.prmsudms.com/set-password.php?token={token}">Set your password here</a>
+    </div>
+</body>
+
+</html>

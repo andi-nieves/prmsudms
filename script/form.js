@@ -23,12 +23,21 @@ $(document).ready(() => {
         }
       });
     if ($(form).find(".error").length > 0) return;
+
     $.ajax({
       url: `/api/student-entry.php`,
       type: "post",
       dataType: "json",
       data: form.serialize(),
     }).done((data) => {
+      if (data.duplicate) {
+        data.duplicate.forEach(key => {
+          $(`input[name="${key}"]`)
+            .closest(".input-wrapper")
+            .append('<span class="error">The value you entered already exists!</span>');
+        })
+        
+      }
       if (data.success) {
         window.location = `/admin/students/entry.php?id=${data.id}`;
       }

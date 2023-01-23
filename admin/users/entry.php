@@ -32,7 +32,7 @@ if (isset($_GET['view'])) {
                 <div class="container">
                     <div class="card">
                         <div class="card-header">
-                            <h3 class="card-title">Create New Account</h3>
+                            <h3 class="card-title"><?php echo $readonly === true ? "User" : "Create New" ?> Account</h3>
                         </div>
                         <div class="card-body">
                             <?php if (!isset($_GET['page'])): ?>
