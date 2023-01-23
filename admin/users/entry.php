@@ -1,5 +1,9 @@
 <?php
 require_once('../../config.php');
+if (!is_admin()) {
+    header('Location: /admin/home.php');
+    die();
+}
 $user = null;
 $selected = isset($_GET['view']) || isset($_GET['edit']);
 $readonly = isset($_GET['view']);

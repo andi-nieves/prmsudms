@@ -14,7 +14,7 @@ $profile_avatar = $dbhelper->get_user_meta($id, 'profile_avatar')
             <div class="col">
                 <div class="input-wrapper">
                     <div><span>Middle Name</span></div>
-                    <input name="meta[middle_name]" <?= $readonly ? 'readonly' : '' ?> type="text" value="<?= $dbhelper->get_user_meta($id, 'middle_name') ?? "" ?>" />
+                    <input name="meta[middle_name]" <?= $readonly ? 'readonly' : '' ?> class="not-required" type="text" value="<?= $dbhelper->get_user_meta($id, 'middle_name') ?? "" ?>" />
                 </div>
             </div>
             <div class="col">
@@ -43,7 +43,7 @@ $profile_avatar = $dbhelper->get_user_meta($id, 'profile_avatar')
             </div>
             <?php endif; ?>
             <div class="col">
-                <div class="input-wrapper">
+                <!-- <div class="input-wrapper">
                     <div><span>Type</span></div>
                     <?php if($readonly === true): ?>
                         <div class="static">Admin</div>
@@ -53,7 +53,7 @@ $profile_avatar = $dbhelper->get_user_meta($id, 'profile_avatar')
                         <option value="2" <?= ($user->type ?? "") === 2 ? "selected" : "" ?>>User</option>
                     </select>
                     <?php endif ?>
-                </div>
+                </div> -->
             </div>
         </div>
         <?php if(isset($_GET['edit'])): ?>

@@ -22,7 +22,7 @@ if (isset($_SESSION['id'])) {
     <div class="right">
         <div class="user">
             <span><?= $_SESSION['username']; ?></span>
-            <span><?= $user_types[$_SESSION['id']] ?></span>
+            <span><?= $user_types[$_SESSION['type']] ?></span>
         </div>
         
         <div class="dropdown">

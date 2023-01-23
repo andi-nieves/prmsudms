@@ -1,4 +1,4 @@
-window.modal = ({ title, body, buttons }) => {
+window.modal = ({ title, body, buttons, onDismiss }) => {
   /*
         buttons = [{
             label: string,
@@ -15,6 +15,7 @@ window.modal = ({ title, body, buttons }) => {
     actions.append('<button class="btn btn-flat" type="submit">Close</button>');
     actions.find(".btn-flat").on("click", () => {
       $("#modal").hide();
+      if (typeof onDismiss === 'function') onDismiss()
     });
   };
   if (buttons) {

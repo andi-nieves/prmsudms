@@ -62,11 +62,13 @@ include $ROOT_DIR.'/inc/html-head.php';
                                             </td>
                                             <td style="width: 50px">
                                                 <div class="dropdown">
-                                                    <button class="dropbtn">Action <i class="fa fa-chevron-down"></i></button>
+                                                    <button class="dropbtn">Action <?php echo !isValidTimeStamp($row['approved']) ? '<div class="new-badge"></div>' : '' ?> <i class="fa fa-chevron-down"></i></button>
                                                     <div class="dropdown-content">
                                                         <a href="/admin/students/entry.php?id=<?php echo $row['id'] ?>">View</a>
+                                                        <?php if (isValidTimeStamp($row['approved'])) : ?>
                                                         <a href="/admin/students/entry.php?id=<?php echo $row['id'] ?>&page=edit">Edit</a>
                                                         <a href="#" class="delete" data-code="<?php echo $row['code'] ?>" data-id="<?php echo $row['id'] ?>" data-name="<?php echo $row['name'] ?>">Delete</a>
+                                                        <?php endif ?>
                                                     </div>
                                                 </div>
                                             </td>

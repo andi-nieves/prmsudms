@@ -24,6 +24,7 @@
         <label>Password</label>
         <input type="password" name="password"><br>
         <button type="submit">Login</button>
+        <a href="/registration.php" class="register">Registration</a>
     </form>
     <script>
         $("form").on('submit', function(event) {

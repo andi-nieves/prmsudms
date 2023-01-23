@@ -23,7 +23,7 @@ $dorms = $dbhelper->query("SELECT id, name FROM dorm_list WHERE status = 1 ORDER
 					<?php endif; ?>
 					<div class="card">
 						<div class="card-header">
-							<h3 class="card-title">List of Rooms</h3>
+							<h3 class="card-title">List of Bedspace</h3>
 							<div class="card-tools">
 								<a href="#" id="create_new" class="btn btn-flat btn-primary"><span
 										class="fas fa-plus"></span> Create New</a>

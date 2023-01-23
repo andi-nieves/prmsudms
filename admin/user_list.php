@@ -36,8 +36,10 @@ endforeach;
 						<div class="card-header">
 							<h3 class="card-title">List of Users</h3>
 							<div class="card-tools">
+								<?php if(is_admin()): ?>
 								<a href="/admin/users/entry.php" id="create_new" class="btn btn-flat btn-primary"><span
 										class="fas fa-plus"></span> Create New</a>
+								<?php endif; ?>
 							</div>
 						</div>
 						<div class="card-body">
@@ -68,11 +70,14 @@ endforeach;
 													<button class="dropbtn">Action <iclass="fa fa-chevron-down"></i></button>
 													<div class="dropdown-content">
 														<a href="/admin/users/entry.php?view=<?= $dbhelper->encrypt($user->id) ?>">View</a>
-														<a href="/admin/users/entry.php?edit=<?= $dbhelper->encrypt($user->id) ?>">Edit</a>
-														<a href="#" class="delete"
-															data-title="<?= "$user->last_name, $user->first_name" ?>"
-															data-context="<?= $dbhelper->encrypt("users") ?>"
-															data-id="<?= $dbhelper->encrypt($user->id) ?>">Delete</a>
+														<?php if (is_admin()): ?>
+															<a href="/admin/users/entry.php?edit=<?= $dbhelper->encrypt($user->id) ?>">Edit</a>
+															<a href="#" class="delete"
+																data-title="<?= "$user->last_name, $user->first_name" ?>"
+																data-context="<?= $dbhelper->encrypt("users") ?>"
+																data-id="<?= $dbhelper->encrypt($user->id) ?>">Delete</a>
+														<?php endif; ?>
+														
 													</div>
 												</div>
 											</td>

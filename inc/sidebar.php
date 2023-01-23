@@ -23,12 +23,12 @@
             </li>
             <li class>
                 <a href="/admin/dorm.php">
-                    <span class="item">Dorm</span>
+                    <span class="item">Room</span>
                 </a>
             </li>
             <li>
                 <a href="/admin/bedroom.php">
-                    <span class="item">Bedroom</span>
+                    <span class="item">Bedspace</span>
                 </a>
             </li>
             <li>
@@ -42,7 +42,7 @@
                 </a>
             </li>
             <li>
-                <a href="/admin/logout.php" class="logout">
+                <a href="/logout.php" class="logout">
                     <span class="item">Logout</span>
                 </a>
             </li>

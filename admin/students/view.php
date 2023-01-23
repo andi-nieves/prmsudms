@@ -178,11 +178,16 @@
                 </div>
             </div>
             <input type="hidden" name="id" value="4" />
+            
             <div class="justify-content m-t">
+                <?php if(isValidTimeStamp($student_data->approved)): ?>
                 <button id="btn-payment-history" class="btn btn-default m-r" data-id="<?php echo $student_id ?>">Payment
                     History</button>
                 <button id="btn-add-payment" class="btn btn-default m-r" data-id="<?php echo $student_id ?>">Add
                     Payment</button>
+                <?php else: ?>
+                <button id="btn-approve" class="btn btn-default m-r" data-id="<?php echo $student_id ?>">Approve</button>
+                <?php endif; ?>
                 <a class="btn btn-default m-r"
                     href="/admin/students/entry.php?id=<?php echo $student_id ?>&page=edit">Edit</a>
                 <button id="delete" data-id="<?php echo $student_id ?>" data-code="<?php echo $student_data->code ?>"
@@ -267,6 +272,24 @@
         $("#btn-payment-history").on('click', function () {
             getpayments()
         })
+        $("#btn-approve").on('click', function () {
+            const { id } = $(this).data();
+            console.log('id', id)
+            $.ajax({
+            url: `/api/student-entry.php?type=approval&id=${id}`,
+            type: "get",
+            dataType: "json",
+            }).done((data) => {
+                if (data.success) {
+                    modal({
+                        title: ' ',
+                        body: 'Application succesfully approved',
+                        onDismiss: () => { window.location.reload() }
+                    })
+                }
+            })
+        })
+        
         function getpayments() {
             const data = $('table').data()
             $.ajax({

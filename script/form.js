@@ -4,7 +4,7 @@ $(document).ready(() => {
     event.preventDefault();
     $(form).find(".error").remove();
     $(form)
-      .find("input, textarea, select")
+      .find("input, textarea, select").not('.not-required')
       .each((i, input) => {
         if (!input.value) {
           $(input)

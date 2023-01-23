@@ -7,11 +7,19 @@ if (!isset($_SESSION['id'])) {
     header("Location: /login.php");
     die();
 }
+if (isset($_SESSION['type']) && $_SESSION['type'] == 3 && substr($_SERVER['REQUEST_URI'], 0, strlen('/admin')) === '/admin') {
+    echo "<h1>awith</h1>";
+    header("Location: /my-account.php");
+    die();
+}
+require 'vendor/autoload.php';
+
 require_once('initialize.php');
 require_once('classes/db_connect.php');
 require_once('classes/db_helper.php');
 require_once('classes/SystemSettings.php');
 require_once('classes/utils.php');
+
 $db = new db_connect;
 $conn = $db->conn;
 function redirect($url=''){

@@ -1,6 +1,13 @@
 <?php
+echo '123';
+require_once '../config.php';
     require_once '../classes/db_helper.php';
     $table_name = 'student_list';
+    if (isset($_GET['type']) && $_GET['type'] == 'approval') {
+        $dbhelper->query("UPDATE student_list SET approved = :value WHERE id=:id", array(":value" => $dbhelper->time_stamp(), ":id"=>$_GET['id']));
+        echo json_encode(array('success'=>true));
+        return;
+    }
     if (isset($_GET['type']) && $_GET['type'] == 'delete') {
         $dbhelper->_cmd("DELETE FROM $table_name WHERE id=:id", array(":id" => $_POST['id']));
         echo json_encode(array('success'=>true));
@@ -11,7 +18,7 @@
         echo json_encode(array('success'=>true));
         return;
     }
-    if (is_null($_POST['id']) || $_POST['id'] == "") {
+    if (!isset($_POST['id']) || is_null($_POST['id']) || $_POST['id'] == "") {
         $unique = array('code', 'email');
         $exist = array();
         foreach($unique as $u) {
@@ -23,11 +30,17 @@
             echo json_encode((object)array('duplicate' => $exist));
             return;
         }
+        $_POST['approved'] = $dbhelper->time_stamp();
+        if (isset($_GET['page']) && $_GET['page'] == 'registration'):
+            $_POST['approved'] = '';
+        endif;
+
         $id = $dbhelper->generate_insert_sql($table_name, $_POST);
         $dbhelper->cmd("INSERT INTO users (username, password, type)VALUES(:username, '', 3)", array(":username" => $_POST['email']));
         try {
-            send_email((object) array("code" => $_POST['code'], 'email' => $_POST['email'], 'name' => $_POST['first_name'] . " " . $_POST['last_name'],, 'token' => $dbhelper->encrypt($id)));
+            send_email((object) array("code" => $_POST['code'], 'email' => $_POST['email'], 'name' => $_POST['firstname'] . " " . $_POST['lastname'], 'token' => $dbhelper->encrypt($id)));
         } catch (\Throwable $th) {
+        echo $th;
         }
         echo json_encode(array('success'=>true, 'id'=>$id));
     } else {

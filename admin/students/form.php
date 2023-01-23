@@ -21,7 +21,7 @@ $courses = array(
     "BS in Hotel and Restaurant Management"
 );
 ?>
-<script src="<?php echo "$SITE_NAME/script/form.js" ?>"></script>
+<script src="<?php echo "/script/form.js" ?>"></script>
 <div class="card">
     <div class="card-header">
         <h3 class="card-title">Update student details</h3>
@@ -74,13 +74,19 @@ $courses = array(
                         <div class="col">
                             <div class="input-wrapper">
                                 <div><span>Middle Name</span></div>
-                                <input name="middlename" value="<?php echo $student_data->middlename ?? "" ?>" />
+                                <input name="middlename" class="not-required" value="<?php echo $student_data->middlename ?? "" ?>" />
                             </div>
                         </div>
                         <div class="col">
                             <div class="input-wrapper">
                                 <div><span>Last Name</span></div>
                                 <input name="lastname" value="<?php echo $student_data->lastname ?? "" ?>" />
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="input-wrapper">
+                                <div><span>Extension</span></div>
+                                <input name="extension" class="not-required" value="<?php echo $student_data->extension ?? "" ?>" />
                             </div>
                         </div>
                     </div>
