@@ -4,11 +4,11 @@ if(!defined('servername')){
 }
 class db_connect{
 
-    private $servername = "localhost";
-    private $username = "root";
-    private $password = "";
+    private $servername = servername;
+    private $username = username;
+    private $password = password;
 
-    private $db_name = "PRMSUdms_db";
+    private $db_name = dbname;
     
     public $conn;
 

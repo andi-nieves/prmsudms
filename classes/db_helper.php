@@ -16,10 +16,10 @@ class db {
         $this->connect();
     }
     public function connect(){
-        $this->dbname       = 'PRMSUdms_db';
-        $this->dbhost       = 'localhost';
-        $this->dbusername   = 'root';
-        $this->dbpassword   = '';
+        $this->dbname       = db_name;
+        $this->dbhost       = servername;
+        $this->dbusername   = username;
+        $this->dbpassword   = password;
         try{
             $this->conn = new PDO("mysql:host=$this->dbhost;dbname=$this->dbname;charset=utf8",$this->dbusername,$this->dbpassword);
             $this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
