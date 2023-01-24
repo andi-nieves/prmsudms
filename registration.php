@@ -218,13 +218,13 @@ $title = "Registration"
                                             <div class="col">
                                                 <div class="input-wrapper">
                                                     <div><span>Password</span></div>
-                                                    <input name="password" />
+                                                    <input name="password" type="password" />
                                                 </div>
                                             </div>
                                             <div class="col">
                                                 <div class="input-wrapper">
                                                     <div><span>Confirm Password</span></div>
-                                                    <input name="confirm-password" />
+                                                    <input name="confirm-password" type="password" />
                                                 </div>
                                             </div>
                                         </div>
