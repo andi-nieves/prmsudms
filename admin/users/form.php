@@ -1,9 +1,8 @@
-<?php 
-$profile_avatar = $dbhelper->get_user_meta($id, 'profile_avatar')
+<?php
+$profile_avatar = $dbhelper->get_user_meta($id, 'profile_avatar');
 ?>
 <form class="auto" data-id="<?php echo $dbhelper->encrypt("users") ?>" data-unique='<?php echo json_encode(array('username')) ?>'>
     <div class="details">
-        <?php if($user->type !== "3"): ?>
         <div class="row">
             <div class="col">
                 <div class="input-wrapper">
@@ -24,20 +23,19 @@ $profile_avatar = $dbhelper->get_user_meta($id, 'profile_avatar')
                 </div>
             </div>
         </div>
-        <?php endif ?>
 
         <div class="row">
             <div class="col">
                 <div class="input-wrapper">
                     <div><span>Username</span></div>
-                    <input name="username" <?= $readonly ? 'readonly' : '' ?> type="text" value="<?= $user->username ?? "" ?>" />
+                    <input name="username" <?= $readonly ? 'readonly' : '' ?> type="text" value="<?= $userdata->username ?? "" ?>" />
                 </div>
             </div>
             <?php if(!$readonly): ?>
             <div class="col">
                 <div class="input-wrapper">
-                    <div><span><?= (isset($user) && isset($_GET['edit'])) ? "Change " : "" ?>Password</span></div>
-                    <input name="password" <?= $readonly ? 'readonly' : '' ?> type="password" value="" autocomplete="new-password"/>
+                    <div><span><?= (isset($userdata) && isset($_GET['edit'])) ? "Change " : "" ?>Password</span></div>
+                    <input name="password" class="not-required" <?= $readonly ? 'readonly' : '' ?> type="password" value="" autocomplete="new-password"/>
                 </div>
                 
             </div>
@@ -49,8 +47,8 @@ $profile_avatar = $dbhelper->get_user_meta($id, 'profile_avatar')
                         <div class="static">Admin</div>
                     <?php else: ?>
                     <select name="type" <?= $readonly ? 'readonly' : '' ?>>
-                        <option value="1" <?= ($user->type ?? "") === 1 ? "selected" : "" ?>>Administrator</option>
-                        <option value="2" <?= ($user->type ?? "") === 2 ? "selected" : "" ?>>User</option>
+                        <option value="1" <?= ($userdata->type ?? "") === 1 ? "selected" : "" ?>>Administrator</option>
+                        <option value="2" <?= ($userdata->type ?? "") === 2 ? "selected" : "" ?>>User</option>
                     </select>
                     <?php endif ?>
                 </div> -->

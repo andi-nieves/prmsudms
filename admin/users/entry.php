@@ -10,7 +10,7 @@ $readonly = isset($_GET['view']);
 $id = null;
 if ($selected) {
     $id = $dbhelper->decrypt($_GET['view'] ?? $_GET['edit']);
-    $user = $dbhelper->query('SELECT * FROM users WHERE id=:id AND delete_flag = 0 AND `status`=1', array(':id' => $id))[0] ?? null;
+    $userdata = $dbhelper->query('SELECT * FROM users WHERE id=:id AND delete_flag = 0 AND `status`=1', array(':id' => $id))[0] ?? null;
 }
 $title = "Create New Account";
 if (isset($_GET['view'])) {
