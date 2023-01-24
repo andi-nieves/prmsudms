@@ -12,7 +12,7 @@ use PHPMailer\PHPMailer\Exception;
         $is_exist = file_exists("$ROOT_DIR/img/avatars/$user->profile_avatar");
         return  $is_exist == 1 ? "<img class='profile-avatar-thumb' src='/img/avatars/$user->profile_avatar' />" : "<div class='no-image'>$initials</div>";
     }
-    $user_types = array(1 => 'Administrator', 2 => "User", 3 => "Student");
+    $user_types = array(1 => 'Administrator', 2 => "Staff", 3 => "Student");
 
     function send_email($data) {
         global $ROOT_DIR;

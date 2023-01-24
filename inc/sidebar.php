@@ -37,6 +37,11 @@
                 </a>
             </li>
             <li>
+                <a href="/admin/yearly_collection.php">
+                    <span class="item">Yearly Collection Reports</span>
+                </a>
+            </li>
+            <li>
                 <a href="/admin/user_list.php">
                     <span class="item">Users List</span>
                 </a>
