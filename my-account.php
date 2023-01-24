@@ -8,7 +8,7 @@ $age = null;
 if (!is_null($student_id)) {
     require_once 'classes/db_helper.php';
     $db = new db();
-    $student_data = $db->query("SELECT * FROM `student_list` WHERE email=:username", array(":username" => $student_id))[0] ?? null;
+    $student_data = $db->query("SELECT s.*, r.price, r.name as room_name, d.name as dorm_name FROM `student_list` as s LEFT JOIN `account_list` as a ON s.id = a.student_id LEFT JOIN `room_list` as r ON a.room_id = r.id LEFT JOIN `dorm_list` as d ON r.dorm_id = d.id WHERE s.email=:username ", array(":username" => $student_id))[0] ?? null;
     if (!is_null($student_data)) {
         $age = floor((time() - strtotime($student_data->birthdate)) / 31556926);
     }
@@ -31,6 +31,7 @@ $approved = $student_data->approved != '0000-00-00 00:00:00';
                     <div class="card">
                         <div class="card-header">
                             <h3 class="card-title">Update student details</h3>
+                            <?php print_r($student_data) ?>
                         </div>
                         <div class="card-body">
                             <div class="details">
@@ -199,10 +200,43 @@ $approved = $student_data->approved != '0000-00-00 00:00:00';
                                         </div>
                                     </div>
                                 </div>
+                                <div class="section">
+                                    <h3 class="m-b">Room Details</h3>
+                                    <div class="row">
+                                        <div class="col">
+                                            <div class="input-wrapper">
+                                                <div><span>Building</span></div>
+                                                <div class="view">
+                                                    <?php echo $student_data->dorm_name ?>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col">
+                                            <div class="input-wrapper">
+                                                <div><span>Room</span></div>
+                                                <div class="view">
+                                                    <?php echo $student_data->room_name ?>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col">
+                                            <div class="input-wrapper">
+                                                <div><span>Price</span></div>
+                                                <div class="view">
+                                                    PHP <?php echo $student_data->price ?>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                                 <div class="input-wrapper">
                                     <div><span>Status</span></div>
                                     <div class="view">
-                                        <?php if($approved): ?>
+                                        <?php if ($approved): ?>
                                         <?php echo $student_data->status === "1" ? 'Active' : 'Inactive' ?>
                                         <?php else: ?>
                                         Pending
