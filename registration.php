@@ -234,7 +234,7 @@ $title = "Registration"
                                         <div class="justify-content m-t">
                                             <button class="btn btn-default m-r" type="submit">Save</button>
                                             <a class="btn btn-flat"
-                                                href="<?php echo $SITE_NAME ?>/admin/student.php">Cancel</a>
+                                                href="/login.php">Cancel</a>
                                         </div>
                                     </div>
                             </form>
