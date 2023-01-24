@@ -30,8 +30,7 @@ $approved = $student_data->approved != '0000-00-00 00:00:00';
                     <script src="<?php echo "$SITE_NAME/script/form.js" ?>"></script>
                     <div class="card">
                         <div class="card-header">
-                            <h3 class="card-title">Update student details</h3>
-                            <?php print_r($student_data) ?>
+                            <h3 class="card-title">Account Details</h3>
                         </div>
                         <div class="card-body">
                             <div class="details">
