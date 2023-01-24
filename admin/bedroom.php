@@ -33,21 +33,21 @@ $dorms = $dbhelper->query("SELECT id, name FROM dorm_list WHERE status = 1 ORDER
 							<div class="container-fluid">
 								<table class="table table-hover table-striped table-bordered" id="list">
 									<colgroup>
-										<col width="5%">
-										<col width="15%">
-										<col width="15%">
-										<col width="20%">
-										<col width="5%">
-										<col width="5%">
-										<col width="15%">
-										<col width="10%">
-										<col width="10%">
+										<col width="20px">
+										<col width="60%">
+										<col width="50px">
+										<col width="50px">
+										<col width="50px">
+										<col width="200px">
+										<col width="100px">
+										<col width="100px">
+										<!-- <col width="10%"> -->
 									</colgroup>
 									<thead>
 										<tr>
 											<th>#</th>
 											<th>Dorm</th>
-											<th>Name / Room no.</th>
+											<!-- <th>Name / Room no.</th> -->
 											<th>Slot</th>
 											<th>Available</th>
 											<th>Price</th>
@@ -66,13 +66,13 @@ $dorms = $dbhelper->query("SELECT id, name FROM dorm_list WHERE status = 1 ORDER
 											<td class="text-center">
 												<?php echo $i++; ?>
 											</td>
-											
+
 											<td>
 												<?php echo $row['dorm'] ?>
 											</td>
-											<td>
+											<!-- <td>
 												<?php echo $row['name'] ?>
-											</td>
+											</td> -->
 											<td class="text-right">
 												<?php echo format_num($row['slots']) ?>
 											</td>
@@ -92,17 +92,15 @@ $dorms = $dbhelper->query("SELECT id, name FROM dorm_list WHERE status = 1 ORDER
 												</div>
 											</td>
 											<td align="center">
-											<div class="dropdown">
+												<div class="dropdown">
 													<button class="dropbtn">Action <i
 															class="fa fa-chevron-down"></i></button>
 													<div class="dropdown-content">
-														<a class="view" 
-															data-name="<?php echo $row['name'] ?>"
+														<a class="view" data-name="<?php echo $row['dorm'] ?>"
 															data-slots="<?php echo $row['slots'] ?>"
 															data-price="<?php echo $row['price'] ?>"
-															data-status="<?php echo $row['status'] ?>"
-															>View</a>
-														<a href="#" class="edit" 
+															data-status="<?php echo $row['status'] ?>">View</a>
+														<a href="#" class="edit"
 															data-id="<?php echo $dbhelper->encrypt($row['id']) ?>"
 															data-name="<?php echo $row['name'] ?>"
 															data-slots="<?php echo $row['slots'] ?>"
@@ -134,8 +132,9 @@ $dorms = $dbhelper->query("SELECT id, name FROM dorm_list WHERE status = 1 ORDER
 					</div>
 					<div class="card-body">
 						<div class="content">
-							<form class="auto" data-id="<?php echo $dbhelper->encrypt("room_list") ?>"
-								data-unique='<?php echo json_encode(array('name')) ?>'>
+							<!-- <form class="auto" data-id="<?php echo $dbhelper->encrypt("room_list") ?>"
+								data-unique='<?php echo json_encode(array('name')) ?>'> -->
+							<form class="auto" data-id="<?php echo $dbhelper->encrypt("room_list") ?>">
 								<div class="input-wrapper">
 									<div><span>Dorm</span></div>
 									<select name="dorm_id">
@@ -146,13 +145,13 @@ $dorms = $dbhelper->query("SELECT id, name FROM dorm_list WHERE status = 1 ORDER
 										<?php endforeach; ?>
 									</select>
 								</div>
-								<div class="input-wrapper">
+								<!-- <div class="input-wrapper">
 									<div><span>Name</span></div>
-									<input name="name" />
-								</div>
+									<input type="hidden" name="name" />
+								</div> -->
 								<div class="input-wrapper">
 									<div><span>Bed/s</span></div>
-									<input name="slots" type="number" />
+									<input name="slots" type="number" value="3" />
 								</div>
 								<div class="input-wrapper">
 									<div><span>Price per Month</span></div>
@@ -166,6 +165,7 @@ $dorms = $dbhelper->query("SELECT id, name FROM dorm_list WHERE status = 1 ORDER
 									</select>
 								</div>
 								<div class="action-button justify-content-end">
+									<input type="hidden" name="name" />
 									<button class="btn btn-default m-r" type="submit">Save</button>
 									<button class="btn btn-secondary close">Close</button>
 								</div>
@@ -185,29 +185,29 @@ $dorms = $dbhelper->query("SELECT id, name FROM dorm_list WHERE status = 1 ORDER
 					</div>
 					<div class="card-body">
 						<div class="content">
-								<div class="input-wrapper">
-									<div><span>Dorm</span></div>
-									<div class="view dorm">123</div>
-								</div>
-								<div class="input-wrapper">
+							<div class="input-wrapper">
+								<div><span>Dorm</span></div>
+								<div class="view name">123</div>
+							</div>
+							<!-- <div class="input-wrapper">
 									<div><span>Name</span></div>
 									<div class="view name">123</div>
-								</div>
-								<div class="input-wrapper">
-									<div><span>Bed/s</span></div>
-									<div class="view slots">123</div>
-								</div>
-								<div class="input-wrapper">
-									<div><span>Price per Month</span></div>
-									<div class="view price">123</div>
-								</div>
-								<div class="input-wrapper" style="width: 100px;">
-									<div><span>Status</span></div>
-									<div class="pill active text-center status">Active</div>
-								</div>
-								<div class="action-button justify-content-end">
-									<button class="btn btn-secondary close">Close</button>
-								</div>
+								</div> -->
+							<div class="input-wrapper">
+								<div><span>Bed/s</span></div>
+								<div class="view slots">123</div>
+							</div>
+							<div class="input-wrapper">
+								<div><span>Price per Month</span></div>
+								<div class="view price">123</div>
+							</div>
+							<div class="input-wrapper" style="width: 100px;">
+								<div><span>Status</span></div>
+								<div class="pill active text-center status">Active</div>
+							</div>
+							<div class="action-button justify-content-end">
+								<button class="btn btn-secondary close">Close</button>
+							</div>
 						</div>
 
 					</div>
@@ -218,13 +218,14 @@ $dorms = $dbhelper->query("SELECT id, name FROM dorm_list WHERE status = 1 ORDER
 			$("#create_new").on('click', function (event) {
 				event.preventDefault();
 				$("#bedroom-modal").show();
-				
+
 			})
-			$("#list .dropdown .view").on('click', function(event) {
+			$("#list .dropdown .view").on('click', function (event) {
 				event.preventDefault()
 				const data = $(this).data()
+				console.log('data', data)
 				Object.keys(data).forEach(key => {
-					if (key === 'status' ) {
+					if (key === 'status') {
 						const status = data['status'] == 1 ? 'Active' : 'Inactive';
 						$("#view-bedroom-modal .status").removeClass('active Inactive').addClass(status.toLowerCase()).html(status)
 						return
@@ -233,7 +234,7 @@ $dorms = $dbhelper->query("SELECT id, name FROM dorm_list WHERE status = 1 ORDER
 				})
 				$("#view-bedroom-modal").show();
 			})
-			$("#list .dropdown .edit").on('click', function(event) {
+			$("#list .dropdown .edit").on('click', function (event) {
 				event.preventDefault()
 				const data = $(this).data()
 				Object.keys(data).forEach(key => {
@@ -246,7 +247,6 @@ $dorms = $dbhelper->query("SELECT id, name FROM dorm_list WHERE status = 1 ORDER
 			})
 			$("form.auto").on('success', function (event, response) {
 				$("#bedroom-modal form").remove('[name="id"]')
-				console.log('res', response)
 				window.location.reload();
 			})
 		</script>

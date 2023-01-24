@@ -90,7 +90,7 @@ include '../inc/html-head.php';
 						<div class="modal-content">
 							<div class="card">
 								<div class="card-header">
-									<h3 class="card-title">Dorm Details</h3>
+									<h3 class="card-title">Room Details</h3>
 								</div>
 								<div class="card-body">
 									<div class="content">
