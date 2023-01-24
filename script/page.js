@@ -20,8 +20,8 @@ function inactivityTime() {
     });
   }
   function resetTimer() {
-    // clearTimeout(time);
-    // time = setTimeout(logout, (1000 * 60 * 5)) // 5mins inactive
+    clearTimeout(time);
+    time = setTimeout(logout, (1000 * 60 * 5)) // 5mins inactive
   }
 };
 $(document).ready(() => {
