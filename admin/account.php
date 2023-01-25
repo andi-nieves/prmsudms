@@ -39,7 +39,7 @@
 						                    	<th>#</th>
 						                    	<th>Student</th>
 						                    	<th>Code</th>
-						                    	<th>Dorm</th>
+						                    	<th>Room</th>
 												<th>Date Created</th>
 						                    	<th>Status</th>
 						                    	<th>Action</th>
@@ -63,7 +63,7 @@
 															<div class="dropdown-content">
 																<a href="/admin/students/entry.php?id=<?php echo $account->student_id ?>">View</a>
 																<a href="/admin/accounts/entry.php?id=<?php echo $account->id ?>&page=edit">Edit</a>
-																<a href="#" class="delete" data-code="<?php echo $account->code ?>" data-id="<?php echo $account->id ?>" data-name="<?php echo $account->name ?>">Delete</a>
+																<a href="#" class="delete" data-context="<?= $dbhelper->encrypt("account_list") ?>" data-code="<?php echo $account->code ?>" data-id="<?= $dbhelper->encrypt($account->id) ?>" data-title="<?php echo $account->name ?>">Delete</a>
 															</div>
 														</div>
 						                        	</td> 
