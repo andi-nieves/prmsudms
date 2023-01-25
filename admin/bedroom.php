@@ -46,7 +46,7 @@ $dorms = $dbhelper->query("SELECT id, name FROM dorm_list WHERE status = 1 ORDER
 									<thead>
 										<tr>
 											<th>#</th>
-											<th>Dorm</th>
+											<th>Room</th>
 											<!-- <th>Name / Room no.</th> -->
 											<th>Slot</th>
 											<th>Available</th>
@@ -136,7 +136,7 @@ $dorms = $dbhelper->query("SELECT id, name FROM dorm_list WHERE status = 1 ORDER
 								data-unique='<?php echo json_encode(array('name')) ?>'> -->
 							<form class="auto" data-id="<?php echo $dbhelper->encrypt("room_list") ?>">
 								<div class="input-wrapper">
-									<div><span>Dorm</span></div>
+									<div><span>Room</span></div>
 									<select name="dorm_id">
 										<?php foreach ($dorms as $dorm): ?>
 										<option value="<?php echo $dorm->id ?>">
