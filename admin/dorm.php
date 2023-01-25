@@ -22,7 +22,7 @@ include '../inc/html-head.php';
 					<?php endif; ?>
 					<div class="card">
 						<div class="card-header">
-							<h3 class="card-title">List of Dorms/h3>
+							<h3 class="card-title">List of Rooms</h3>
 							<div class="card-tools">
 								<a href="#" id="create_new" class="btn btn-flat btn-primary"><span
 										class="fas fa-plus"></span> Create New</a>
@@ -117,7 +117,7 @@ include '../inc/html-head.php';
 						<div class="modal-content">
 							<div class="card">
 								<div class="card-header">
-									<h3 class="card-title">Create New Dorm</h3>
+									<h3 class="card-title">Create New Room</h3>
 								</div>
 								<div class="card-body">
 									<div class="content">
