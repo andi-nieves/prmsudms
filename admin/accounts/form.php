@@ -23,12 +23,12 @@
                 <div class="input-wrapper">
                     <div><span>Room</span></div>
                     <select name="room_id">
-                        <?php foreach ($rooms as $room): ?>
+                        <?php foreach ($rooms as $room): if($room->name != ""):?>
                         <option <?php echo ($room->id ?? "")==($account->room_id ?? "") ? 'selected' : "" ?> value="
                             <?php echo $room->id ?>">
                             <?php echo $room->name ?>
                         </option>
-                        <?php endforeach; ?>
+                        <?php endif; endforeach; ?>
                     </select>
                 </div>
             </div>

@@ -1,7 +1,7 @@
 <?php
 require_once('../../config.php');
 $students = $dbhelper->query("SELECT `student_list`.id, CONCAT(`student_list`.`code`, ' - ', `student_list`.`lastname`,', ', `student_list`.`firstname`,' ', LEFT(middlename,1) ,'.') as name FROM `student_list` WHERE `student_list`.delete_flag=0 AND (SELECT COUNT(`account_list`.id) FROM `account_list` WHERE `account_list`.`student_id` = `student_list`.id) = 0");
-$rooms = $dbhelper->query("SELECT `room_list`.id, CONCAT((SELECT `dorm_list`.name FROM `dorm_list` WHERE `dorm_list`.id = `room_list`.dorm_id), ' - ', `room_list`.name) as name, `room_list`.slots - (SELECT COUNT(`account_list`.id) FROM `account_list` WHERE `account_list`.room_id = `room_list`.id) as slots, `room_list`.price FROM `room_list` WHERE delete_flag=0 and status=1;");
+$rooms = $dbhelper->query("SELECT `room_list`.id, CONCAT((SELECT `dorm_list`.name FROM `dorm_list` WHERE `dorm_list`.id = `room_list`.dorm_id AND `dorm_list`.delete_flag=0), ' - ', `room_list`.name) as name, `room_list`.slots - (SELECT COUNT(`account_list`.id) FROM `account_list` WHERE `account_list`.room_id = `room_list`.id AND `account_list`.delete_flag=0) as slots, `room_list`.price, `room_list`.delete_flag FROM `room_list` WHERE `room_list`.delete_flag=0 and status=1;");
 $title = "Create New Account";
 $account = null;
 if (isset($_GET['page']) && $_GET['page'] === 'edit') {
