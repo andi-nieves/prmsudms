@@ -124,7 +124,7 @@ include '../inc/html-head.php';
 										<form class="auto" data-id="<?php echo $dbhelper->encrypt("dorm_list") ?>"
 											data-unique='<?php echo json_encode(array('name')) ?>'>
 											<div class="input-wrapper">
-												<div><span>Name</span></div>
+												<div><span>Name <b class="required">*</b></span></div>
 												<input name="name" type="text" />
 											</div>
 											<div class="input-wrapper">

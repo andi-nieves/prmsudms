@@ -563,6 +563,9 @@ th {
 .input-wrapper .static.nobg {
     background-color: transparent !important;
 }
+.input-wrapper b.required {
+    color: red !important
+}
 
 .select2 {
     width: 100% !important;

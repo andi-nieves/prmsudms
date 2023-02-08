@@ -64,7 +64,7 @@
         echo json_encode(array('success'=>true, 'id' => $id, 'type'=>'new'));
     } else {
         if (!is_null($_POST['id'])) {
-            if ($_POST['password'] == '') {
+            if (isset($_POST['password']) && $_POST['password'] == '') {
                 unset($table_fields['password']);
             }
             $id = (is_numeric($_POST['id']) == 1) ? $_POST['id'] : $dbhelper->decrypt($_POST['id']);

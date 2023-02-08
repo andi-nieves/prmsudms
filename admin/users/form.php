@@ -6,7 +6,7 @@ $profile_avatar = $dbhelper->get_user_meta($id, 'profile_avatar');
         <div class="row">
             <div class="col">
                 <div class="input-wrapper">
-                    <div><span>First Name</span></div>
+                    <div><span>First Name <b class="required">*</b></span></div>
                     <input name="meta[first_name]" <?= $readonly ? 'readonly' : '' ?> type="text" value="<?= $dbhelper->get_user_meta($id, 'first_name') ?>" />
                 </div>
             </div>
@@ -18,7 +18,7 @@ $profile_avatar = $dbhelper->get_user_meta($id, 'profile_avatar');
             </div>
             <div class="col">
                 <div class="input-wrapper">
-                    <div><span>Last Name</span></div>
+                    <div><span>Last Name <b class="required">*</b></span></div>
                     <input name="meta[last_name]" <?= $readonly ? 'readonly' : '' ?> type="text" value="<?= $dbhelper->get_user_meta($id, 'last_name') ?? "" ?>" />
                 </div>
             </div>
@@ -27,14 +27,14 @@ $profile_avatar = $dbhelper->get_user_meta($id, 'profile_avatar');
         <div class="row">
             <div class="col">
                 <div class="input-wrapper">
-                    <div><span>Username</span></div>
+                    <div><span>Username <b class="required">*</b></span></div>
                     <input name="username" <?= $readonly ? 'readonly' : '' ?> type="text" value="<?= $userdata->username ?? "" ?>" />
                 </div>
             </div>
             <?php if(!$readonly): ?>
             <div class="col">
                 <div class="input-wrapper">
-                    <div><span><?= (isset($userdata) && isset($_GET['edit'])) ? "Change " : "" ?>Password</span></div>
+                    <div><span><?= (isset($userdata) && isset($_GET['edit'])) ? "Change " : "" ?>Password <b class="required">*</b></span></div>
                     <input name="password" class="not-required" <?= $readonly ? 'readonly' : '' ?> type="password" value="" autocomplete="new-password"/>
                 </div>
                 

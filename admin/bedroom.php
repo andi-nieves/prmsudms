@@ -136,7 +136,7 @@ $dorms = $dbhelper->query("SELECT id, name FROM dorm_list WHERE status = 1 ORDER
 								data-unique='<?php echo json_encode(array('name')) ?>'> -->
 							<form class="auto" data-id="<?php echo $dbhelper->encrypt("room_list") ?>">
 								<div class="input-wrapper">
-									<div><span>Room</span></div>
+									<div><span>Room <b class="required">*</b></span></div>
 									<select name="dorm_id">
 										<?php foreach ($dorms as $dorm): ?>
 										<option value="<?php echo $dorm->id ?>">
@@ -149,16 +149,16 @@ $dorms = $dbhelper->query("SELECT id, name FROM dorm_list WHERE status = 1 ORDER
 									<div><span>Name</span></div>
 									<input type="hidden" name="name" />
 								</div> -->
-								<div class="input-wrapper">
+								<!-- <div class="input-wrapper">
 									<div><span>Bed/s</span></div>
 									<input name="slots" type="number" value="3" />
-								</div>
+								</div> -->
 								<div class="input-wrapper">
-									<div><span>Price per Month</span></div>
+									<div><span>Price per Month <b class="required">*</b></span></div>
 									<input name="price" />
 								</div>
 								<div class="input-wrapper">
-									<div><span>Status</span></div>
+									<div><span>Status <b class="required">*</b></span></div>
 									<select name="status">
 										<option value="1">Active</option>
 										<option value="0">Inactive</option>
@@ -166,6 +166,7 @@ $dorms = $dbhelper->query("SELECT id, name FROM dorm_list WHERE status = 1 ORDER
 								</div>
 								<div class="action-button justify-content-end">
 									<input type="hidden" name="name" />
+									<input type="hidden" name="slots" value="3"/>
 									<button class="btn btn-default m-r" type="submit">Save</button>
 									<button class="btn btn-secondary close">Close</button>
 								</div>
