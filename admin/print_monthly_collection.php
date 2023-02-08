@@ -113,10 +113,10 @@ $name = $dbhelper->get_user_meta($_SESSION['id'], 'first_name'). ' '.$dbhelper->
 <body>
     <div class="wrapper">
         <p class="text-center">
-        Republic of the Philippines<br />
-        <b>PRESIDENT RAMON MAGSAYSAY STATE UNIVERSITY</b><br />
-        Dorm Collection Office<br />
-        Iba, Zambales
+            Republic of the Philippines<br />
+            <b>PRESIDENT RAMON MAGSAYSAY STATE UNIVERSITY</b><br />
+            Dorm Collection Office<br />
+            Iba, Zambales
         </p>
         <p>Month of: <?= $month ?>
         </p>

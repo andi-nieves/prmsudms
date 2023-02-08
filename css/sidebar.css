@@ -45,6 +45,19 @@
 	position: relative;
 }
 
+.wrapper .sidebar ul li a .badge {
+    background-color: red;
+    color: #fff;
+    height: 15px;
+    width: 15px;
+    border-radius: 10px;
+    display: inline-block;
+    text-align: center;
+    padding-top: 2px;
+    font-size: 10px;
+    margin-left: 3px;
+}
+
 .logout{
     bottom: -185px;
 }

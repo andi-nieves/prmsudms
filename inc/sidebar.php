@@ -1,3 +1,6 @@
+<?php 
+    $count = $dbhelper->query("SELECT COUNT(id) as count from `student_list` where delete_flag = 0 AND approved = '0000-00-00 00:00:00'")[0]->count;
+?>			        
 <link rel="stylesheet" href="/css/sidebar.css">
 <script defer src="/script/activePage.js"></script>
 <div class="sidebar">
@@ -18,7 +21,7 @@
             </li>
             <li>
                 <a href="/admin/applications.php">
-                    <span class="item">New Applications</span>
+                    <span class="item">New Applications <?= $count > 0 ? "<div class='badge'>$count</div>" : "" ?></span>
                 </a>
             </li>
             <li>
