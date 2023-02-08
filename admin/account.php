@@ -1,6 +1,6 @@
 <?php 
 	require_once('../config.php');
-	$accounts = $dbhelper->query("SELECT a.id, s.id as student_id, CONCAT(s.firstname, ' ', s.middlename, ' ', s.lastname) as name, s.code, a.date_created, CONCAT((SELECT d.name FROM dorm_list as d WHERE d.id = r.dorm_id), ' - ',r.name) as room_name, a.status  FROM `account_list` AS a INNER JOIN `student_list` AS s ON s.id = a.student_id INNER JOIN `room_list` AS r ON r.id = a.room_id  WHERE a.delete_flag = 0 ORDER BY a.date_created DESC");
+	$accounts = $dbhelper->query("SELECT a.id, s.id as student_id, CONCAT(s.firstname, ' ', s.middlename, ' ', s.lastname) as name, s.code, a.date_created, CONCAT((SELECT d.name FROM dorm_list as d WHERE d.id = r.dorm_id)) as room_name, a.status  FROM `account_list` AS a INNER JOIN `student_list` AS s ON s.id = a.student_id INNER JOIN `room_list` AS r ON r.id = a.room_id  WHERE a.delete_flag = 0 ORDER BY a.date_created DESC");
 	$title = "List of Accounts";
 ?>
     <!DOCTYPE html>
