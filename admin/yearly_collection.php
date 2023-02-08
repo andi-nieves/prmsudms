@@ -35,7 +35,7 @@ $total = array_sum(array_column($collections, 'amount'));
                         <?php endif;?>
                         <div class="card">
 	                        <div class="card-header">
-		                        <h3 class="card-title">Year Report</h3>
+		                        <h3 class="card-title">Yearly Report</h3>
 	                        </div>
 	                        <div class="card-body">
 		                        <div class="container-fluid mb-3">
@@ -55,7 +55,7 @@ $total = array_sum(array_column($collections, 'amount'));
                                                             </select>
                                                     </div>
                                                     <div class="action-buttons">
-                                                        <button type="submit" class="btn btn-default"><i class="fa fa-filter"></i> Filter</button>
+                                                        <button type="submit" class="btn btn-default"><i class="fa fa-filter"></i> Refresh</button>
                                                         <a href="/admin/print_yearly_collection.php?year=<?= $year ?>" class="btn btn-default" target="_new"><i class="fa fa-print"></i> Print</a>
                                                     </div>
 

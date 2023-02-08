@@ -48,7 +48,7 @@ $total = array_sum(array_column($collections, 'amount'));
                                                             <input type="month" class="form-control form-control-sm rounded-0" name="month" id="month" value="<?= $month ?>" required="required">
                                                     </div>
                                                     <div class="action-buttons">
-                                                        <button type="submit" class="btn btn-default"><i class="fa fa-filter"></i> Filter</button>
+                                                        <button type="submit" class="btn btn-default"><i class="fa fa-filter"></i> Refresh</button>
                                                         <a href="/admin/print_monthly_collection.php?month=<?= $month ?>" class="btn btn-default" target="_new"><i class="fa fa-print"></i> Print</a>
                                                     </div>
 
