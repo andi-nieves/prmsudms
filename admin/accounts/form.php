@@ -5,17 +5,17 @@
                 <div class="input-wrapper">
                     <div><span>Student</span></div>
                     <?php if (is_null($account)): ?>
-                    <select name="student_id">
-                        <?php foreach ($students as $student): ?>
-                        <option value="<?php echo $student->id ?>">
-                            <?php echo $student->name ?>
-                        </option>
-                        <?php endforeach; ?>
-                    </select>
+                        <select name="student_id">
+                            <?php foreach ($students as $student): ?>
+                                <option value="<?php echo $student->id ?>">
+                                    <?php echo $student->name ?>
+                                </option>
+                            <?php endforeach; ?>
+                        </select>
                     <?php else: ?>
-                    <div class="static nobg">
-                        <?php echo $account->name ?>
-                    </div>
+                        <div class="static nobg">
+                            <?php echo $account->name ?>
+                        </div>
                     <?php endif ?>
                 </div>
             </div>
@@ -23,12 +23,15 @@
                 <div class="input-wrapper">
                     <div><span>Room</span></div>
                     <select name="room_id">
-                        <?php foreach ($rooms as $room): if($room->name != ""):?>
-                        <option <?php echo ($room->id ?? "")==($account->room_id ?? "") ? 'selected' : "" ?> value="
-                            <?php echo $room->id ?>">
-                            <?php echo $room->name ?>
-                        </option>
-                        <?php endif; endforeach; ?>
+                        <?php foreach ($rooms as $room):
+                            if ($room->name != ""): ?>
+                                <?php if ($room->slots > 0): ?>
+                                    <option <?php echo ($room->id ?? "") == ($account->room_id ?? "") ? 'selected' : "" ?> value="
+                                        <?php echo $room->id ?>">
+                                        <?php echo $room->name ?>
+                                    </option>
+                                <?php endif; ?>
+                            <?php endif; endforeach; ?>
                     </select>
                 </div>
             </div>
@@ -46,14 +49,15 @@
                 <div class="input-wrapper">
                     <div><span>Active</span></div>
                     <select name="status">
-                        <option <?php echo ($account->status ?? "")=="1" ? "selected" : "" ?> value="1">Active</option>
-                        <option <?php echo ($account->status ?? "")=="0" ? "selected" : "" ?> value="0">Inactive</option>
+                        <option <?php echo ($account->status ?? "") == "1" ? "selected" : "" ?> value="1">Active</option>
+                        <option <?php echo ($account->status ?? "") == "0" ? "selected" : "" ?> value="0">Inactive
+                        </option>
                     </select>
                 </div>
             </div>
         </div>
         <?php if (!is_null($account)): ?>
-        <input type="hidden" name="id" value="<?php echo $account->id ?? null ?>" />
+            <input type="hidden" name="id" value="<?php echo $account->id ?? null ?>" />
         <?php endif ?>
     </div>
     <div class="justify-content m-t">
