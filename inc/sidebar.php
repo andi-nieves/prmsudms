@@ -17,6 +17,11 @@
                 </a>
             </li>
             <li>
+                <a href="/admin/applications.php">
+                    <span class="item">New Applicantions</span>
+                </a>
+            </li>
+            <li>
                 <a href="/admin/student.php">
                     <span class="item">Students</span>
                 </a>

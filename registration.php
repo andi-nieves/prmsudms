@@ -51,14 +51,14 @@ $title = "Registration"
                                         <div class="row">
                                             <div class="col">
                                                 <div class="input-wrapper">
-                                                    <div><span>Student Number</span></div>
+                                                    <div><span>Student Number <b class="required">*</b></span></div>
                                                     <input name="code"
                                                         value="<?php echo $student_data->code ?? "" ?>" />
                                                 </div>
                                             </div>
                                             <div class="col">
                                                 <div class="input-wrapper">
-                                                    <div><span>Course</span></div>
+                                                    <div><span>Course <b class="required">*</b></span></div>
                                                     <select name="course" value="<?php echo $student_data->course ?>">
                                                         <?php
                                                         foreach ($courses as $course) {
@@ -73,7 +73,7 @@ $title = "Registration"
                                         <div class="row">
                                             <div class="col">
                                                 <div class="input-wrapper">
-                                                    <div><span>Department</span></div>
+                                                    <div><span>Department <b class="required">*</b></span></div>
                                                     <input name="department"
                                                         value="<?php echo $student_data->department ?? "" ?>" />
                                                 </div>
@@ -85,7 +85,7 @@ $title = "Registration"
                                         <div class="row">
                                             <div class="col">
                                                 <div class="input-wrapper">
-                                                    <div><span>First Name</span></div>
+                                                    <div><span>First Name <b class="required">*</b></span></div>
                                                     <input name="firstname"
                                                         value="<?php echo $student_data->firstname ?? "" ?>" />
                                                 </div>
@@ -99,7 +99,7 @@ $title = "Registration"
                                             </div>
                                             <div class="col">
                                                 <div class="input-wrapper">
-                                                    <div><span>Last Name</span></div>
+                                                    <div><span>Last Name <b class="required">*</b></span></div>
                                                     <input name="lastname"
                                                         value="<?php echo $student_data->lastname ?? "" ?>" />
                                                 </div>
@@ -116,7 +116,7 @@ $title = "Registration"
                                         <div class="row">
                                             <div class="col">
                                                 <div class="input-wrapper">
-                                                    <div><span>Birthday</span></div>
+                                                    <div><span>Birthday <b class="required">*</b></span></div>
                                                     <input name="birthdate"
                                                         value="<?php echo $student_data->birthdate ?? "" ?>"
                                                         type="date" />
@@ -130,7 +130,7 @@ $title = "Registration"
                                             </div>
                                             <div class="col">
                                                 <div class="input-wrapper">
-                                                    <div><span>Gender</span></div>
+                                                    <div><span>Gender <b class="required">*</b></span></div>
                                                     <select name="gender">
                                                         <option <?php echo ($student_data->gender ?? "") == "Male" ? "selected" : "" ?>>Male
                                                         </option>
@@ -144,21 +144,21 @@ $title = "Registration"
                                         <div class="row">
                                             <div class="col">
                                                 <div class="input-wrapper">
-                                                    <div><span>Religion</span></div>
+                                                    <div><span>Religion <b class="required">*</b></span></div>
                                                     <input name="religion"
                                                         value="<?php echo $student_data->religion ?? "" ?>" />
                                                 </div>
                                             </div>
                                             <div class="col">
                                                 <div class="input-wrapper">
-                                                    <div><span>Contact Number</span></div>
+                                                    <div><span>Contact Number <b class="required">*</b></span></div>
                                                     <input name="contact"
                                                         value="<?php echo $student_data->contact ?? "" ?>" />
                                                 </div>
                                             </div>
                                             <div class="col">
                                                 <div class="input-wrapper">
-                                                    <div><span>Email</span></div>
+                                                    <div><span>Email <b class="required">*</b></span></div>
                                                     <input name="email"
                                                         value="<?php echo $student_data->email ?? "" ?>" />
                                                 </div>
@@ -168,7 +168,7 @@ $title = "Registration"
                                         <div class="row">
                                             <div class="col">
                                                 <div class="input-wrapper">
-                                                    <div><span>Address</span></div>
+                                                    <div><span>Address <b class="required">*</b></span></div>
                                                     <textarea
                                                         name="address"><?php echo $student_data->address ?? "" ?></textarea>
                                                 </div>
@@ -181,21 +181,21 @@ $title = "Registration"
                                         <div class="row">
                                             <div class="col">
                                                 <div class="input-wrapper">
-                                                    <div><span>Name</span></div>
+                                                    <div><span>Name <b class="required">*</b></span></div>
                                                     <input name="emergency_name"
                                                         value="<?php echo $student_data->emergency_name ?? "" ?>" />
                                                 </div>
                                             </div>
                                             <div class="col">
                                                 <div class="input-wrapper">
-                                                    <div><span>Contact Number</span></div>
+                                                    <div><span>Contact Number <b class="required">*</b></span></div>
                                                     <input name="emergency_contact"
                                                         value="<?php echo $student_data->emergency_contact ?? "" ?>" />
                                                 </div>
                                             </div>
                                             <div class="col">
                                                 <div class="input-wrapper">
-                                                    <div><span>Relation</span></div>
+                                                    <div><span>Relation <b class="required">*</b></span></div>
                                                     <input name="emergency_relation"
                                                         value="<?php echo $student_data->emergency_relation ?? "" ?>" />
                                                 </div>
@@ -204,7 +204,7 @@ $title = "Registration"
                                         <div class="row">
                                             <div class="col">
                                                 <div class="input-wrapper">
-                                                    <div><span>Address</span></div>
+                                                    <div><span>Address <b class="required">*</b></span></div>
                                                     <textarea
                                                         name="emergency_address"><?php echo $student_data->emergency_address ?? "" ?></textarea>
                                                 </div>
@@ -217,13 +217,13 @@ $title = "Registration"
                                         <div class="row">
                                             <div class="col">
                                                 <div class="input-wrapper">
-                                                    <div><span>Password</span></div>
+                                                    <div><span>Password <b class="required">*</b></span></div>
                                                     <input name="password" type="password" />
                                                 </div>
                                             </div>
                                             <div class="col">
                                                 <div class="input-wrapper">
-                                                    <div><span>Confirm Password</span></div>
+                                                    <div><span>Confirm Password <b class="required">*</b></span></div>
                                                     <input name="confirm-password" type="password" />
                                                 </div>
                                             </div>

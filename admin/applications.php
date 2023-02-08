@@ -40,14 +40,13 @@ include $ROOT_DIR.'/inc/html-head.php';
                                             <th>Department</th>
                                             <th>Course</th>
                                             <th>Date Created</th>
-                                            <th>Status</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <?php 
 					                        $i = 1;
-						                        $qry = $conn->query("SELECT *, concat(firstname, ' ', coalesce(concat(middlename,' '), ''), lastname) as `name` from `student_list` where delete_flag = 0 AND approved != '0000-00-00 00:00:00' order by `name` asc ");
+						                        $qry = $conn->query("SELECT *, concat(firstname, ' ', coalesce(concat(middlename,' '), ''), lastname) as `name` from `student_list` where delete_flag = 0 AND approved = '0000-00-00 00:00:00' order by `name` asc ");
 						                        while($row = $qry->fetch_assoc()):
 					                        ?>
                                         <tr>
@@ -57,9 +56,6 @@ include $ROOT_DIR.'/inc/html-head.php';
                                             <td><?php echo $row['department'] ?></td>
                                             <td><?php echo $row['course'] ?></td>
                                             <td><?php echo date("Y-m-d H:i",strtotime($row['date_created'])) ?></td>
-                                            <td class="text-center">
-                                                <div class="pill <?php echo $row['status'] === '1' ? 'active' : 'inactive' ?>"><?php echo $row['status'] === '1' ? 'Active' : 'Inactive' ?></div>
-                                            </td>
                                             <td style="width: 50px">
                                                 <div class="dropdown">
                                                     <button class="dropbtn">Action <i class="fa fa-chevron-down"></i></button>
