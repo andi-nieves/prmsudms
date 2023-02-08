@@ -18,7 +18,7 @@
             </li>
             <li>
                 <a href="/admin/applications.php">
-                    <span class="item">New Applicantions</span>
+                    <span class="item">New Applications</span>
                 </a>
             </li>
             <li>
