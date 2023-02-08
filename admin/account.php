@@ -38,7 +38,7 @@
 					                    	<tr>
 						                    	<th>#</th>
 						                    	<th>Student</th>
-						                    	<th>Code</th>
+						                    	<th>Student ID</th>
 						                    	<th>Room</th>
 												<th>Date Created</th>
 						                    	<th>Status</th>
