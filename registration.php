@@ -195,7 +195,7 @@ $title = "Registration"
                                             </div>
                                             <div class="col">
                                                 <div class="input-wrapper">
-                                                    <div><span>Relation <b class="required">*</b></span></div>
+                                                    <div><span>Relationship <b class="required">*</b></span></div>
                                                     <input name="emergency_relation"
                                                         value="<?php echo $student_data->emergency_relation ?? "" ?>" />
                                                 </div>

@@ -153,7 +153,7 @@
                     </div>
                     <div class="col">
                         <div class="input-wrapper">
-                            <div><span>Relation</span></div>
+                            <div><span>Relationship</span></div>
                             <div class="view">
                                 <?php echo $student_data->emergency_relation ?>
                             </div>
