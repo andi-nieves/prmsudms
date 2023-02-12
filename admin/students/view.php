@@ -87,7 +87,7 @@
                     </div>
                     <div class="col">
                         <div class="input-wrapper">
-                            <div><span>Gender</span></div>
+                            <div><span>Sex</span></div>
                             <div class="view">
                                 <?php echo $student_data->gender ?>
                             </div>

@@ -151,7 +151,7 @@ function updateCourse(value) {
                         </div>
                         <div class="col">
                             <div class="input-wrapper">
-                                <div><span>Gender <b class="required">*</b></span></div>
+                                <div><span>Sex <b class="required">*</b></span></div>
                                 <select name="gender">
                                     <option <?php echo ($student_data->gender ?? "") == "Male" ? "selected" : "" ?>>Male
                                     </option>
