@@ -5,7 +5,73 @@ $title = "Registration"
 <!DOCTYPE html>
 <html>
 <?php include 'inc/html-head.php' ?>
+<script type="text/javascript">
+function updateCourse(value) {
+  var courseSelect = document.getElementById("course");
+  courseSelect.options.length = 0;
 
+  if (value == "College of Accountancy and Business Administration") {
+    courseSelect.options[courseSelect.options.length] = new Option("Bachelor of Science in Accountancy");
+    courseSelect.options[courseSelect.options.length] = new Option("Bachelor of Science in Accounting and Information System");
+    courseSelect.options[courseSelect.options.length] = new Option("Bachelor of Science in Business Administration major in Marketing");
+    courseSelect.options[courseSelect.options.length] = new Option("Bachelor of Science in Business Administration major in Financial Management");
+    courseSelect.options[courseSelect.options.length] = new Option("Bachelor of Science in Business Administration major in Human Resource Development Management");
+    courseSelect.options[courseSelect.options.length] = new Option("Bachelor of Public Administration");
+  } 
+  else if (value == "College of Arts and Sciences") {
+    courseSelect.options[courseSelect.options.length] = new Option("Bachelor of Science in Biology");
+    courseSelect.options[courseSelect.options.length] = new Option("Bachelor of Science in Psycology");
+  }
+  else if (value == "College of Communication and Information Technology") {
+    courseSelect.options[courseSelect.options.length] = new Option("Bachelor of Science in Computer Science");
+    courseSelect.options[courseSelect.options.length] = new Option("Bachelor of Science in Information Technology");
+  }
+  else if (value == "College of Teacher Education") {
+    courseSelect.options[courseSelect.options.length] = new Option("Bachelor of Secondary Education major in English Education");
+    courseSelect.options[courseSelect.options.length] = new Option("Bachelor of Secondary Education major in Filipino Education");
+    courseSelect.options[courseSelect.options.length] = new Option("Bachelor of Secondary Education major in Mathematics Education");
+    courseSelect.options[courseSelect.options.length] = new Option("Bachelor of Secondary Education major in Science Education");
+    courseSelect.options[courseSelect.options.length] = new Option("Bachelor of Secondary Education major in Social Studies Education");
+    courseSelect.options[courseSelect.options.length] = new Option("Bachelor of Elementary Education");
+    courseSelect.options[courseSelect.options.length] = new Option("Bachelor of Physical Education");
+    courseSelect.options[courseSelect.options.length] = new Option("Certificate of Professional Education");
+  }
+  else if (value == "College of Engineering") {
+    courseSelect.options[courseSelect.options.length] = new Option("Bachelor of Science in Civil Engineering");
+    courseSelect.options[courseSelect.options.length] = new Option("Bachelor of Science in Electrical Engineering");
+    courseSelect.options[courseSelect.options.length] = new Option("Bachelor of Science in Mechanical Engineering");
+    courseSelect.options[courseSelect.options.length] = new Option("Bachelor of Science in Computer Engineering");
+  }
+  else if (value == "College of Industrial Technology") {
+    courseSelect.options[courseSelect.options.length] = new Option("Bachelor of Technology and Livelihood Education");
+    courseSelect.options[courseSelect.options.length] = new Option("Bachelor of Technical Vocational Teachers Education major in Computer Programming");
+    courseSelect.options[courseSelect.options.length] = new Option("Bachelor of Technical Vocational Teachers Education major in Drafting");
+    courseSelect.options[courseSelect.options.length] = new Option("Bachelor of Technical Vocational Teachers Education major in Mechanical");
+    courseSelect.options[courseSelect.options.length] = new Option("Bachelor of Technical Vocational Teachers Education major in Electrical")
+    courseSelect.options[courseSelect.options.length] = new Option("Bachelor of Technical Vocational Teachers Education major in Food and Service Management Technology");
+    courseSelect.options[courseSelect.options.length] = new Option("Bachelor of Technical Vocational Teachers Education major in Automotive");
+    courseSelect.options[courseSelect.options.length] = new Option("Bachelor of Technical Vocational Teachers Education major in Electronics Technology");
+    courseSelect.options[courseSelect.options.length] = new Option("Bachelor of Science in Industrial Technology major in Automotive");
+    courseSelect.options[courseSelect.options.length] = new Option("Bachelor of Science in Industrial Technology major in Computer");
+    courseSelect.options[courseSelect.options.length] = new Option("Bachelor of Science in Industrial Technology major in Drafting");
+    courseSelect.options[courseSelect.options.length] = new Option("Bachelor of Science in Industrial Technology major in Electrical");
+    courseSelect.options[courseSelect.options.length] = new Option("Bachelor of Science in Industrial Technology major in Electronics");;
+    courseSelect.options[courseSelect.options.length] = new Option("Bachelor of Science in Industrial Technology major in Food");
+    courseSelect.options[courseSelect.options.length] = new Option("Bachelor of Science in Industrial Technology major in Machine Shop");
+    courseSelect.options[courseSelect.options.length] = new Option("Bachelor of Science in Industrial Technology major in Furniture and Cabinet Making");
+    courseSelect.options[courseSelect.options.length] = new Option("Bachelor of Science in Industrial Technology major in Mechanical");
+  }
+  else if (value == "College of Agriculture and Forestry") {
+    courseSelect.options[courseSelect.options.length] = new Option("Bachelor of Science in Environmental Science", "BSEE");
+  }
+  else if (value == "College of Nursing") {
+    courseSelect.options[courseSelect.options.length] = new Option("Bachelor of Science in Nursing", "BSEE");
+  }
+  else if (value == "College of Tourism and Hospitality Management") {
+    courseSelect.options[courseSelect.options.length] = new Option("Bachelor of Science in Hospitality Management");
+    courseSelect.options[courseSelect.options.length] = new Option("Bachelor of Science in Tourism Management");
+  }
+}
 <body>
     <div class="wrapper">
         <div class="section">
@@ -14,29 +80,6 @@ $title = "Registration"
         <div class="content-wrapper" style="min-height:628.038px; margin-left: unset !important">
             <section class="content">
                 <div class="container">
-                    <?php
-                    $courses = array(
-                        "Bachelor of Elementary Education",
-                        "Bachelor of Physical Education",
-                        "Bachelor of Secondary Education",
-                        "BS in Banking and Finance",
-                        "BS in Accountancy",
-                        "BS in Accountancy Technology",
-                        "BS in Business Administration",
-                        "BS in Computer Engineering",
-                        "BS in Computer Science",
-                        "BS in Information Technology",
-                        "BS in Civil Engineering",
-                        "BS in Computer Engineering",
-                        "BS in Electrical Engineering",
-                        "BS in Mechanical Engineering",
-                        "BS in Nursing",
-                        "BS in Biology",
-                        "BS in Industrial Technology",
-                        "BS in Psychology",
-                        "BS in Hotel and Restaurant Management"
-                    );
-                    ?>
                     <script src="<?php echo "/script/registration-form.js" ?>"></script>
                     <div class="card">
                         <div class="card-header">
@@ -56,26 +99,32 @@ $title = "Registration"
                                                         value="<?php echo $student_data->code ?? "" ?>" />
                                                 </div>
                                             </div>
+                                        </div>
+                                        <div class="row">
                                             <div class="col">
                                                 <div class="input-wrapper">
-                                                    <div><span>Course <b class="required">*</b></span></div>
-                                                    <select name="course" value="<?php echo $student_data->course ?>">
-                                                        <?php
-                                                        foreach ($courses as $course) {
-                                                            $selected = ($student_data->course ?? "") == $course ? 'selected' : '';
-                                                            echo "<option $selected>$course</option>";
-                                                        }
-                                                        ?>
-                                                    </select>
+                                                    <div><span>Department <b class="required">*</b></span></div>
+                                                      <option value="">Select a Department</option>
+                                                      <option value="College of Accountancy and Business Administration">College of Accountancy and Business Administration</option>
+                                                      <option value="College of Arts and Sciences">College of Arts and Sciences</option>
+                                                      <option value="College of Communication and Information Technology">College of Communication and Information Technology</option>
+                                                      <option value="College of Teacher Education">College of Teacher Education</option>
+                                                      <option value="College of Engineering">College of Engineering</option>
+                                                      <option value="College of Industrial Technology">College of Industrial Technology</option>
+                                                      <option value="College of Agriculture and Forestry">College of Agriculture and Forestry</option>
+                                                      <option value="College of Nursing">College of Nursing</option>
+                                                      <option value="College of Tourism and Hospitality Management">College of Tourism and Hospitality Management</option>
+                                                    </select>  
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="row">
                                             <div class="col">
                                                 <div class="input-wrapper">
-                                                    <div><span>Department <b class="required">*</b></span></div>
-                                                    <input name="department"
-                                                        value="<?php echo $student_data->department ?? "" ?>" />
+                                                    <div><span>Course <b class="required">*</b></span></div>
+                                                    <select name="course" id="course" value="<?php echo $student_data->course ?? "" ?>">
+                                                      <option value="">Select a Course</option>
+                                                    </select>
                                                 </div>
                                             </div>
                                         </div>
