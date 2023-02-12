@@ -238,7 +238,7 @@ function updateCourse(value) {
                 <input type="hidden" name="id" value="<?php echo $student_id ?>" />
                 <div class="justify-content m-t">
                     <button class="btn btn-default m-r" type="submit">Save</button>
-                    <a class="btn btn-flat" href="<?php echo $SITE_NAME ?>/admin/student.php">Cancel</a>
+                    <a class="btn btn-secondary" href="<?php echo $SITE_NAME ?>/admin/student.php">Cancel</a>
                 </div>
             </div>
         </form>
