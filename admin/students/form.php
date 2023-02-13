@@ -69,7 +69,7 @@ function updateCourse(value) {
 <script src="<?php echo "/script/form.js" ?>"></script>
 <div class="card">
     <div class="card-header">
-        <h3 class="card-title">Update student details</h3>
+        <h3 class="card-title">Student details</h3>
     </div>
 
     <div class="card-body">
@@ -84,25 +84,33 @@ function updateCourse(value) {
                                 <input name="code" value="<?php echo $student_data->code ?? "" ?>" />
                             </div>
                         </div>
+                    </div>
+                    <div class="row">
                         <div class="col">
                             <div class="input-wrapper">
-                                <div><span>Course <b class="required">*</b></span></div>
-                                <select name="course" value="<?php echo $student_data->course ?>">
-                                    <?php
-                                        foreach($courses as $course) {
-                                            $selected = ($student_data->course ?? "") == $course ? 'selected' : '';
-                                            echo "<option $selected>$course</option>";
-                                        }
-                                    ?>
-                                </select>
+                                <div><span>Department <b class="required">*</b></span></div>
+                                <select name="department" id="department" value="<?php echo $student_data->department ?? "" ?>" onchange="updateCourse(this.value)">
+                                  <option value="">Select a Department</option>
+                                  <option value="College of Accountancy and Business Administration">College of Accountancy and Business Administration</option>
+                                  <option value="College of Arts and Sciences">College of Arts and Sciences</option>
+                                  <option value="College of Communication and Information Technology">College of Communication and Information Technology</option>
+                                  <option value="College of Teacher Education">College of Teacher Education</option>
+                                  <option value="College of Engineering">College of Engineering</option>
+                                  <option value="College of Industrial Technology">College of Industrial Technology</option>
+                                  <option value="College of Agriculture and Forestry">College of Agriculture and Forestry</option>
+                                  <option value="College of Nursing">College of Nursing</option>
+                                  <option value="College of Tourism and Hospitality Management">College of Tourism and Hospitality Management</option>
+                                </select>  
                             </div>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col">
                             <div class="input-wrapper">
-                                <div><span>Department <b class="required">*</b></span></div>
-                                <input name="department" value="<?php echo $student_data->department ?? "" ?>" />
+                                <div><span>Course <b class="required">*</b></span></div>
+                                <select name="course" id="course" value="<?php echo $student_data->course ?? "" ?>">
+                                  <option value="">Select a Course</option>
+                                </select>
                             </div>
                         </div>
                     </div>
