@@ -72,6 +72,7 @@ function updateCourse(value) {
     courseSelect.options[courseSelect.options.length] = new Option("Bachelor of Science in Tourism Management");
   }
 }
+</script>
 <body>
     <div class="wrapper">
         <div class="section">
@@ -104,6 +105,7 @@ function updateCourse(value) {
                                             <div class="col">
                                                 <div class="input-wrapper">
                                                     <div><span>Department <b class="required">*</b></span></div>
+                                                    <select name="department" id="department" value="<?php echo $student_data->department ?? "" ?>" onchange="updateCourse(this.value)">
                                                       <option value="">Select a Department</option>
                                                       <option value="College of Accountancy and Business Administration">College of Accountancy and Business Administration</option>
                                                       <option value="College of Arts and Sciences">College of Arts and Sciences</option>
