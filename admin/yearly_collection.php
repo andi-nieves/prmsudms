@@ -55,7 +55,7 @@ $total = array_sum(array_column($collections, 'amount'));
                                                             </select>
                                                     </div>
                                                     <div class="action-buttons">
-                                                        <button type="submit" class="btn btn-default"><i class="fa fa-filter"></i> Refresh</button>
+                                                        <button type="submit" class="btn btn-default"><i class="fas fa-redo-alt"></i> Refresh</button>
                                                         <a href="/admin/print_yearly_collection.php?year=<?= $year ?>" class="btn btn-default" target="_new"><i class="fa fa-print"></i> Print</a>
                                                     </div>
 

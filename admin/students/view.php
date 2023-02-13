@@ -17,14 +17,6 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col">
-                        <div class="input-wrapper">
-                            <div><span>Course</span></div>
-                            <div class="view">
-                                <?php echo $student_data->course ?>
-                            </div>
-                        </div>
-                    </div>
                 </div>
                 <div class="row">
                     <div class="col">
@@ -32,6 +24,16 @@
                             <div><span>Department</span></div>
                             <div class="view">
                                 <?php echo $student_data->department ?>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <div class="input-wrapper">
+                            <div><span>Course</span></div>
+                            <div class="view">
+                                <?php echo $student_data->course ?>
                             </div>
                         </div>
                     </div>
@@ -85,7 +87,7 @@
                     </div>
                     <div class="col">
                         <div class="input-wrapper">
-                            <div><span>Gender</span></div>
+                            <div><span>Sex</span></div>
                             <div class="view">
                                 <?php echo $student_data->gender ?>
                             </div>

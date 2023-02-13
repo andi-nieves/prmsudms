@@ -45,14 +45,6 @@ $approved = $student_data->approved != '0000-00-00 00:00:00';
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col">
-                                            <div class="input-wrapper">
-                                                <div><span>Course</span></div>
-                                                <div class="view">
-                                                    <?php echo $student_data->course ?>
-                                                </div>
-                                            </div>
-                                        </div>
                                     </div>
                                     <div class="row">
                                         <div class="col">
@@ -60,6 +52,16 @@ $approved = $student_data->approved != '0000-00-00 00:00:00';
                                                 <div><span>Department</span></div>
                                                 <div class="view">
                                                     <?php echo $student_data->department ?>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col">
+                                            <div class="input-wrapper">
+                                                <div><span>Course</span></div>
+                                                <div class="view">
+                                                    <?php echo $student_data->course ?>
                                                 </div>
                                             </div>
                                         </div>
@@ -113,7 +115,7 @@ $approved = $student_data->approved != '0000-00-00 00:00:00';
                                         </div>
                                         <div class="col">
                                             <div class="input-wrapper">
-                                                <div><span>Gender</span></div>
+                                                <div><span>Sex</span></div>
                                                 <div class="view">
                                                     <?php echo $student_data->gender ?>
                                                 </div>
