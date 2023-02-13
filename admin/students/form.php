@@ -69,7 +69,7 @@ function updateCourse(value) {
 <script src="<?php echo "/script/form.js" ?>"></script>
 <div class="card">
     <div class="card-header">
-        <h3 class="card-title">Update student details</h3>
+        <h3 class="card-title">Student details</h3>
     </div>
 
     <div class="card-body">
