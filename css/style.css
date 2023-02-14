@@ -64,6 +64,10 @@ hr{
     overflow: visible;
 }
 
+.dorm {
+    display: flex;
+    justify-content: center;
+}
 
 .dorm img{
     width: 90%;
