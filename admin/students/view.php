@@ -224,7 +224,7 @@
                         <div class="action-button justify-content-end">
                             <button data-id="<?php echo $student_id ?>" class="btn btn-default m-r"
                                 type="submit">Save</button>
-                            <button type="button" class="btn btn-flat">Close</button>
+                            <button type="button" class="btn btn-flat" style="background-color:#CCC;">Close</button>
                         </div>
                     </form>
                 </div>
@@ -253,7 +253,7 @@
                     </table>
                     <div class="action-button justify-content-end">
 
-                        <button class="btn btn-flat">Close</button>
+                        <button class="btn btn-flat" style="background-color:#CCC;">Close</button>
                     </div>
                 </div>
             </div>
