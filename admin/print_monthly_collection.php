@@ -119,7 +119,6 @@ $name = $dbhelper->get_user_meta($_SESSION['id'], 'first_name'). ' '.$dbhelper->
             Iba, Zambales
         </p>
         <p>Month of <?= date('F Y', strtotime($month)) ?></p>
-        </p>
         <table class="table">
             <thead>
                 <tr>
