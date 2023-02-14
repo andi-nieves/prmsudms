@@ -21,7 +21,7 @@ $title = "Home";
             <div class="content-wrapper" style="min-height:628.038px">
                 <section class="content">
                     <div class="container">
-                        <h1>Welcome, admin!</h1>
+                        <h1>Welcome, <?= $_SESSION['username']; ?>!</h1>
                         <hr>
                     </div>
                     <div class="dorm">
