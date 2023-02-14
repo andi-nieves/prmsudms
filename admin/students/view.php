@@ -216,7 +216,7 @@
                                 </div>
                                 <div class="input-wrapper">
                                     <div><span>Amount</span></div>
-                                    <input name="amount" type="text" />
+                                    <input name="amount" type="text" value="<?= $roomrate->rate ?>" />
                                 </div>
                                 <input type="hidden" name="account_id" value="<?php echo $student_data->id ?>" />
                             </div>

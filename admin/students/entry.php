@@ -9,6 +9,7 @@
         require_once '../../classes/db_helper.php';
         $db = new db();
         $student_data = $db->query("SELECT * FROM `student_list` WHERE id=:id", array(":id"=>$student_id))[0] ?? null;
+        $roomrate = $db->query("SELECT r.price as rate FROM account_list as a INNER JOIN room_list as r ON a.room_id = r.id WHERE a.student_id=:id", array(":id"=>$student_id))[0] ?? null;
         if(!is_null($student_data)) {
             $age = floor((time() - strtotime($student_data->birthdate)) / 31556926);
         }
