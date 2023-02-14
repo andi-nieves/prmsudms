@@ -284,7 +284,7 @@ function updateCourse(value) {
                                         <?php endif; ?>
                                         <div class="justify-content m-t">
                                             <button class="btn btn-default m-r" type="submit">Save</button>
-                                            <a class="btn btn-flat"
+                                            <a class="btn btn-secondary"
                                                 href="/login.php">Cancel</a>
                                         </div>
                                     </div>

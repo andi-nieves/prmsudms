@@ -67,7 +67,7 @@ endforeach;
 											<td><?= $user->date_created ?? "-" ?></td>
 											<td>
 												<div class="dropdown">
-													<button class="dropbtn">Action <iclass="fa fa-chevron-down"></i></button>
+													<button class="dropbtn">Action <i class="fa fa-chevron-down"></i></button>
 													<div class="dropdown-content">
 														<a href="/admin/users/entry.php?view=<?= $dbhelper->encrypt($user->id) ?>">View</a>
 														<?php if (is_admin()): ?>

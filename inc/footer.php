@@ -1,9 +1,9 @@
 <link rel="stylesheet" type="text/css" href="/css/header-footer.css">
 <footer class="main-footer <?= $footer_class ?>">
     <strong>
-        Copyright © 2022.
+        Copyright © 2023.
     </strong>
-    <p> All rights reserved.</p>
+    <p style="margin-left: 5px;"> All rights reserved.</p>
 </footer>
 
 <div class="modal" id="modal" style="display: none">

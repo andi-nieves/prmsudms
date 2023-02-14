@@ -119,7 +119,7 @@ $name = $dbhelper->get_user_meta($_SESSION['id'], 'first_name'). ' '.$dbhelper->
             Dorm Collection Office<br />
             Iba, Zambales
         </p>
-        <p>Month of: <?= $year ?>
+        <p>Year of <?= $year ?>
         </p>
         <table class="table">
             <thead>
